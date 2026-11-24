@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-24T20:49:27Z",
-  "headline": "The game supplied its first pair of graphics shaders",
-  "currentWork": "Connect the vertex shader’s Metal compute pass to the renderer and test the game’s first graphics pipeline.",
-  "graphicsStatus": "The game has 53 Metal compute pipelines. Both shaders for its first graphics pipeline compile. First frame pending.",
+  "updatedAt": "2026-11-24T20:52:17Z",
+  "headline": "The game linked six native Metal render pipelines",
+  "currentWork": "Translate the CPU functions the game now reaches after graphics setup, then follow its first draw and display submission.",
+  "graphicsStatus": "53 compute pipelines and six render pipelines observed in game startup. The separate vertex-capture draw test passed. First game frame pending.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "Six game render pipelines linked on Apple Silicon",
+      "detail": "Metal linked the game’s vertex and pixel stages. A separate test rendered a full triangle through the same two-pass vertex path and matched the Leonida team’s expected pixels."
+    },
     {
       "title": "First game graphics shaders compiled on the Mac",
       "detail": "The game requested its first vertex and pixel shaders during startup. Both compiled to Metal. The first graphics pipeline still needs to link before the game can draw."
@@ -179,9 +183,9 @@
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",
       "state": "current",
-      "detail": "The game created its first Metal sampler, registered a 6.09 GiB streaming pool and opened a copy queue. Its first vertex and pixel shaders both passed validation and compiled to Metal.",
-      "blocker": "The vertex program uses GPU lane information. Metal provides that information in a compute pass on this Mac. The render pipeline needs the vertices from that pass.",
-      "nextTest": "Connect the vertex shader’s Metal compute pass to the renderer and test the game’s first graphics pipeline."
+      "detail": "Six game render pipelines linked on the M5 Pro, including a pipeline with depth and stencil. A separate draw test passed all 4,096 reference pixels through the new vertex path.",
+      "blocker": "Startup has passed the first graphics pipeline. The next launches are translating newly reached CPU functions. A game frame has yet to appear.",
+      "nextTest": "Translate the CPU functions the game now reaches after graphics setup, then follow its first draw and display submission."
     },
     {
       "title": "Submit the game’s GPU commands to Metal",
@@ -208,6 +212,6 @@
     "done": 50813,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-24T20:48:11Z"
+    "measuredAt": "2026-11-24T20:52:15Z"
   }
 }
