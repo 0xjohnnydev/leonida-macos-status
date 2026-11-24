@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-24T22:09:25Z",
-  "headline": "The pixel shader that stopped startup at 8,680 graphics pipelines now compiles for Metal.",
-  "currentWork": "Check the installed shader cache and replay game startup with the verified pixel shader.",
-  "graphicsStatus": "Startup prepared 8,680 packaged graphics pipelines in one launch. The shader that stopped that launch now has a validated native Metal library.",
+  "updatedAt": "2026-11-24T22:12:10Z",
+  "headline": "Native startup passed the previous shader and reached 8,690 graphics pipelines. The next batch is compiling.",
+  "currentWork": "Prepare 444 unique shader stages used by the next 1,200 graphics records, then replay native startup.",
+  "graphicsStatus": "One native launch prepared 8,690 packaged graphics pipelines. Shader preparation is now ahead of the next launch.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "Started the next 444-stage graphics batch",
+      "detail": "The 1,200 selected graphics records share 444 unique stages. The startup window counts each stage after it passes validation and Metal compilation. The public batch estimate uses the measured build rate."
+    },
     {
       "title": "The GPU preserved every surviving pixel in four draws",
       "detail": "The test drew 4,096 pixels each time. It discarded exactly 256 pixels at one threshold and 192 at the other, with both possible output colors. A separate buffer-read test also matched all 4,096 pixels for two different addresses."
@@ -240,9 +244,9 @@
     {
       "title": "Submit the game’s GPU commands to Metal",
       "state": "current",
-      "detail": "The M5 Pro matched the expected color and discard decision at every pixel in four test draws. Another vertex shader now passes the check for reading one shared buffer element across a group.",
-      "blocker": "The game still has to finish loading its graphics pipelines and submit its first frame.",
-      "nextTest": "Check the installed shader cache and replay game startup with the verified pixel shader."
+      "detail": "The game accepted the newly translated shader. Preparing the next 444 stages before launch lets the game load them from disk.",
+      "blocker": "On-demand shader compilation held up startup long enough for the game's progress timer to stop it.",
+      "nextTest": "Prepare 444 unique shader stages used by the next 1,200 graphics records, then replay native startup."
     },
     {
       "title": "Present a game-rendered frame in a Mac window",
@@ -264,19 +268,19 @@
     "done": 51009,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-24T22:01:47Z"
+    "measuredAt": "2026-11-24T22:10:10Z"
   },
   "packageComputeCoverage": {
     "done": 42,
     "total": 2684
   },
   "packageGraphicsCoverage": {
-    "done": 826,
+    "done": 863,
     "total": 18837
   },
   "graphicsBatch": {
-    "done": 774,
-    "total": 774,
-    "measuredAt": "2026-11-24T21:58:43Z"
+    "done": 36,
+    "total": 444,
+    "measuredAt": "2026-11-24T22:11:53Z"
   }
 }
