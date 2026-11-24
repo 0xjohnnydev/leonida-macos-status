@@ -20,7 +20,7 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-24T17:34:46Z">Nov 24, 2026, 5:34 PM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-24T17:38:21Z">Nov 24, 2026, 5:38 PM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -28,8 +28,8 @@
         <h2 id="current-title">Complete offline platform startup</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Where it stops</h3><p>The game called <code>SetProcessPriorityBoost</code>, which controls whether Windows temporarily raises worker priority. Mac scheduling handles this differently.</p></div>
-        <div><h3>Next test</h3><p>Relaunch with the scheduling call implemented. Check whether the game continues when macOS reports that disabling Windows priority boosts is unsupported.</p></div>
+        <div><h3>Where it stops</h3><p>The game is waiting for the Mac port to register for controller connection and disconnection events. Its offline Xbox user interface is also unavailable.</p></div>
+        <div><h3>Next test</h3><p>Connect GameInput to macOS controller notifications. Test registration, event delivery, and removal, then relaunch the game.</p></div>
       </div>
     </section>
     <section class="roadmap" aria-labelledby="stages-title">
@@ -100,7 +100,7 @@
       <span class="number"><span class="sr-only">Stage </span>8</span>
       <div class="step-body">
         <h3>Complete offline platform startup</h3>
-        <p>Offline networking initialized. After creating 16 workers, the game ran its registered startup callbacks. It then created a seventeenth native worker and reached process-wide scheduling.</p>
+        <p>The game passed callback startup, continued with the Mac’s default scheduling, and read the system region. It created its <code>GameInput</code> interface and called <code>RegisterDeviceCallback</code>.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>

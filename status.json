@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-24T17:34:46Z",
-  "headline": "The game passed callback startup and reached process scheduling on the M5 Pro.",
-  "currentWork": "Relaunch with the scheduling call implemented. Check whether the game continues when macOS reports that disabling Windows priority boosts is unsupported.",
+  "updatedAt": "2026-11-24T17:38:21Z",
+  "headline": "The game created its input interface and requested controller notifications.",
+  "currentWork": "Connect GameInput to macOS controller notifications. Test registration, event delivery, and removal, then relaunch the game.",
   "graphicsStatus": "Two separate graphics tests have drawn images with code from the game. The running game has yet to draw into a Mac window.",
   "initializers": {
     "complete": true,
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "The game created its input interface",
+      "detail": "The title continued after the scheduling call, read the Mac’s region, and requested notification when controllers connect or disconnect."
+    },
     {
       "title": "The game passed callback startup",
       "detail": "The native executable contained 546,787 arm64 blocks. The game created a seventeenth worker and reached its process scheduling call."
@@ -86,9 +90,9 @@
     {
       "title": "Complete offline platform startup",
       "state": "current",
-      "detail": "Offline networking initialized. After creating 16 workers, the game ran its registered startup callbacks. It then created a seventeenth native worker and reached process-wide scheduling.",
-      "blocker": "The game called `SetProcessPriorityBoost`, which controls whether Windows temporarily raises worker priority. Mac scheduling handles this differently.",
-      "nextTest": "Relaunch with the scheduling call implemented. Check whether the game continues when macOS reports that disabling Windows priority boosts is unsupported."
+      "detail": "The game passed callback startup, continued with the Mac’s default scheduling, and read the system region. It created its `GameInput` interface and called `RegisterDeviceCallback`.",
+      "blocker": "The game is waiting for the Mac port to register for controller connection and disconnection events. Its offline Xbox user interface is also unavailable.",
+      "nextTest": "Connect GameInput to macOS controller notifications. Test registration, event delivery, and removal, then relaunch the game."
     },
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",
