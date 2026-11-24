@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-24T22:26:50Z",
+  "updatedAt": "2026-11-24T22:28:17Z",
   "headline": "All 444 stages in the selected graphics batch are ready. The next native game launch is under way.",
   "currentWork": "Run the game with the larger shader cache and record which graphics command it reaches next.",
   "graphicsStatus": "The Mac has validated and compiled 1,268 of 18,837 distinct packaged graphics stage and layout combinations. The 444 stages selected for the latest batch are ready.",
@@ -253,7 +253,7 @@
       "title": "Submit the game’s GPU commands to Metal",
       "state": "current",
       "detail": "The game previously loaded Metal functions for 8,690 packaged graphics pipelines. A separate native command-list test now compiles a verified vertex and pixel pair at first use, even after the original shader memory was overwritten.",
-      "blocker": "The Mac has checked 480 of 1,313 installed shader stages against the updated translator before the next game launch. At the measured rate, this check has about 6 minutes left.",
+      "blocker": "The Mac has checked 672 of 1,313 installed shader stages against the updated translator before the next game launch. At the measured rate, this check has about 5 minutes left.",
       "nextTest": "Run the game with the larger shader cache and record which graphics command it reaches next."
     },
     {
