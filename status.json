@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-24T20:36:49Z",
-  "headline": "Six ray-tracing builder programs produced the expected results on the Mac GPU",
-  "currentWork": "Connect the GPU readback buffer used by the game’s visibility queries and follow the next native startup call.",
-  "graphicsStatus": "Two 4K display textures, 53 compute pipelines and storage for 2,460 visibility queries. First game frame pending.",
+  "updatedAt": "2026-11-24T20:41:05Z",
+  "headline": "The game configured GPU visibility checks and indirect draw commands",
+  "currentWork": "Follow startup beyond the indirect command layouts and connect the next graphics request from the game.",
+  "graphicsStatus": "Two 4K display textures, 53 compute pipelines and four visibility-query buffers. The game has reached indirect command setup. First game frame pending.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "The game configured visibility readback and indirect commands",
+      "detail": "Four visibility-query buffers are ready for the CPU to read. The game also registered five indirect command layouts, including indexed draws, compute dispatches and mesh dispatches."
+    },
     {
       "title": "Six builder output tests passed on the Mac GPU",
       "detail": "The Mac ran six of the original Leonida team’s GPU checks against the translated builder programs. Each output matched the expected result. The game also advanced into visibility-query setup."
@@ -171,9 +175,9 @@
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",
       "state": "current",
-      "detail": "The game created 53 Metal pipelines from 52 distinct builder shaders. After returning from the builder, it created storage for 2,460 visibility queries. Six separate GPU tests matched Leonida’s reference outputs.",
-      "blocker": "Startup reached GPU visibility checks. The game requested a CPU-readable buffer for the results.",
-      "nextTest": "Connect the GPU readback buffer used by the game’s visibility queries and follow the next native startup call."
+      "detail": "The game created four sets of 2,460 visibility queries and four matching 19,680-byte readback buffers. It then registered layouts for GPU-driven draws and dispatches. These layouts tell the GPU how to read commands from a buffer.",
+      "blocker": "Startup is translating code reached after the game registered indirect draw, compute and mesh command layouts.",
+      "nextTest": "Follow startup beyond the indirect command layouts and connect the next graphics request from the game."
     },
     {
       "title": "Submit the game’s GPU commands to Metal",
@@ -197,9 +201,9 @@
     }
   ],
   "translationCoverage": {
-    "done": 50767,
+    "done": 50809,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-24T20:34:51Z"
+    "measuredAt": "2026-11-24T20:41:04Z"
   }
 }
