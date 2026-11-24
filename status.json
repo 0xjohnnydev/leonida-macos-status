@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-24T23:21:50Z",
-  "headline": "The game accepted the memory layout for its first four-sample render target. The Mac GPU passed a separate draw and resolve test.",
-  "currentWork": "Run the real game with the new Metal resource and identify the next graphics call before the first frame.",
+  "updatedAt": "2026-11-24T23:23:19Z",
+  "headline": "The running game created its first four-sample color target on Metal. It then asked to read the individual samples from a shader.",
+  "currentWork": "Test the four-sample shader view on the Mac GPU, then launch the game and follow its next graphics request.",
   "graphicsStatus": "The launch cache holds 1,270 of 18,837 packaged graphics stage and layout combinations. The newly added vertex and pixel pair linked as a Metal render pipeline on the M5 Pro.",
   "initializers": {
     "complete": true,
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "Game created its first four-sample Metal target",
+      "detail": "Both placement queries and CreatePlacedResourceX completed in the running game. The following call requested a multisample shader view in Direct3D format 28 (RGBA8)."
+    },
     {
       "title": "Game accepted four-sample placement details",
       "detail": "The running title passed both allocation queries and reached resource creation. In a separate M5 Pro test, Metal drew four distinct colors into one pixel and resolved them to the expected value."
@@ -276,9 +280,9 @@
     {
       "title": "Submit the game’s GPU commands to Metal",
       "state": "current",
-      "detail": "The game uploaded 14 textures, including three 3D textures. It accepted the size, alignment and individual allocation details for a four-sample color target. A Mac GPU test read back all four distinct sample colors.",
-      "blocker": "The last completed launch stopped when the game requested its four-sample render target in mapped memory.",
-      "nextTest": "Run the real game with the new Metal resource and identify the next graphics call before the first frame."
+      "detail": "The title created a Metal render target with four color samples per pixel and a 192 KiB game-memory reservation. The next graphics call asks for a shader view that preserves those four samples.",
+      "blocker": "The last launch stopped at CreateShaderResourceView for the new four-sample texture. First frame and gameplay are still pending.",
+      "nextTest": "Test the four-sample shader view on the Mac GPU, then launch the game and follow its next graphics request."
     },
     {
       "title": "Present a game-rendered frame in a Mac window",
@@ -300,7 +304,7 @@
     "done": 51020,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-24T23:16:28Z"
+    "measuredAt": "2026-11-24T23:22:06Z"
   },
   "packageComputeCoverage": {
     "done": 42,
