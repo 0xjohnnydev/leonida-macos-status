@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-24T18:40:23Z",
-  "headline": "The desktop monitor now shows how many indexed function starts have a native translation and how long recent retries take.",
-  "currentWork": "Run the newly translated branches. Check for an additional platform call or the first game graphics command.",
-  "graphicsStatus": "Two separate graphics tests have drawn images with code from the game. The running game has yet to draw into a Mac window.",
+  "updatedAt": "2026-11-24T18:42:34Z",
+  "headline": "The running game opened its own Mac window and requested its Direct3D graphics device.",
+  "currentWork": "Rerun with the requested device interface and trace which queue, buffer, or texture the game creates next.",
+  "graphicsStatus": "The game showed a native Mac window. Its first game-rendered frame is still pending. Two separate Metal tests have already rendered game shaders.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "The game showed its own Mac window",
+      "detail": "The title requested a 3,840 × 2,160 window, showed it, and called Direct3D device creation. The startup monitor remains visible between retries."
+    },
     {
       "title": "Native launches now have a desktop monitor",
       "detail": "The Mac window shows each startup attempt, package reads, and the last stop reason. Its launch button ran the actual arm64 executable. The game also continued past its first sort."
@@ -121,15 +125,15 @@
     },
     {
       "title": "Complete offline platform startup",
-      "state": "current",
-      "detail": "The title passed its language and region lookups, converted decimal text, and continued startup. The desktop monitor retains progress across retries.",
-      "blocker": "The game continues to reach startup branches that need native code. New translations are saved between attempts.",
-      "nextTest": "Run the newly translated branches. Check for an additional platform call or the first game graphics command."
+      "state": "complete",
+      "detail": "The game completed offline startup far enough to register, create, and show its own 3,840 × 2,160 window. It then requested ID3D12Device11, its graphics device interface."
     },
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",
-      "state": "upcoming",
-      "detail": "A hand-written Xbox test can create a Metal device and compute command queue. This stage still needs buffers and textures created by the game during startup."
+      "state": "current",
+      "detail": "A translated test created a Metal compute queue. The running game now requests its graphics device. Buffers and textures from the game still need to reach Metal.",
+      "blocker": "The first game run with a native window stopped when the Mac runtime rejected the Direct3D 12 device interface requested by the title.",
+      "nextTest": "Rerun with the requested device interface and trace which queue, buffer, or texture the game creates next."
     },
     {
       "title": "Submit the game’s GPU commands to Metal",
@@ -153,9 +157,9 @@
     }
   ],
   "translationCoverage": {
-    "done": 50541,
+    "done": 50624,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-24T18:40:23Z"
+    "measuredAt": "2026-11-24T18:42:34Z"
   }
 }

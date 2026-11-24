@@ -20,30 +20,30 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-24T18:40:23Z">Nov 24, 2026, 6:40 PM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-24T18:42:34Z">Nov 24, 2026, 6:42 PM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
-        <p class="stage-count">Current stage · 8 of 13</p>
-        <h2 id="current-title">Complete offline platform startup</h2>
+        <p class="stage-count">Current stage · 9 of 13</p>
+        <h2 id="current-title">Bind Direct3D 12 buffers and textures to Metal</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Where it stops</h3><p>The game continues to reach startup branches that need native code. New translations are saved between attempts.</p></div>
-        <div><h3>Next test</h3><p>Run the newly translated branches. Check for an additional platform call or the first game graphics command.</p></div>
+        <div><h3>Where it stops</h3><p>The first game run with a native window stopped when the Mac runtime rejected the Direct3D 12 device interface requested by the title.</p></div>
+        <div><h3>Next test</h3><p>Rerun with the requested device interface and trace which queue, buffer, or texture the game creates next.</p></div>
       </div>
     </section><section class="coverage" aria-labelledby="coverage-title">
       <h2 id="coverage-title">Native code translation</h2>
       <p><strong>16.6% of indexed function starts translated</strong></p>
-      <progress aria-label="Translated function entry points" value="50541" max="304274">16.6%</progress>
-      <p>50,541 of 304,274 translated · 253,733 remaining</p>
-      <p class="coverage-note">Measured across 8 game modules on Nov 24, 2026, 6:40 PM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
+      <progress aria-label="Translated function entry points" value="50624" max="304274">16.6%</progress>
+      <p>50,624 of 304,274 translated · 253,650 remaining</p>
+      <p class="coverage-note">Measured across 8 game modules on Nov 24, 2026, 6:42 PM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
     </section>
     <section class="roadmap" aria-labelledby="stages-title">
       <div class="roadmap-head">
         <h2 id="stages-title">Steps to a playable scene</h2>
-        <nav class="stage-summary" aria-label="Jump to stages by status"><a class="state state-complete" href="#stage-1">7 complete</a>
-          <a class="state state-current" href="#stage-8">1 in progress</a>
-          <a class="state state-upcoming" href="#stage-9">5 upcoming</a></nav>
+        <nav class="stage-summary" aria-label="Jump to stages by status"><a class="state state-complete" href="#stage-1">8 complete</a>
+          <a class="state state-current" href="#stage-9">1 in progress</a>
+          <a class="state state-upcoming" href="#stage-10">4 upcoming</a></nav>
       </div>
       <ol role="list">
     <li id="stage-1" class="stage stage-complete">
@@ -102,21 +102,21 @@
       </div>
       <span class="state state-complete">Complete</span>
     </li>
-    <li id="stage-8" class="stage stage-current" aria-current="step">
+    <li id="stage-8" class="stage stage-complete">
       <span class="number"><span class="sr-only">Stage </span>8</span>
       <div class="step-body">
         <h3>Complete offline platform startup</h3>
-        <p>The title passed its language and region lookups, converted decimal text, and continued startup. The desktop monitor retains progress across retries.</p>
+        <p>The game completed offline startup far enough to register, create, and show its own 3,840 × 2,160 window. It then requested ID3D12Device11, its graphics device interface.</p>
       </div>
-      <span class="state state-current">In progress</span>
+      <span class="state state-complete">Complete</span>
     </li>
-    <li id="stage-9" class="stage stage-upcoming">
+    <li id="stage-9" class="stage stage-current" aria-current="step">
       <span class="number"><span class="sr-only">Stage </span>9</span>
       <div class="step-body">
         <h3>Bind Direct3D 12 buffers and textures to Metal</h3>
-        <p>A hand-written Xbox test can create a Metal device and compute command queue. This stage still needs buffers and textures created by the game during startup.</p>
+        <p>A translated test created a Metal compute queue. The running game now requests its graphics device. Buffers and textures from the game still need to reach Metal.</p>
       </div>
-      <span class="state state-upcoming">Upcoming</span>
+      <span class="state state-current">In progress</span>
     </li>
     <li id="stage-10" class="stage stage-upcoming">
       <span class="number"><span class="sr-only">Stage </span>10</span>
