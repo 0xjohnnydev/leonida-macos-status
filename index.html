@@ -20,7 +20,7 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-24T18:14:41Z">Nov 24, 2026, 6:14 PM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-24T18:22:56Z">Nov 24, 2026, 6:22 PM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -28,8 +28,8 @@
         <h2 id="current-title">Complete offline platform startup</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Where it stops</h3><p>Startup is still discovering code paths in the package reader. Each new branch needs an arm64 translation before the game can continue.</p></div>
-        <div><h3>Next test</h3><p>Run startup with character classification support and compile newly reached branches. Watch for the game’s first graphics-device request.</p></div>
+        <div><h3>Where it stops</h3><p>The two threads still need more startup code translated before the game can reach its graphics device.</p></div>
+        <div><h3>Next test</h3><p>Compile both threads’ newly reached code and rerun the title with the Metal device and command queue available.</p></div>
       </div>
     </section>
     <section class="roadmap" aria-labelledby="stages-title">
@@ -100,7 +100,7 @@
       <span class="number"><span class="sr-only">Stage </span>8</span>
       <div class="step-body">
         <h3>Complete offline platform startup</h3>
-        <p>Native startup completed six calls to the Windows string scanner and 58 package reads in a single run. A separate test checked integer widths, bounded strings, and partial reads at the end of a file.</p>
+        <p>One game run completed 298 file reads totaling 1,663,664 bytes. Startup passed the string scanner and its whitespace checks, then reached new code on two threads.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>
@@ -108,7 +108,7 @@
       <span class="number"><span class="sr-only">Stage </span>9</span>
       <div class="step-body">
         <h3>Bind Direct3D 12 buffers and textures to Metal</h3>
-        <p>Map the game’s buffers and textures to Metal resources. Verify that a game shader can find the correct resource through a descriptor table, the list of bindings supplied to the GPU.</p>
+        <p>A hand-written Xbox test can create a Metal device and compute command queue. This stage still needs buffers and textures created by the game during startup.</p>
       </div>
       <span class="state state-upcoming">Upcoming</span>
     </li>

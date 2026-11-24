@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-24T18:14:41Z",
-  "headline": "The game passed its first six string-scanning calls and continued reading local package data.",
-  "currentWork": "Run startup with character classification support and compile newly reached branches. Watch for the game’s first graphics-device request.",
+  "updatedAt": "2026-11-24T18:22:56Z",
+  "headline": "The game completed 298 file reads. A separate Xbox graphics test created a Metal command queue.",
+  "currentWork": "Compile both threads’ newly reached code and rerun the title with the Metal device and command queue available.",
   "graphicsStatus": "Two separate graphics tests have drawn images with code from the game. The running game has yet to draw into a Mac window.",
   "initializers": {
     "complete": true,
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "A translated Xbox call created a Metal command queue",
+      "detail": "A hand-written test created the graphics device and a compute queue on the M5 Pro. It checked the queue description, parent device, and release. The running game has yet to submit a graphics command."
+    },
     {
       "title": "The game passed the string scanner",
       "detail": "The native runtime handled six formatted-input calls. Startup then reached the Windows character-classification routines used during text parsing."
@@ -110,14 +114,14 @@
     {
       "title": "Complete offline platform startup",
       "state": "current",
-      "detail": "Native startup completed six calls to the Windows string scanner and 58 package reads in a single run. A separate test checked integer widths, bounded strings, and partial reads at the end of a file.",
-      "blocker": "Startup is still discovering code paths in the package reader. Each new branch needs an arm64 translation before the game can continue.",
-      "nextTest": "Run startup with character classification support and compile newly reached branches. Watch for the game’s first graphics-device request."
+      "detail": "One game run completed 298 file reads totaling 1,663,664 bytes. Startup passed the string scanner and its whitespace checks, then reached new code on two threads.",
+      "blocker": "The two threads still need more startup code translated before the game can reach its graphics device.",
+      "nextTest": "Compile both threads’ newly reached code and rerun the title with the Metal device and command queue available."
     },
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",
       "state": "upcoming",
-      "detail": "Map the game’s buffers and textures to Metal resources. Verify that a game shader can find the correct resource through a descriptor table, the list of bindings supplied to the GPU."
+      "detail": "A hand-written Xbox test can create a Metal device and compute command queue. This stage still needs buffers and textures created by the game during startup."
     },
     {
       "title": "Submit the game’s GPU commands to Metal",
