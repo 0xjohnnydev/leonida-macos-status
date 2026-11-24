@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-24T19:06:41Z",
-  "headline": "The game created its five GPU descriptor heaps",
-  "currentWork": "Test cache-line writeback on Apple Silicon and continue through the game’s first descriptor updates.",
-  "graphicsStatus": "The title has five descriptor heaps and a 174 MiB Metal-backed buffer. First game frame pending.",
+  "updatedAt": "2026-11-24T19:10:12Z",
+  "headline": "The game wrote graphics descriptors and reached resource sizing",
+  "currentWork": "Measure the memory size and alignment of the game’s next resource and verify that the Mac can back it.",
+  "graphicsStatus": "The title wrote twelve observed GPU descriptors and reached resource placement. First game frame pending.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "The game wrote readable and writable buffer views",
+      "detail": "Cache-line writeback works on Apple Silicon. The game completed twelve observed descriptor writes and advanced to its next graphics allocation."
+    },
     {
       "title": "The game created five descriptor heaps",
       "detail": "The native Mac run used the game’s own allocation callbacks and passed its descriptor-address check. It reached the first update to the table."
@@ -151,9 +155,9 @@
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",
       "state": "current",
-      "detail": "The title created a 174 MiB Metal-backed buffer and five GPU descriptor heaps. The largest holds 1,245,184 entries at the address the game requested. The game then wrote its first shader-resource view.",
-      "blocker": "The game reached a CPU cache-line writeback after writing its first shader-resource view.",
-      "nextTest": "Test cache-line writeback on Apple Silicon and continue through the game’s first descriptor updates."
+      "detail": "The game created five descriptor heaps and a 174 MiB shared Metal buffer. It wrote ten null descriptors, one readable buffer view and one writable buffer view, then requested the memory requirements for its next resource.",
+      "blocker": "The title now asks the graphics device how many bytes to reserve and how to align the next resource.",
+      "nextTest": "Measure the memory size and alignment of the game’s next resource and verify that the Mac can back it."
     },
     {
       "title": "Submit the game’s GPU commands to Metal",
@@ -177,9 +181,9 @@
     }
   ],
   "translationCoverage": {
-    "done": 50679,
+    "done": 50680,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-24T19:05:15Z"
+    "measuredAt": "2026-11-24T19:09:17Z"
   }
 }
