@@ -8,11 +8,11 @@ const html = `<!doctype html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="dark">
-  <meta name="description" content="Follow the six stages of getting GTA VI running natively on a Mac, from checking the game files to playing a scene.">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="Track the native Mac port of GTA VI, from arm64 startup and Metal shader tests to a game-rendered frame and a playable scene.">
   <title>GTA VI on Mac · Progress tracker</title>
-  <link rel="stylesheet" href="./style.css?v=stages-1">
-  <script type="module" src="./tracker.js?v=stages-1"></script>
+  <link rel="stylesheet" href="./style.css?v=2">
+  <script type="module" src="./tracker.js?v=2"></script>
 </head>
 <body>
   <header>

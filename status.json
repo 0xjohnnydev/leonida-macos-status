@@ -1,7 +1,7 @@
 {
   "updatedAt": "2026-11-24T15:27:03Z",
-  "headline": "The game has finished its startup sequence on the M5 Pro. Work is now on the macOS services it needs to keep running.",
-  "currentWork": "Connect the game’s background tasks and pause and resume notifications to macOS, then launch it again.",
+  "headline": "The native arm64 build reaches the offline Xbox runtime on the M5 Pro. The current stop is app-state notification registration.",
+  "currentWork": "Connect the Xbox task queue and app-state callbacks to macOS, then verify delivery and relaunch.",
   "graphicsStatus": "Two separate graphics tests have drawn images with code from the game. The running game has yet to draw into a Mac window.",
   "initializers": {
     "complete": true,
@@ -33,36 +33,66 @@
   ],
   "stages": [
     {
-      "title": "Verify the game files",
+      "title": "Verify the Xbox package against its manifest",
       "state": "complete",
-      "detail": "All 108 files in the Xbox package matched their expected contents."
+      "detail": "The manifest lists the expected SHA-256 fingerprint of each file. All 108 files in Xbox build 1.0.2.1 matched."
     },
     {
-      "title": "Run the game’s startup code on the Mac",
+      "title": "Compile and link Xbox shader batches for Metal",
       "state": "complete",
-      "detail": "The game’s early startup code ran directly on the M5 Pro and completed all 1,115 setup steps."
+      "detail": "The Mac compiled a batch of 2,638 shader entries into Metal libraries. A separate set of 207 pixel shaders linked across 86 graphics pipeline configurations."
     },
     {
-      "title": "Connect the game to macOS services",
+      "title": "Verify offscreen rendering with game shaders",
+      "state": "complete",
+      "detail": "Two tests ran game shaders on the M5 Pro. One drew a solid color and the other drew a gradient. Each test checked all 4,096 pixels against its expected result."
+    },
+    {
+      "title": "Translate x86-64 startup code to arm64",
+      "state": "complete",
+      "detail": "The build compiled 88,740 blocks of Xbox CPU instructions ahead of time and linked them into a Mach-O executable, the format macOS runs directly."
+    },
+    {
+      "title": "Load the executable and initialize its libraries",
+      "state": "complete",
+      "detail": "The Mac loader mapped the Xbox executable and seven bundled libraries. All seven initialized, and two callbacks for thread-local storage returned before the game reached its entry point."
+    },
+    {
+      "title": "Initialize memory and the offline Xbox runtime",
+      "state": "complete",
+      "detail": "The game opened the Metal device and made seven successful virtual-memory allocations. Its 1,115-entry C initialization table finished, and the offline Xbox runtime started."
+    },
+    {
+      "title": "Connect the Xbox task queue and app-state callbacks",
       "state": "current",
-      "detail": "Graphics memory and basic offline services work. This stage finishes when the game gets through its remaining system requests and can begin drawing.",
-      "blocker": "Startup stops when the game asks to be notified if the app pauses or resumes.",
-      "nextTest": "Connect those notifications and the game’s background tasks to macOS. Launch the game again and check that startup gets past this request."
+      "detail": "The Xbox `XTaskQueue` library now builds for arm64. This milestone passes when the game can schedule background work and receive a suspend or resume event on the Mac.",
+      "blocker": "The game requests the Xbox task queue, which the Mac runtime cannot yet provide. Startup then stops at `RegisterAppStateChangeNotification`, the call that subscribes to suspend and resume events.",
+      "nextTest": "Connect `XTaskQueue` and the macOS notification handler. Verify that both deliver callbacks, then relaunch and check that the game advances past registration."
     },
     {
-      "title": "Show the first game image in a Mac window",
+      "title": "Bind Direct3D 12 buffers and textures to Metal",
       "state": "upcoming",
-      "detail": "Two separate graphics tests have drawn images using game code. This stage finishes when the game itself draws an image in its own window."
+      "detail": "Map the game’s buffers and textures to Metal resources. Verify that a game shader can find the correct resource through a descriptor table, the list of bindings supplied to the GPU."
     },
     {
-      "title": "Use the game menu",
+      "title": "Submit the game’s GPU commands to Metal",
       "state": "upcoming",
-      "detail": "Open the game menu and verify that a player can select an option with a keyboard or controller."
+      "detail": "Translate a Direct3D 12 command list issued by the running game into a Metal command buffer. Verify that the GPU executes the work and signals the fence the game uses to detect completion."
     },
     {
-      "title": "Play a scene",
+      "title": "Present a game-rendered frame in a Mac window",
       "state": "upcoming",
-      "detail": "Load the game world, move the character, and check that the picture and controls keep responding during play."
+      "detail": "Connect the game’s display path to `CAMetalLayer`, the macOS surface that presents Metal frames. Verify that a frame drawn by the running game appears in the window."
+    },
+    {
+      "title": "Route keyboard or controller input to the menu",
+      "state": "upcoming",
+      "detail": "Deliver macOS input events through the interface the game reads. Open the menu, select an option, and verify that the game changes the selection on screen."
+    },
+    {
+      "title": "Stream world assets through a playable scene",
+      "state": "upcoming",
+      "detail": "Load geometry and textures from the local package. Move the character through the scene and verify that new assets load while input and successive frames continue."
     }
   ]
 }
