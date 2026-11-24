@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-24T22:20:02.979Z",
+  "updatedAt": "2026-11-24T22:21:04.253Z",
   "headline": "Three mesh-shader draws passed on the M5 Pro. The 444-stage game shader batch is running again.",
   "currentWork": "Compile the 444 selected stages with the verified pixel-group fix, then launch the game against the larger cache.",
   "graphicsStatus": "One native game launch prepared 8,690 packaged graphics pipelines. In separate tests the M5 Pro drew three mesh programs through the native runtime.",
@@ -279,13 +279,12 @@
     "total": 2684
   },
   "packageGraphicsCoverage": {
-    "done": 1184,
+    "done": 1268,
     "total": 18837
   },
   "graphicsBatch": {
-    "done": 360,
+    "done": 444,
     "total": 444,
-    "measuredAt": "2026-11-24T22:20:02.979Z",
-    "etaSeconds": 46
+    "measuredAt": "2026-11-24T22:21:04.253Z"
   }
 }
