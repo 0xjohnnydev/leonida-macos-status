@@ -69,8 +69,20 @@ export function renderStages(data) {
       <p><strong>${format.format(s.done)} of ${format.format(s.total)} compiled for Metal</strong> · ${format.format(s.total - s.done)} remaining</p>
       <progress aria-label="${label} compiled for Metal" value="${s.done}" max="${s.total}"></progress>
     </div>`).join('');
+    const batch = data.graphicsBatch;
+    let batchSummary = '';
+    if (batch && Number.isSafeInteger(batch.done) && Number.isSafeInteger(batch.total) &&
+        batch.total > 0 && batch.done >= 0 && batch.done <= batch.total && batch.measuredAt) {
+      const label = batch.done === batch.total ? 'Last completed graphics batch' : 'Latest graphics batch';
+      const timing = batch.done < batch.total && Number.isFinite(batch.etaSeconds) && batch.etaSeconds > 0
+        ? ` · about ${Math.max(1, Math.round(batch.etaSeconds / 60))} min for this batch at the measured rate` : '';
+      batchSummary = `<div class="shader-count shader-batch"><h3>${label}</h3>
+        <p><strong>${format.format(batch.done)} of ${format.format(batch.total)} stages ready</strong>${timing}</p>
+        <progress aria-label="Selected graphics batch" value="${batch.done}" max="${batch.total}"></progress>
+        <p class="coverage-note">Measured ${escapeText(testDate(batch.measuredAt))}. These stages are part of the graphics total above.</p></div>`;
+    }
     coverage += `<section class="coverage" aria-labelledby="gpu-coverage-title">
-      <h2 id="gpu-coverage-title">GPU shader translation</h2>${rows}
+      <h2 id="gpu-coverage-title">GPU shader translation</h2>${rows}${batchSummary}
       <p class="coverage-note">Counts cover the game’s packaged compute, vertex, pixel and mesh programs. Each compiled program passed validation and has a Metal library. Startup builds the programs it requests.</p>
     </section>`;
   }

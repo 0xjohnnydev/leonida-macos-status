@@ -6,8 +6,8 @@
   <meta name="color-scheme" content="light">
   <meta name="description" content="Track the native Mac port of GTA VI, from arm64 startup and Metal shader tests to a game-rendered frame and a playable scene.">
   <title>GTA VI on Mac · Progress tracker</title>
-  <link rel="stylesheet" href="./style.css?v=5">
-  <script type="module" src="./tracker.js?v=5"></script>
+  <link rel="stylesheet" href="./style.css?v=6">
+  <script type="module" src="./tracker.js?v=6"></script>
 </head>
 <body>
   <header>
@@ -20,7 +20,7 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-24T21:49:12Z">Nov 24, 2026, 9:49 PM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-24T21:56:59Z">Nov 24, 2026, 9:56 PM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -28,9 +28,9 @@
         <h2 id="current-title">Submit the game’s GPU commands to Metal</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Latest verified result</h3><p>The M5 Pro has prepared more than 3,500 of the game’s packaged render pipelines in one launch.</p></div>
-        <div><h3>Current status</h3><p>Two earlier launches stopped in the game’s timing checks while the Mac was compiling shaders. Startup still needs a verified game draw and a presented frame.</p></div>
-        <div><h3>Next test</h3><p>Prepare the next group of shaders before launch, then test how far the game gets with them already installed.</p></div>
+        <div><h3>Latest verified result</h3><p>One native startup prepared 4,005 packaged render pipelines. The next graphics batch is compiling on the Mac.</p></div>
+        <div><h3>Current status</h3><p>The game’s timing check ended the last run while it waited for more shaders. Startup has yet to submit its first verified game draw.</p></div>
+        <div><h3>Next test</h3><p>Compile the selected 774 graphics stages and replay startup with the larger shader cache.</p></div>
       </div>
     </section><section class="coverage" aria-labelledby="coverage-title">
       <h2 id="coverage-title">Native code translation</h2>
@@ -45,9 +45,12 @@
       <progress aria-label="Compute shaders compiled for Metal" value="42" max="2684"></progress>
     </div><div class="shader-count">
       <h3>Graphics shaders</h3>
-      <p><strong>477 of 18,837 compiled for Metal</strong> · 18,360 remaining</p>
-      <progress aria-label="Graphics shaders compiled for Metal" value="477" max="18837"></progress>
-    </div>
+      <p><strong>606 of 18,837 compiled for Metal</strong> · 18,231 remaining</p>
+      <progress aria-label="Graphics shaders compiled for Metal" value="606" max="18837"></progress>
+    </div><div class="shader-count shader-batch"><h3>Latest graphics batch</h3>
+        <p><strong>144 of 774 stages ready</strong> · about 1 min for this batch at the measured rate</p>
+        <progress aria-label="Selected graphics batch" value="144" max="774"></progress>
+        <p class="coverage-note">Measured Nov 24, 2026, 9:56 PM UTC. These stages are part of the graphics total above.</p></div>
       <p class="coverage-note">Counts cover the game’s packaged compute, vertex, pixel and mesh programs. Each compiled program passed validation and has a Metal library. Startup builds the programs it requests.</p>
     </section>
     <section class="roadmap" aria-labelledby="stages-title">
@@ -134,7 +137,7 @@
       <span class="number"><span class="sr-only">Stage </span>10</span>
       <div class="step-body">
         <h3>Submit the game’s GPU commands to Metal</h3>
-        <p>Ahead-of-launch compilation moved startup past the earlier stop. The first 512 graphics records share 418 distinct stages. All 418 compiled and validated on the M5 Pro, and the game used the cache to prepare at least 3,574 render pipelines.</p>
+        <p>All 418 stages selected for the previous batch passed both compilers. The game used them to prepare 4,005 pipelines in one run. Six programs in the next batch needed a new rule for loops that operate on groups of four pixels. Those programs now pass validation.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>
