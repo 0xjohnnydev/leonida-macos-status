@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Verified progress toward running GTA VI natively on Apple Silicon through Leonida and Metal.">
+  <title>Leonida on Mac · Port progress</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="tracker.js" defer></script>
+</head>
+<body>
+  <header><div class="wrap mast"><span>Leonida on Mac</span><span class="meta">Apple Silicon · Metal</span></div></header>
+  <main class="wrap">
+    <section class="hero" aria-labelledby="title">
+      <div class="eyebrow">Native Mac port</div>
+      <h1 id="title">GTA VI on Apple Silicon</h1>
+      <p class="lead" id="headline">Loading the latest verified run.</p>
+      <p class="date" id="updated"></p>
+      <p class="problem" id="error" role="status" hidden></p>
+    </section>
+    <dl class="meters" aria-label="Verified checkpoints">
+      <div><dt>Startup table</dt><dd id="initializers">Loading</dd></div>
+      <div><dt>First game frame</dt><dd id="frame">Loading</dd></div>
+      <div><dt>Playable</dt><dd id="playable">Loading</dd></div>
+    </dl>
+    <div class="details">
+      <section aria-labelledby="current-title" class="current">
+        <h2 id="current-title">Current work</h2>
+        <p id="current"></p>
+        <p class="muted" id="scope"></p>
+      </section>
+      <section aria-labelledby="history-title">
+        <h2 id="history-title">Verified milestones</h2>
+        <ol id="history"></ol>
+      </section>
+    </div>
+  </main>
+  <footer class="wrap"><span>Test machine · Apple M5 Pro</span><span id="refresh">Checks for updates every 30 seconds.</span></footer>
+  <noscript><p class="wrap">Enable JavaScript or open <a href="status.json">the latest status file</a>.</p></noscript>
+</body>
+</html>

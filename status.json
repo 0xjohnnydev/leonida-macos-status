@@ -1,0 +1,34 @@
+{
+  "updatedAt": "2026-11-24T15:27:03Z",
+  "headline": "The game finished its startup table and initialized its offline platform runtime on the M5 Pro.",
+  "currentWork": "Connecting the game’s task queues and its requests for app suspend and resume notifications. The latest launch stopped at the notification registration call.",
+  "graphicsStatus": "Metal has rendered two offscreen tests using shaders from the game. The game itself has yet to present a frame.",
+  "initializers": {
+    "complete": true,
+    "entries": 1115
+  },
+  "firstGameFrame": false,
+  "playable": false,
+  "milestones": [
+    {
+      "title": "Offline platform runtime initialized",
+      "detail": "The game found and called the native implementation of its platform startup interface."
+    },
+    {
+      "title": "The startup table completed",
+      "detail": "The arm64 executable finished all 1,115 entries in the game’s C runtime initialization table."
+    },
+    {
+      "title": "The game requested graphics memory",
+      "detail": "The game opened the M5 Pro’s Metal device. All seven early memory allocations succeeded."
+    },
+    {
+      "title": "The game entered its executable",
+      "detail": "Seven bundled libraries initialized before the game started on its own Mac thread."
+    },
+    {
+      "title": "Real shaders rendered offscreen",
+      "detail": "Two Metal tests used shaders from the game. Both checked the result across 4,096 pixels."
+    }
+  ]
+}
