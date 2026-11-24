@@ -20,7 +20,7 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-24T18:22:56Z">Nov 24, 2026, 6:22 PM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-24T18:26:10Z">Nov 24, 2026, 6:26 PM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -28,8 +28,8 @@
         <h2 id="current-title">Complete offline platform startup</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Where it stops</h3><p>The two threads still need more startup code translated before the game can reach its graphics device.</p></div>
-        <div><h3>Next test</h3><p>Compile both threads’ newly reached code and rerun the title with the Metal device and command queue available.</p></div>
+        <div><h3>Where it stops</h3><p>The Mac must run the game’s own comparison function each time qsort compares two items.</p></div>
+        <div><h3>Next test</h3><p>Test sorting through a translated comparison function, then rerun startup and check which graphics or platform call comes next.</p></div>
       </div>
     </section>
     <section class="roadmap" aria-labelledby="stages-title">
@@ -100,7 +100,7 @@
       <span class="number"><span class="sr-only">Stage </span>8</span>
       <div class="step-body">
         <h3>Complete offline platform startup</h3>
-        <p>One game run completed 298 file reads totaling 1,663,664 bytes. Startup passed the string scanner and its whitespace checks, then reached new code on two threads.</p>
+        <p>The game issued 298 file reads. Of those, 297 returned data totaling 1,663,664 bytes and one reached end of file. Startup then reached the C library’s qsort function.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>

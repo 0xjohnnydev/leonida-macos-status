@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-24T18:22:56Z",
-  "headline": "The game completed 298 file reads. A separate Xbox graphics test created a Metal command queue.",
-  "currentWork": "Compile both threads’ newly reached code and rerun the title with the Metal device and command queue available.",
+  "updatedAt": "2026-11-24T18:26:10Z",
+  "headline": "The game reached its sorting routine after executing 73 million native code blocks.",
+  "currentWork": "Test sorting through a translated comparison function, then rerun startup and check which graphics or platform call comes next.",
   "graphicsStatus": "Two separate graphics tests have drawn images with code from the game. The running game has yet to draw into a Mac window.",
   "initializers": {
     "complete": true,
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "Startup reached the game’s sort routine",
+      "detail": "The arm64 run executed 73,032,177 code blocks and made 66,462 host calls before requesting qsort. These counts include repeated execution of the same code."
+    },
     {
       "title": "A translated Xbox call created a Metal command queue",
       "detail": "A hand-written test created the graphics device and a compute queue on the M5 Pro. It checked the queue description, parent device, and release. The running game has yet to submit a graphics command."
@@ -114,9 +118,9 @@
     {
       "title": "Complete offline platform startup",
       "state": "current",
-      "detail": "One game run completed 298 file reads totaling 1,663,664 bytes. Startup passed the string scanner and its whitespace checks, then reached new code on two threads.",
-      "blocker": "The two threads still need more startup code translated before the game can reach its graphics device.",
-      "nextTest": "Compile both threads’ newly reached code and rerun the title with the Metal device and command queue available."
+      "detail": "The game issued 298 file reads. Of those, 297 returned data totaling 1,663,664 bytes and one reached end of file. Startup then reached the C library’s qsort function.",
+      "blocker": "The Mac must run the game’s own comparison function each time qsort compares two items.",
+      "nextTest": "Test sorting through a translated comparison function, then rerun startup and check which graphics or platform call comes next."
     },
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",
