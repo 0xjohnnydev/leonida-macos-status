@@ -20,7 +20,7 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-24T22:21:04.253Z">Nov 24, 2026, 10:21 PM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-24T22:22:36Z">Nov 24, 2026, 10:22 PM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -28,9 +28,9 @@
         <h2 id="current-title">Submit the game’s GPU commands to Metal</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Latest verified result</h3><p>Three mesh-shader draws passed on the M5 Pro. The 444-stage game shader batch is running again.</p></div>
-        <div><h3>Current status</h3><p>Five pixel shaders stopped the first attempt at this batch. All five now pass the translator&#39;s check for consistent results on the Mac.</p></div>
-        <div><h3>Next test</h3><p>Compile the 444 selected stages with the verified pixel-group fix, then launch the game against the larger cache.</p></div>
+        <div><h3>Latest verified result</h3><p>All 444 stages in the selected graphics batch are ready. The next native game launch is under way.</p></div>
+        <div><h3>Current status</h3><p>The previous game launch stopped at its startup timing check while it waited for shader compilation. The new launch can register verified pipeline descriptions before compiling their functions.</p></div>
+        <div><h3>Next test</h3><p>Run the game with the larger shader cache and record which graphics command it reaches next.</p></div>
       </div>
     </section><section class="coverage" aria-labelledby="coverage-title">
       <h2 id="coverage-title">Native code translation</h2>
@@ -137,7 +137,7 @@
       <span class="number"><span class="sr-only">Stage </span>10</span>
       <div class="step-body">
         <h3>Submit the game’s GPU commands to Metal</h3>
-        <p>The game reached 8,690 packaged graphics pipelines. The GPU separately drew the Leonida team&#39;s mesh triangle, a cross-group ballot test, and a 24-workgroup geometry test.</p>
+        <p>The game previously loaded Metal functions for 8,690 packaged graphics pipelines. A separate native command-list test now compiles a verified vertex and pixel pair at first use, even after the original shader memory was overwritten.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>
