@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-24T18:55:17Z",
-  "headline": "The game created and closed 581 graphics command lists.",
-  "currentWork": "Trace the next graphics-device request and verify its inputs on the Mac.",
-  "graphicsStatus": "The game opened its window and closed its startup command lists. Its first game-rendered frame is still pending.",
+  "updatedAt": "2026-11-24T19:02:18Z",
+  "headline": "The game placed a 174 MiB graphics buffer in memory shared with Metal.",
+  "currentWork": "Honor the game’s allocation callback when creating its first descriptor heap, then verify the address the game receives.",
+  "graphicsStatus": "The game opened its window, closed 581 command lists, configured frame timing, and placed a shared Metal buffer. Its first rendered frame remains pending.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "The game placed its first large Metal buffer",
+      "detail": "A hand-written test copied data across two reordered physical pages on the M5 Pro, issued a barrier and a dependent copy, then verified both results from the CPU. The running game reached descriptor-heap creation."
+    },
     {
       "title": "The game closed 581 graphics command lists",
       "detail": "Methods 131 and 132 order GPU memory operations. Both calls now record a full barrier for the startup requests. The game completed command-list setup and advanced to another device method."
@@ -143,9 +147,9 @@
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",
       "state": "current",
-      "detail": "The title recorded ten synchronization commands across its first five lists. It went on to close 513 direct lists and 68 compute lists. A separate native test submitted two synchronization commands and verified GPU completion on the M5 Pro.",
-      "blocker": "Startup stops at graphics-device method 78 after closing the command lists.",
-      "nextTest": "Trace the next graphics-device request and verify its inputs on the Mac."
+      "detail": "The game configured a 33.3 ms frame interval, split a 185 MiB reservation into five regions, and placed a 174 MiB GPU buffer across three of them. Metal shares the same physical pages as the CPU.",
+      "blocker": "The game is creating a descriptor heap. This table tells the GPU where to find buffers and textures, and the game expects to supply its memory.",
+      "nextTest": "Honor the game’s allocation callback when creating its first descriptor heap, then verify the address the game receives."
     },
     {
       "title": "Submit the game’s GPU commands to Metal",
@@ -169,9 +173,9 @@
     }
   ],
   "translationCoverage": {
-    "done": 50632,
+    "done": 50644,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-24T18:55:16Z"
+    "measuredAt": "2026-11-24T19:01:18Z"
   }
 }
