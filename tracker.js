@@ -1,4 +1,4 @@
-import { renderStages } from './stage-render.js?v=6';
+import { renderStages } from './stage-render.js?v=7';
 
 const board = document.getElementById('board');
 const notice = document.getElementById('refresh-error');

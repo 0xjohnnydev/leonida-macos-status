@@ -73,8 +73,8 @@ export function renderStages(data) {
     let batchSummary = '';
     if (batch && Number.isSafeInteger(batch.done) && Number.isSafeInteger(batch.total) &&
         batch.total > 0 && batch.done >= 0 && batch.done <= batch.total && batch.measuredAt) {
-      const label = batch.done === batch.total ? 'Last completed graphics batch' : 'Latest graphics batch';
-      const timing = batch.done < batch.total && Number.isFinite(batch.etaSeconds) && batch.etaSeconds > 0
+      const label = batch.paused ? 'Graphics batch paused' : batch.done === batch.total ? 'Last completed graphics batch' : 'Latest graphics batch';
+      const timing = !batch.paused && batch.done < batch.total && Number.isFinite(batch.etaSeconds) && batch.etaSeconds > 0
         ? ` · about ${Math.max(1, Math.round(batch.etaSeconds / 60))} min for this batch at the measured rate` : '';
       batchSummary = `<div class="shader-count shader-batch"><h3>${label}</h3>
         <p><strong>${format.format(batch.done)} of ${format.format(batch.total)} stages ready</strong>${timing}</p>
