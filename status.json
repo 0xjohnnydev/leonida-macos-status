@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-24T18:11:11Z",
-  "headline": "In one native startup run, the game opened package files 12 times and completed 54 reads.",
-  "currentWork": "Implement the string scanner, check how it writes Windows-sized values, and rerun the game to identify the next startup or graphics request.",
+  "updatedAt": "2026-11-24T18:14:41Z",
+  "headline": "The game passed its first six string-scanning calls and continued reading local package data.",
+  "currentWork": "Run startup with character classification support and compile newly reached branches. Watch for the game’s first graphics-device request.",
   "graphicsStatus": "Two separate graphics tests have drawn images with code from the game. The running game has yet to draw into a Mac window.",
   "initializers": {
     "complete": true,
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "The game passed the string scanner",
+      "detail": "The native runtime handled six formatted-input calls. Startup then reached the Windows character-classification routines used during text parsing."
+    },
     {
       "title": "The game read across multiple package files",
       "detail": "One run completed 12 DirectStorage opens and 54 reads before reaching the string scanner. Native tests also verified floating-point conversion and overflow."
@@ -106,9 +110,9 @@
     {
       "title": "Complete offline platform startup",
       "state": "current",
-      "detail": "The game registered for controller events, opened local package files through DirectStorage, and completed reads of up to 65,536 bytes on the M5 Pro.",
-      "blocker": "Startup now needs sscanf, the C library call that reads formatted fields from a string.",
-      "nextTest": "Implement the string scanner, check how it writes Windows-sized values, and rerun the game to identify the next startup or graphics request."
+      "detail": "Native startup completed six calls to the Windows string scanner and 58 package reads in a single run. A separate test checked integer widths, bounded strings, and partial reads at the end of a file.",
+      "blocker": "Startup is still discovering code paths in the package reader. Each new branch needs an arm64 translation before the game can continue.",
+      "nextTest": "Run startup with character classification support and compile newly reached branches. Watch for the game’s first graphics-device request."
     },
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",
