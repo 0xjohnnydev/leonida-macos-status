@@ -20,7 +20,7 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-24T18:00:59Z">Nov 24, 2026, 6:00 PM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-24T18:11:11Z">Nov 24, 2026, 6:11 PM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -28,8 +28,8 @@
         <h2 id="current-title">Complete offline platform startup</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Where it stops</h3><p>Startup continues to reach branches that have not yet been compiled into the native executable. The port is translating those branches as the game reaches them.</p></div>
-        <div><h3>Next test</h3><p>Compile each reached function and its verified branch targets, then check for the next platform or graphics request.</p></div>
+        <div><h3>Where it stops</h3><p>Startup now needs sscanf, the C library call that reads formatted fields from a string.</p></div>
+        <div><h3>Next test</h3><p>Implement the string scanner, check how it writes Windows-sized values, and rerun the game to identify the next startup or graphics request.</p></div>
       </div>
     </section>
     <section class="roadmap" aria-labelledby="stages-title">
@@ -100,7 +100,7 @@
       <span class="number"><span class="sr-only">Stage </span>8</span>
       <div class="step-body">
         <h3>Complete offline platform startup</h3>
-        <p>The game allocated its 32 MiB storage buffer and opened a local archive. It ran the newly translated vector operations and completed three 4,096-byte reads.</p>
+        <p>The game registered for controller events, opened local package files through DirectStorage, and completed reads of up to 65,536 bytes on the M5 Pro.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>
