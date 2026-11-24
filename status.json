@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-24T22:14:40.875Z",
-  "headline": "Native startup passed the previous shader and reached 8,690 graphics pipelines. The next batch is compiling.",
-  "currentWork": "Prepare 444 unique shader stages used by the next 1,200 graphics records, then replay native startup.",
-  "graphicsStatus": "One native launch prepared 8,690 packaged graphics pipelines. Shader preparation is now ahead of the next launch.",
+  "updatedAt": "2026-11-24T22:17:30Z",
+  "headline": "Three mesh-shader draws passed on the M5 Pro. The 444-stage game shader batch is running again.",
+  "currentWork": "Compile the 444 selected stages with the verified pixel-group fix, then launch the game against the larger cache.",
+  "graphicsStatus": "One native game launch prepared 8,690 packaged graphics pipelines. In separate tests the M5 Pro drew three mesh programs through the native runtime.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "Three mesh-shader tests drew the expected image on Metal",
+      "detail": "A mesh shader generates geometry in GPU workgroups. The native renderer stored that geometry, read it into triangles, and matched 4,096 pixels in each of three original Leonida tests. Five related pixel shaders also passed a new check for groups that survive a discard."
+    },
     {
       "title": "Started the next 444-stage graphics batch",
       "detail": "The 1,200 selected graphics records share 444 unique stages. The startup window counts each stage after it passes validation and Metal compilation. The public batch estimate uses the measured build rate."
@@ -244,9 +248,9 @@
     {
       "title": "Submit the game’s GPU commands to Metal",
       "state": "current",
-      "detail": "The game accepted the newly translated shader. Preparing the next 444 stages before launch lets the game load them from disk.",
-      "blocker": "On-demand shader compilation held up startup long enough for the game's progress timer to stop it.",
-      "nextTest": "Prepare 444 unique shader stages used by the next 1,200 graphics records, then replay native startup."
+      "detail": "The game reached 8,690 packaged graphics pipelines. The GPU separately drew the Leonida team's mesh triangle, a cross-group ballot test, and a 24-workgroup geometry test.",
+      "blocker": "Five pixel shaders stopped the first attempt at this batch. All five now pass the translator's check for consistent results on the Mac.",
+      "nextTest": "Compile the 444 selected stages with the verified pixel-group fix, then launch the game against the larger cache."
     },
     {
       "title": "Present a game-rendered frame in a Mac window",
@@ -279,9 +283,9 @@
     "total": 18837
   },
   "graphicsBatch": {
-    "done": 144,
+    "done": 108,
     "total": 444,
-    "measuredAt": "2026-11-24T22:14:40.875Z",
-    "paused": true
+    "measuredAt": "2026-11-24T22:17:24Z",
+    "etaSeconds": 121
   }
 }
