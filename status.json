@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-24T22:04:03Z",
-  "headline": "Native startup prepared 8,680 packaged graphics pipelines before reaching a new pixel shader.",
-  "currentWork": "Verify the next pixel shader on the M5 Pro, then replay startup with the translated program.",
-  "graphicsStatus": "The game prepared 8,680 packaged graphics pipelines in one native launch. A separate M5 Pro test linked the first packaged mesh output with its pixel stage.",
+  "updatedAt": "2026-11-24T22:09:25Z",
+  "headline": "The pixel shader that stopped startup at 8,680 graphics pipelines now compiles for Metal.",
+  "currentWork": "Check the installed shader cache and replay game startup with the verified pixel shader.",
+  "graphicsStatus": "Startup prepared 8,680 packaged graphics pipelines in one launch. The shader that stopped that launch now has a validated native Metal library.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "The GPU preserved every surviving pixel in four draws",
+      "detail": "The test drew 4,096 pixels each time. It discarded exactly 256 pixels at one threshold and 192 at the other, with both possible output colors. A separate buffer-read test also matched all 4,096 pixels for two different addresses."
+    },
     {
       "title": "One native launch prepared 8,680 graphics pipelines",
       "detail": "The larger shader cache let the game pass its previous high of 4,005 packaged graphics pipelines. The next program controls which pixels survive before normal shading continues."
@@ -236,9 +240,9 @@
     {
       "title": "Submit the game’s GPU commands to Metal",
       "state": "current",
-      "detail": "The game read 262 MiB from the local package and prepared 8,680 packaged graphics pipelines. Its first frame is still pending.",
-      "blocker": "This shader can drop an entire group of pixels and keep shading the others. The translator needs to prove that both outcomes stay the same on Apple's smaller execution groups.",
-      "nextTest": "Verify the next pixel shader on the M5 Pro, then replay startup with the translated program."
+      "detail": "The M5 Pro matched the expected color and discard decision at every pixel in four test draws. Another vertex shader now passes the check for reading one shared buffer element across a group.",
+      "blocker": "The game still has to finish loading its graphics pipelines and submit its first frame.",
+      "nextTest": "Check the installed shader cache and replay game startup with the verified pixel shader."
     },
     {
       "title": "Present a game-rendered frame in a Mac window",
@@ -267,7 +271,7 @@
     "total": 2684
   },
   "packageGraphicsCoverage": {
-    "done": 825,
+    "done": 826,
     "total": 18837
   },
   "graphicsBatch": {
