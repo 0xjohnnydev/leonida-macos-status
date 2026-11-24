@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-24T17:54:33Z",
-  "headline": "The game completed two reads from its first local package archive.",
-  "currentWork": "Check the arm64 translation against a hand-written vector test, then relaunch the game to identify the next graphics or platform call.",
+  "updatedAt": "2026-11-24T18:00:59Z",
+  "headline": "The game continued past vector arithmetic and completed a third package read.",
+  "currentWork": "Compile each reached function and its verified branch targets, then check for the next platform or graphics request.",
   "graphicsStatus": "Two separate graphics tests have drawn images with code from the game. The running game has yet to draw into a Mac window.",
   "initializers": {
     "complete": true,
@@ -11,8 +11,8 @@
   "playable": false,
   "milestones": [
     {
-      "title": "The game read from the local package",
-      "detail": "Two 4,096-byte reads completed. The game continued into later startup code that uses a vector permutation."
+      "title": "The game continued through package parsing",
+      "detail": "Three 4,096-byte reads completed. Native tests verified vector permutation, grouped byte sums, and signed multiply-add, including overflow."
     },
     {
       "title": "The game opened a package archive",
@@ -102,9 +102,9 @@
     {
       "title": "Complete offline platform startup",
       "state": "current",
-      "detail": "The game opened its first package archive, queried its timestamps, and completed two 4,096-byte reads. It continued through string parsing and memory allocation.",
-      "blocker": "The next startup block uses `VPERMILPS`, an x86 instruction that rearranges values within a vector. The previous build stopped at that instruction.",
-      "nextTest": "Check the arm64 translation against a hand-written vector test, then relaunch the game to identify the next graphics or platform call."
+      "detail": "The game allocated its 32 MiB storage buffer and opened a local archive. It ran the newly translated vector operations and completed three 4,096-byte reads.",
+      "blocker": "Startup continues to reach branches that have not yet been compiled into the native executable. The port is translating those branches as the game reaches them.",
+      "nextTest": "Compile each reached function and its verified branch targets, then check for the next platform or graphics request."
     },
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",
