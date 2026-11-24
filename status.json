@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-24T17:30:39Z",
-  "headline": "After starting its workers, the game reached a list of 4,096 registered callbacks.",
-  "currentWork": "The compiler identified 4,096 callbacks in a single run and queued 61,859 code blocks. Finish that batch and check which platform or graphics call the game reaches next.",
+  "updatedAt": "2026-11-24T17:34:46Z",
+  "headline": "The game passed callback startup and reached process scheduling on the M5 Pro.",
+  "currentWork": "Relaunch with the scheduling call implemented. Check whether the game continues when macOS reports that disabling Windows priority boosts is unsupported.",
   "graphicsStatus": "Two separate graphics tests have drawn images with code from the game. The running game has yet to draw into a Mac window.",
   "initializers": {
     "complete": true,
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "The game passed callback startup",
+      "detail": "The native executable contained 546,787 arm64 blocks. The game created a seventeenth worker and reached its process scheduling call."
+    },
     {
       "title": "The offline compiler found 4,096 registered callbacks",
       "detail": "The game reached its callback list after native worker startup. One discovery pass identified 61,859 code blocks for the next translation batch."
@@ -62,7 +66,7 @@
     {
       "title": "Translate x86-64 startup code to arm64",
       "state": "complete",
-      "detail": "The build compiled 88,740 blocks of Xbox CPU instructions ahead of time and linked them into a Mach-O executable, the format macOS runs directly."
+      "detail": "The first startup build linked 88,740 blocks of Xbox CPU instructions into a Mach-O executable, the format macOS runs directly. The build that passed callback startup contained 546,787 arm64 blocks."
     },
     {
       "title": "Load the executable and initialize its libraries",
@@ -82,9 +86,9 @@
     {
       "title": "Complete offline platform startup",
       "state": "current",
-      "detail": "Offline networking initialized, and the game created 16 native worker threads. Startup then reached a linked list of callbacks, functions the game registers to run later.",
-      "blocker": "Many of those functions still need arm64 code. Discovering one function per relaunch made this part of startup slow.",
-      "nextTest": "The compiler identified 4,096 callbacks in a single run and queued 61,859 code blocks. Finish that batch and check which platform or graphics call the game reaches next."
+      "detail": "Offline networking initialized. After creating 16 workers, the game ran its registered startup callbacks. It then created a seventeenth native worker and reached process-wide scheduling.",
+      "blocker": "The game called `SetProcessPriorityBoost`, which controls whether Windows temporarily raises worker priority. Mac scheduling handles this differently.",
+      "nextTest": "Relaunch with the scheduling call implemented. Check whether the game continues when macOS reports that disabling Windows priority boosts is unsupported."
     },
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",

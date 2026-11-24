@@ -20,7 +20,7 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-24T17:30:39Z">Nov 24, 2026, 5:30 PM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-24T17:34:46Z">Nov 24, 2026, 5:34 PM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -28,8 +28,8 @@
         <h2 id="current-title">Complete offline platform startup</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Where it stops</h3><p>Many of those functions still need arm64 code. Discovering one function per relaunch made this part of startup slow.</p></div>
-        <div><h3>Next test</h3><p>The compiler identified 4,096 callbacks in a single run and queued 61,859 code blocks. Finish that batch and check which platform or graphics call the game reaches next.</p></div>
+        <div><h3>Where it stops</h3><p>The game called <code>SetProcessPriorityBoost</code>, which controls whether Windows temporarily raises worker priority. Mac scheduling handles this differently.</p></div>
+        <div><h3>Next test</h3><p>Relaunch with the scheduling call implemented. Check whether the game continues when macOS reports that disabling Windows priority boosts is unsupported.</p></div>
       </div>
     </section>
     <section class="roadmap" aria-labelledby="stages-title">
@@ -68,7 +68,7 @@
       <span class="number"><span class="sr-only">Stage </span>4</span>
       <div class="step-body">
         <h3>Translate x86-64 startup code to arm64</h3>
-        <p>The build compiled 88,740 blocks of Xbox CPU instructions ahead of time and linked them into a Mach-O executable, the format macOS runs directly.</p>
+        <p>The first startup build linked 88,740 blocks of Xbox CPU instructions into a Mach-O executable, the format macOS runs directly. The build that passed callback startup contained 546,787 arm64 blocks.</p>
       </div>
       <span class="state state-complete">Complete</span>
     </li>
@@ -100,7 +100,7 @@
       <span class="number"><span class="sr-only">Stage </span>8</span>
       <div class="step-body">
         <h3>Complete offline platform startup</h3>
-        <p>Offline networking initialized, and the game created 16 native worker threads. Startup then reached a linked list of callbacks, functions the game registers to run later.</p>
+        <p>Offline networking initialized. After creating 16 workers, the game ran its registered startup callbacks. It then created a seventeenth native worker and reached process-wide scheduling.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>
