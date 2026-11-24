@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-24T22:12:43.714Z",
+  "updatedAt": "2026-11-24T22:13:37.414Z",
   "headline": "Native startup passed the previous shader and reached 8,690 graphics pipelines. The next batch is compiling.",
   "currentWork": "Prepare 444 unique shader stages used by the next 1,200 graphics records, then replay native startup.",
   "graphicsStatus": "One native launch prepared 8,690 packaged graphics pipelines. Shader preparation is now ahead of the next launch.",
@@ -275,12 +275,12 @@
     "total": 2684
   },
   "packageGraphicsCoverage": {
-    "done": 896,
+    "done": 932,
     "total": 18837
   },
   "graphicsBatch": {
-    "done": 72,
+    "done": 108,
     "total": 444,
-    "measuredAt": "2026-11-24T22:12:43.714Z"
+    "measuredAt": "2026-11-24T22:13:37.414Z"
   }
 }
