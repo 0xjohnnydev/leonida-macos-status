@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-24T20:57:40Z",
-  "headline": "The game uploaded its first texture from the local package to Metal",
-  "currentWork": "Follow the game through its pipeline statistics setup and into the next graphics or display command.",
-  "graphicsStatus": "The game created 53 compute pipelines, six render pipelines and a shader-readable Metal texture with game-provided pixels. First game frame pending.",
+  "updatedAt": "2026-11-24T21:03:10Z",
+  "headline": "The game opened 17 queues to stream assets from its local package",
+  "currentWork": "Verify file reads and completion signals through the new queues, then follow startup to its next graphics command.",
+  "graphicsStatus": "Six render pipelines, 53 compute pipelines and the first shader-readable game texture are ready on Metal. The game has opened 17 local streaming queues. First game frame pending.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "The game opened 17 local streaming queues",
+      "detail": "The running title created 17 high-priority file queues and a completion array for each. It then continued reading its local package. A completed transfer through one of these queues is the next storage check."
+    },
     {
       "title": "The game uploaded a texture for its shaders",
       "detail": "The game copied 32,768 pixels into its console tile layout. The Mac runtime converted them into a native Metal texture and returned the shader view requested by the game."
@@ -187,9 +191,9 @@
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",
       "state": "current",
-      "detail": "Six render pipelines linked. The game tiled a 256 × 128 single-channel image and uploaded it to Metal. Tests also passed for vertex and instance offsets, including two overlapping draws.",
-      "blocker": "The game has uploaded texture pixels and created a view its shaders can read. Startup next requested storage for GPU pipeline statistics.",
-      "nextTest": "Follow the game through its pipeline statistics setup and into the next graphics or display command."
+      "detail": "The game has six Metal render pipelines and a shader-readable texture. It also allocated space for GPU pipeline statistics and opened 17 file queues with 4,159 request slots each.",
+      "blocker": "The last launch reached the test limit of 150 million executed CPU blocks after opening the queues. A longer run will show which startup path comes next.",
+      "nextTest": "Verify file reads and completion signals through the new queues, then follow startup to its next graphics command."
     },
     {
       "title": "Submit the game’s GPU commands to Metal",
@@ -213,9 +217,9 @@
     }
   ],
   "translationCoverage": {
-    "done": 50824,
+    "done": 50875,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-24T20:57:15Z"
+    "measuredAt": "2026-11-24T21:02:47Z"
   }
 }
