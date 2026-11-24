@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-24T17:23:02Z",
-  "headline": "The game created 16 native worker threads on the M5 Pro.",
-  "currentWork": "Compile the newly reached startup blocks to arm64, then rerun the game to identify the next required platform call.",
+  "updatedAt": "2026-11-24T17:30:39Z",
+  "headline": "After starting its workers, the game reached a list of 4,096 registered callbacks.",
+  "currentWork": "The compiler identified 4,096 callbacks in a single run and queued 61,859 code blocks. Finish that batch and check which platform or graphics call the game reaches next.",
   "graphicsStatus": "Two separate graphics tests have drawn images with code from the game. The running game has yet to draw into a Mac window.",
   "initializers": {
     "complete": true,
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "The offline compiler found 4,096 registered callbacks",
+      "detail": "The game reached its callback list after native worker startup. One discovery pass identified 61,859 code blocks for the next translation batch."
+    },
     {
       "title": "The game created 16 native workers",
       "detail": "Offline networking initialized, the floating-point checks passed, and the game issued 15 worker resume calls on the M5 Pro."
@@ -78,9 +82,9 @@
     {
       "title": "Complete offline platform startup",
       "state": "current",
-      "detail": "Offline networking initialized. A translated test verified floating-point rounding and the handling of very small numbers. The game then created 16 native workers and called `ResumeThread` 15 times.",
-      "blocker": "The game reached more worker and startup code than the current native executable contains. The compiler stopped at the next required block of x86 instructions.",
-      "nextTest": "Compile the newly reached startup blocks to arm64, then rerun the game to identify the next required platform call."
+      "detail": "Offline networking initialized, and the game created 16 native worker threads. Startup then reached a linked list of callbacks, functions the game registers to run later.",
+      "blocker": "Many of those functions still need arm64 code. Discovering one function per relaunch made this part of startup slow.",
+      "nextTest": "The compiler identified 4,096 callbacks in a single run and queued 61,859 code blocks. Finish that batch and check which platform or graphics call the game reaches next."
     },
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",

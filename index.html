@@ -20,7 +20,7 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-24T17:23:02Z">Nov 24, 2026, 5:23 PM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-24T17:30:39Z">Nov 24, 2026, 5:30 PM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -28,8 +28,8 @@
         <h2 id="current-title">Complete offline platform startup</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Where it stops</h3><p>The game reached more worker and startup code than the current native executable contains. The compiler stopped at the next required block of x86 instructions.</p></div>
-        <div><h3>Next test</h3><p>Compile the newly reached startup blocks to arm64, then rerun the game to identify the next required platform call.</p></div>
+        <div><h3>Where it stops</h3><p>Many of those functions still need arm64 code. Discovering one function per relaunch made this part of startup slow.</p></div>
+        <div><h3>Next test</h3><p>The compiler identified 4,096 callbacks in a single run and queued 61,859 code blocks. Finish that batch and check which platform or graphics call the game reaches next.</p></div>
       </div>
     </section>
     <section class="roadmap" aria-labelledby="stages-title">
@@ -100,7 +100,7 @@
       <span class="number"><span class="sr-only">Stage </span>8</span>
       <div class="step-body">
         <h3>Complete offline platform startup</h3>
-        <p>Offline networking initialized. A translated test verified floating-point rounding and the handling of very small numbers. The game then created 16 native workers and called <code>ResumeThread</code> 15 times.</p>
+        <p>Offline networking initialized, and the game created 16 native worker threads. Startup then reached a linked list of callbacks, functions the game registers to run later.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>
