@@ -20,7 +20,7 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-24T16:16:24Z">Nov 24, 2026, 4:16 PM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-24T16:41:08Z">Nov 24, 2026, 4:41 PM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -28,8 +28,8 @@
         <h2 id="current-title">Complete offline platform startup</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Where it stops</h3><p>Startup got past both lifecycle registrations. The Xbox connectivity interface is unavailable, and the next call stops at <code>WSAStartup</code>, which initializes the Windows sockets library.</p></div>
-        <div><h3>Next test</h3><p>Initialize the sockets interface locally, expose the Xbox connectivity status as offline, and relaunch to identify the next startup request.</p></div>
+        <div><h3>Where it stops</h3><p>The last game run reached an x86 instruction that reads MXCSR, the register that controls floating-point rounding and the handling of very small numbers.</p></div>
+        <div><h3>Next test</h3><p>Check the arm64 implementation of MXCSR with a small test program, then relaunch the game to see how far the worker gets.</p></div>
       </div>
     </section>
     <section class="roadmap" aria-labelledby="stages-title">
@@ -100,7 +100,7 @@
       <span class="number"><span class="sr-only">Stage </span>8</span>
       <div class="step-body">
         <h3>Complete offline platform startup</h3>
-        <p>The game has reached its network initialization code. This stage covers the local system interfaces it needs before it can issue graphics commands.</p>
+        <p>The game queried the Xbox connectivity status, initialized Windows sockets with <code>WSAStartup</code>, and created a suspended worker. It set the worker’s priority and resumed it on a native Mac thread.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>

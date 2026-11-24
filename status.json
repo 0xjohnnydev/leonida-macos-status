@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-24T16:16:24Z",
-  "headline": "The game created its Xbox task queue and registered suspend, resume, and focus notifications on the M5 Pro.",
-  "currentWork": "Initialize the sockets interface locally, expose the Xbox connectivity status as offline, and relaunch to identify the next startup request.",
+  "updatedAt": "2026-11-24T16:41:08Z",
+  "headline": "The game initialized offline networking and resumed a worker on the M5 Pro.",
+  "currentWork": "Check the arm64 implementation of MXCSR with a small test program, then relaunch the game to see how far the worker gets.",
   "graphicsStatus": "Two separate graphics tests have drawn images with code from the game. The running game has yet to draw into a Mac window.",
   "initializers": {
     "complete": true,
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "Offline networking and native worker startup",
+      "detail": "The game received its offline connectivity status, initialized Windows sockets, and resumed a native worker with the requested priority."
+    },
     {
       "title": "The game registered its lifecycle callbacks",
       "detail": "The game created its native task queue and advanced through both lifecycle registrations. Independent Mac tests verified worker callbacks and event delivery."
@@ -74,9 +78,9 @@
     {
       "title": "Complete offline platform startup",
       "state": "current",
-      "detail": "The game has reached its network initialization code. This stage covers the local system interfaces it needs before it can issue graphics commands.",
-      "blocker": "Startup got past both lifecycle registrations. The Xbox connectivity interface is unavailable, and the next call stops at `WSAStartup`, which initializes the Windows sockets library.",
-      "nextTest": "Initialize the sockets interface locally, expose the Xbox connectivity status as offline, and relaunch to identify the next startup request."
+      "detail": "The game queried the Xbox connectivity status, initialized Windows sockets with `WSAStartup`, and created a suspended worker. It set the worker’s priority and resumed it on a native Mac thread.",
+      "blocker": "The last game run reached an x86 instruction that reads MXCSR, the register that controls floating-point rounding and the handling of very small numbers.",
+      "nextTest": "Check the arm64 implementation of MXCSR with a small test program, then relaunch the game to see how far the worker gets."
     },
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",
