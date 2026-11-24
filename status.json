@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-24T18:26:10Z",
-  "headline": "The game reached its sorting routine after executing 73 million native code blocks.",
-  "currentWork": "Test sorting through a translated comparison function, then rerun startup and check which graphics or platform call comes next.",
+  "updatedAt": "2026-11-24T18:34:19Z",
+  "headline": "The game passed sorting and reached language and region setup. Native launches now have a visible startup monitor.",
+  "currentWork": "Run the next translated paths with the desktop monitor visible and identify the next platform or graphics request.",
   "graphicsStatus": "Two separate graphics tests have drawn images with code from the game. The running game has yet to draw into a Mac window.",
   "initializers": {
     "complete": true,
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "Native launches now have a desktop monitor",
+      "detail": "The Mac window shows each startup attempt, package reads, and the last stop reason. Its launch button ran the actual arm64 executable. The game also continued past its first sort."
+    },
     {
       "title": "Startup reached the game’s sort routine",
       "detail": "The arm64 run executed 73,032,177 code blocks and made 66,462 host calls before requesting qsort. These counts include repeated execution of the same code."
@@ -118,9 +122,9 @@
     {
       "title": "Complete offline platform startup",
       "state": "current",
-      "detail": "The game issued 298 file reads. Of those, 297 returned data totaling 1,663,664 bytes and one reached end of file. Startup then reached the C library’s qsort function.",
-      "blocker": "The Mac must run the game’s own comparison function each time qsort compares two items.",
-      "nextTest": "Test sorting through a translated comparison function, then rerun startup and check which graphics or platform call comes next."
+      "detail": "The game ran its comparison function during sorting, read more package data, and asked the Mac for its locale name and Windows locale identifier. The desktop monitor shows each launch, read count, and stop reason.",
+      "blocker": "The port is translating the startup paths reached after the locale lookup. The running game has yet to present a frame.",
+      "nextTest": "Run the next translated paths with the desktop monitor visible and identify the next platform or graphics request."
     },
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",
