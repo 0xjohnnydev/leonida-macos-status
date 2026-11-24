@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-24T17:46:54Z",
-  "headline": "The game opened its first local package archive through DirectStorage.",
-  "currentWork": "Return the file’s Mac timestamps in the Windows format, then check whether the game reads the archive or asks for another system interface.",
+  "updatedAt": "2026-11-24T17:54:33Z",
+  "headline": "The game completed two reads from its first local package archive.",
+  "currentWork": "Check the arm64 translation against a hand-written vector test, then relaunch the game to identify the next graphics or platform call.",
   "graphicsStatus": "Two separate graphics tests have drawn images with code from the game. The running game has yet to draw into a Mac window.",
   "initializers": {
     "complete": true,
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "The game read from the local package",
+      "detail": "Two 4,096-byte reads completed. The game continued into later startup code that uses a vector permutation."
+    },
     {
       "title": "The game opened a package archive",
       "detail": "DirectStorage allocated a 32 MiB staging buffer. The game opened the local archive read-only and requested its file timestamps."
@@ -98,9 +102,9 @@
     {
       "title": "Complete offline platform startup",
       "state": "current",
-      "detail": "Controller registration succeeded. The game then obtained the Xbox DirectStorage factory, allocated its requested 32 MiB staging buffer, converted the archive path to UTF-16, and opened the file read-only on macOS.",
-      "blocker": "The last game run opened the archive and then stopped at `GetFileTime`, which asks for file timestamps.",
-      "nextTest": "Return the file’s Mac timestamps in the Windows format, then check whether the game reads the archive or asks for another system interface."
+      "detail": "The game opened its first package archive, queried its timestamps, and completed two 4,096-byte reads. It continued through string parsing and memory allocation.",
+      "blocker": "The next startup block uses `VPERMILPS`, an x86 instruction that rearranges values within a vector. The previous build stopped at that instruction.",
+      "nextTest": "Check the arm64 translation against a hand-written vector test, then relaunch the game to identify the next graphics or platform call."
     },
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",
