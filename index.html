@@ -20,7 +20,7 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-24T20:27:25Z">Nov 24, 2026, 8:27 PM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-24T20:33:05Z">Nov 24, 2026, 8:33 PM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -28,15 +28,15 @@
         <h2 id="current-title">Bind Direct3D 12 buffers and textures to Metal</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Where it stops</h3><p>Both 4K textures have readable, writable and render-target views. Startup now reaches the ray-tracing library’s shader binding setup.</p></div>
-        <div><h3>Next test</h3><p>Serialize the resource bindings requested by the ray-tracing library and verify that it creates its first root signature.</p></div>
+        <div><h3>Where it stops</h3><p>The ray-tracing builder returned to the game after creating 53 Metal pipelines from 52 distinct shaders. The next CPU path uses a 256-bit vector permutation.</p></div>
+        <div><h3>Next test</h3><p>Continue translating the game’s CPU startup after the builder returns and verify selected compute outputs on the Mac GPU.</p></div>
       </div>
     </section><section class="coverage" aria-labelledby="coverage-title">
       <h2 id="coverage-title">Native code translation</h2>
       <p><strong>16.7% of indexed function starts translated</strong></p>
-      <progress aria-label="Translated function entry points" value="50710" max="304274">16.7%</progress>
-      <p>50,710 of 304,274 translated · 253,564 remaining</p>
-      <p class="coverage-note">Measured across 8 game modules on Nov 24, 2026, 8:26 PM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
+      <progress aria-label="Translated function entry points" value="50767" max="304274">16.7%</progress>
+      <p>50,767 of 304,274 translated · 253,507 remaining</p>
+      <p class="coverage-note">Measured across 8 game modules on Nov 24, 2026, 8:32 PM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
     </section>
     <section class="roadmap" aria-labelledby="stages-title">
       <div class="roadmap-head">
@@ -114,7 +114,7 @@
       <span class="number"><span class="sr-only">Stage </span>9</span>
       <div class="step-body">
         <h3>Bind Direct3D 12 buffers and textures to Metal</h3>
-        <p>The game created two 3840 × 2160 display textures on Metal and three views of each. The ray-tracing library then requested a root signature, which describes the resources its shaders can use.</p>
+        <p>The title created its two 4K display textures, configured their views and initialized every compute shader in its ray-tracing builder. The Mac recorded 53 pipeline creations for 52 distinct shader programs.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>

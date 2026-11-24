@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-24T20:27:25Z",
-  "headline": "The game configured two 4K Metal display textures",
-  "currentWork": "Serialize the resource bindings requested by the ray-tracing library and verify that it creates its first root signature.",
-  "graphicsStatus": "Two 4K display textures and their views are ready. First game-rendered frame pending.",
+  "updatedAt": "2026-11-24T20:33:05Z",
+  "headline": "The game created Metal pipelines for all 52 ray-tracing builder shaders",
+  "currentWork": "Continue translating the game’s CPU startup after the builder returns and verify selected compute outputs on the Mac GPU.",
+  "graphicsStatus": "Two 4K display textures and all 52 ray-tracing builder programs are ready. First game frame pending.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "Every ray-tracing builder shader became a Metal pipeline",
+      "detail": "All 52 distinct builder programs compiled and linked in the Metal driver through the game’s own calls. The game returned from the builder to continue startup."
+    },
     {
       "title": "The game configured both 4K display textures",
       "detail": "The native run created shader-readable, writable and render-target views on both display textures and entered the game’s ray-tracing setup library."
@@ -163,9 +167,9 @@
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",
       "state": "current",
-      "detail": "The game created two 3840 × 2160 display textures on Metal and three views of each. The ray-tracing library then requested a root signature, which describes the resources its shaders can use.",
-      "blocker": "Both 4K textures have readable, writable and render-target views. Startup now reaches the ray-tracing library’s shader binding setup.",
-      "nextTest": "Serialize the resource bindings requested by the ray-tracing library and verify that it creates its first root signature."
+      "detail": "The title created its two 4K display textures, configured their views and initialized every compute shader in its ray-tracing builder. The Mac recorded 53 pipeline creations for 52 distinct shader programs.",
+      "blocker": "The ray-tracing builder returned to the game after creating 53 Metal pipelines from 52 distinct shaders. The next CPU path uses a 256-bit vector permutation.",
+      "nextTest": "Continue translating the game’s CPU startup after the builder returns and verify selected compute outputs on the Mac GPU."
     },
     {
       "title": "Submit the game’s GPU commands to Metal",
@@ -189,9 +193,9 @@
     }
   ],
   "translationCoverage": {
-    "done": 50710,
+    "done": 50767,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-24T20:26:09Z"
+    "measuredAt": "2026-11-24T20:32:00Z"
   }
 }
