@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-24T21:05:11Z",
-  "headline": "The game streamed more than 262 MiB of its own data on Apple Silicon",
-  "currentWork": "Follow asset loading to the next startup checkpoint, then verify the first GPU submission and displayed frame.",
-  "graphicsStatus": "Six render pipelines, 53 compute pipelines and a shader-readable game texture are ready on Metal. The game’s streaming queues delivered more than 262 MiB in one launch. First game frame pending.",
+  "updatedAt": "2026-11-24T21:08:46Z",
+  "headline": "The game loaded a new compute shader after 4,199 local streaming requests",
+  "currentWork": "Follow the game beyond the newly loaded shader to its next GPU command, then check the first displayed frame.",
+  "graphicsStatus": "The game has six render pipelines, at least 54 compute pipelines and its first shader-readable texture on Metal. First game frame pending.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "The game accepted a compute shader loaded during startup",
+      "detail": "The game supplied the program and its thread-group settings separately. The runtime matched both, translated the program, and returned a Metal pipeline configured for groups of 8 × 8 threads. The local shader cache keeps the compiled result for later launches."
+    },
     {
       "title": "The game streamed more than 262 MiB in one launch",
       "detail": "The Mac completed the game’s requests against the local package and recorded the number of bytes delivered. Separate tests verified the exact output of a file read and a compressed memory transfer, along with completion and end-of-file results."
@@ -195,9 +199,9 @@
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",
       "state": "current",
-      "detail": "The game opened 17 queues and completed file transfers totaling more than 262 MiB in one launch. Six Metal render pipelines and the first shader-readable game texture are ready.",
-      "blocker": "Package streaming now runs through the game’s own queues. The first game-rendered frame is still pending.",
-      "nextTest": "Follow asset loading to the next startup checkpoint, then verify the first GPU submission and displayed frame."
+      "detail": "In one launch, 17 queues completed 4,199 local requests and delivered 262.4 MiB. The Mac then compiled a GPU program supplied in the game’s native pipeline format and linked its 54th compute pipeline.",
+      "blocker": "The game accepted the new Metal pipeline and continued startup. Its first GPU draw and displayed frame are still pending.",
+      "nextTest": "Follow the game beyond the newly loaded shader to its next GPU command, then check the first displayed frame."
     },
     {
       "title": "Submit the game’s GPU commands to Metal",
@@ -221,9 +225,9 @@
     }
   ],
   "translationCoverage": {
-    "done": 50895,
+    "done": 51008,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-24T21:05:06Z"
+    "measuredAt": "2026-11-24T21:08:46Z"
   }
 }

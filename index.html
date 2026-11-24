@@ -20,7 +20,7 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-24T21:05:11Z">Nov 24, 2026, 9:05 PM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-24T21:08:46Z">Nov 24, 2026, 9:08 PM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -28,15 +28,15 @@
         <h2 id="current-title">Bind Direct3D 12 buffers and textures to Metal</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Where it stops</h3><p>Package streaming now runs through the game’s own queues. The first game-rendered frame is still pending.</p></div>
-        <div><h3>Next test</h3><p>Follow asset loading to the next startup checkpoint, then verify the first GPU submission and displayed frame.</p></div>
+        <div><h3>Where it stops</h3><p>The game accepted the new Metal pipeline and continued startup. Its first GPU draw and displayed frame are still pending.</p></div>
+        <div><h3>Next test</h3><p>Follow the game beyond the newly loaded shader to its next GPU command, then check the first displayed frame.</p></div>
       </div>
     </section><section class="coverage" aria-labelledby="coverage-title">
       <h2 id="coverage-title">Native code translation</h2>
-      <p><strong>16.7% of indexed function starts translated</strong></p>
-      <progress aria-label="Translated function entry points" value="50895" max="304274">16.7%</progress>
-      <p>50,895 of 304,274 translated · 253,379 remaining</p>
-      <p class="coverage-note">Measured across 8 game modules on Nov 24, 2026, 9:05 PM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
+      <p><strong>16.8% of indexed function starts translated</strong></p>
+      <progress aria-label="Translated function entry points" value="51008" max="304274">16.8%</progress>
+      <p>51,008 of 304,274 translated · 253,266 remaining</p>
+      <p class="coverage-note">Measured across 8 game modules on Nov 24, 2026, 9:08 PM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
     </section>
     <section class="roadmap" aria-labelledby="stages-title">
       <div class="roadmap-head">
@@ -114,7 +114,7 @@
       <span class="number"><span class="sr-only">Stage </span>9</span>
       <div class="step-body">
         <h3>Bind Direct3D 12 buffers and textures to Metal</h3>
-        <p>The game opened 17 queues and completed file transfers totaling more than 262 MiB in one launch. Six Metal render pipelines and the first shader-readable game texture are ready.</p>
+        <p>In one launch, 17 queues completed 4,199 local requests and delivered 262.4 MiB. The Mac then compiled a GPU program supplied in the game’s native pipeline format and linked its 54th compute pipeline.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>
