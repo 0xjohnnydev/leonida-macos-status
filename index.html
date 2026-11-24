@@ -6,8 +6,8 @@
   <meta name="color-scheme" content="light">
   <meta name="description" content="Track the native Mac port of GTA VI, from arm64 startup and Metal shader tests to a game-rendered frame and a playable scene.">
   <title>GTA VI on Mac · Progress tracker</title>
-  <link rel="stylesheet" href="./style.css?v=3">
-  <script type="module" src="./tracker.js?v=2"></script>
+  <link rel="stylesheet" href="./style.css?v=4">
+  <script type="module" src="./tracker.js?v=3"></script>
 </head>
 <body>
   <header>
@@ -20,7 +20,7 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-24T18:34:19Z">Nov 24, 2026, 6:34 PM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-24T18:40:23Z">Nov 24, 2026, 6:40 PM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -28,9 +28,15 @@
         <h2 id="current-title">Complete offline platform startup</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Where it stops</h3><p>The port is translating the startup paths reached after the locale lookup. The running game has yet to present a frame.</p></div>
-        <div><h3>Next test</h3><p>Run the next translated paths with the desktop monitor visible and identify the next platform or graphics request.</p></div>
+        <div><h3>Where it stops</h3><p>The game continues to reach startup branches that need native code. New translations are saved between attempts.</p></div>
+        <div><h3>Next test</h3><p>Run the newly translated branches. Check for an additional platform call or the first game graphics command.</p></div>
       </div>
+    </section><section class="coverage" aria-labelledby="coverage-title">
+      <h2 id="coverage-title">Native code translation</h2>
+      <p><strong>16.6% of indexed function starts translated</strong></p>
+      <progress aria-label="Translated function entry points" value="50541" max="304274">16.6%</progress>
+      <p>50,541 of 304,274 translated · 253,733 remaining</p>
+      <p class="coverage-note">Measured across 8 game modules on Nov 24, 2026, 6:40 PM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
     </section>
     <section class="roadmap" aria-labelledby="stages-title">
       <div class="roadmap-head">
@@ -100,7 +106,7 @@
       <span class="number"><span class="sr-only">Stage </span>8</span>
       <div class="step-body">
         <h3>Complete offline platform startup</h3>
-        <p>The game ran its comparison function during sorting, read more package data, and asked the Mac for its locale name and Windows locale identifier. The desktop monitor shows each launch, read count, and stop reason.</p>
+        <p>The title passed its language and region lookups, converted decimal text, and continued startup. The desktop monitor retains progress across retries.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>

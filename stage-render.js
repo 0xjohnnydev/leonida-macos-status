@@ -42,6 +42,21 @@ export function renderStages(data) {
   const summary = completed === stages.length ? '<p>All stages complete</p>'
     : `<nav class="stage-summary" aria-label="Jump to stages by status">${statusLinks}</nav>`;
 
+  let coverage = '';
+  const measured = data.translationCoverage;
+  if (measured && Number.isSafeInteger(measured.done) && Number.isSafeInteger(measured.total) &&
+      measured.done >= 0 && measured.total > 0 && measured.done <= measured.total &&
+      Number.isSafeInteger(measured.modules) && measured.modules > 0) {
+    const format = new Intl.NumberFormat('en-US');
+    const percent = (100 * measured.done / measured.total).toFixed(1);
+    coverage = `<section class="coverage" aria-labelledby="coverage-title">
+      <h2 id="coverage-title">Native code translation</h2>
+      <p><strong>${percent}% of indexed function starts translated</strong></p>
+      <progress aria-label="Translated function entry points" value="${measured.done}" max="${measured.total}">${percent}%</progress>
+      <p>${format.format(measured.done)} of ${format.format(measured.total)} translated · ${format.format(measured.total - measured.done)} remaining</p>
+      <p class="coverage-note">Measured across ${measured.modules} game modules on ${escapeText(testDate(measured.measuredAt))}. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
+    </section>`;
+  }
   const current = active ? `
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -66,7 +81,7 @@ export function renderStages(data) {
     <div class="heading">
       <h1>GTA VI on Mac</h1>
       <p class="tested">Last tested <time datetime="${escapeText(data.updatedAt)}">${escapeText(testDate(data.updatedAt))}</time></p>
-    </div>${current}
+    </div>${current}${coverage}
     <section class="roadmap" aria-labelledby="stages-title">
       <div class="roadmap-head">
         <h2 id="stages-title">Steps to a playable scene</h2>

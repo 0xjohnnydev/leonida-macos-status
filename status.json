@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-24T18:34:19Z",
-  "headline": "The game passed sorting and reached language and region setup. Native launches now have a visible startup monitor.",
-  "currentWork": "Run the next translated paths with the desktop monitor visible and identify the next platform or graphics request.",
+  "updatedAt": "2026-11-24T18:40:23Z",
+  "headline": "The desktop monitor now shows how many indexed function starts have a native translation and how long recent retries take.",
+  "currentWork": "Run the newly translated branches. Check for an additional platform call or the first game graphics command.",
   "graphicsStatus": "Two separate graphics tests have drawn images with code from the game. The running game has yet to draw into a Mac window.",
   "initializers": {
     "complete": true,
@@ -122,9 +122,9 @@
     {
       "title": "Complete offline platform startup",
       "state": "current",
-      "detail": "The game ran its comparison function during sorting, read more package data, and asked the Mac for its locale name and Windows locale identifier. The desktop monitor shows each launch, read count, and stop reason.",
-      "blocker": "The port is translating the startup paths reached after the locale lookup. The running game has yet to present a frame.",
-      "nextTest": "Run the next translated paths with the desktop monitor visible and identify the next platform or graphics request."
+      "detail": "The title passed its language and region lookups, converted decimal text, and continued startup. The desktop monitor retains progress across retries.",
+      "blocker": "The game continues to reach startup branches that need native code. New translations are saved between attempts.",
+      "nextTest": "Run the newly translated branches. Check for an additional platform call or the first game graphics command."
     },
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",
@@ -151,5 +151,11 @@
       "state": "upcoming",
       "detail": "Load geometry and textures from the local package. Move the character through the scene and verify that new assets load while input and successive frames continue."
     }
-  ]
+  ],
+  "translationCoverage": {
+    "done": 50541,
+    "total": 304274,
+    "modules": 8,
+    "measuredAt": "2026-11-24T18:40:23Z"
+  }
 }
