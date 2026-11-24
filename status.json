@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-24T22:43:54Z",
+  "updatedAt": "2026-11-24T22:44:43Z",
   "headline": "The game loaded Metal functions for 10,003 graphics pipelines. The new CPU loader passed its first in-place execution test.",
   "currentWork": "Run the title with in-place arm64 compilation and verify which startup path it reaches in the same launch.",
   "graphicsStatus": "The launch cache holds 1,270 of 18,837 packaged graphics stage and layout combinations. The newly added vertex and pixel pair linked as a Metal render pipeline on the M5 Pro.",
@@ -261,7 +261,7 @@
       "title": "Submit the game’s GPU commands to Metal",
       "state": "current",
       "detail": "The game opened its Mac window and loaded Metal functions for 10,003 packaged graphics pipelines. The launch cache now also contains two programs from the executable that supply all shader stages for 14 additional records.",
-      "blocker": "The Mac has checked 0 of 1,315 installed shader stages against the updated translator before the next game launch.",
+      "blocker": "The Mac has checked 96 of 1,315 installed shader stages against the updated translator before the next game launch. At the measured rate, this check has about 11 minutes left.",
       "nextTest": "Run the title with in-place arm64 compilation and verify which startup path it reaches in the same launch."
     },
     {
