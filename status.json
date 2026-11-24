@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-24T20:24:33Z",
-  "headline": "The game created its first 4K display texture on Metal",
-  "currentWork": "Connect the game’s shader and render-target views to this texture, then follow its first use.",
-  "graphicsStatus": "The game owns a 4K display texture on Metal. Its first rendered frame is still pending.",
+  "updatedAt": "2026-11-24T20:27:25Z",
+  "headline": "The game configured two 4K Metal display textures",
+  "currentWork": "Serialize the resource bindings requested by the ray-tracing library and verify that it creates its first root signature.",
+  "graphicsStatus": "Two 4K display textures and their views are ready. First game-rendered frame pending.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "The game configured both 4K display textures",
+      "detail": "The native run created shader-readable, writable and render-target views on both display textures and entered the game’s ray-tracing setup library."
+    },
     {
       "title": "The game created its first 4K Metal display texture",
       "detail": "The game accepted the tiled memory calculation and received a real Metal texture. Its next call requests a shader view of that image."
@@ -159,9 +163,9 @@
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",
       "state": "current",
-      "detail": "The game allocated a 3840 × 2160 RGBA8 display texture. Its tiled Xbox image needs 33,423,360 bytes at 64 KiB alignment. An independent test on this Mac verified texture upload, a Metal render pass, and pixel readback across two mip levels and two array slices.",
-      "blocker": "The first 3840 × 2160 display texture exists on Metal. Startup stops when the game asks to read it from a shader.",
-      "nextTest": "Connect the game’s shader and render-target views to this texture, then follow its first use."
+      "detail": "The game created two 3840 × 2160 display textures on Metal and three views of each. The ray-tracing library then requested a root signature, which describes the resources its shaders can use.",
+      "blocker": "Both 4K textures have readable, writable and render-target views. Startup now reaches the ray-tracing library’s shader binding setup.",
+      "nextTest": "Serialize the resource bindings requested by the ray-tracing library and verify that it creates its first root signature."
     },
     {
       "title": "Submit the game’s GPU commands to Metal",
@@ -185,9 +189,9 @@
     }
   ],
   "translationCoverage": {
-    "done": 50681,
+    "done": 50710,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-24T20:23:57Z"
+    "measuredAt": "2026-11-24T20:26:09Z"
   }
 }
