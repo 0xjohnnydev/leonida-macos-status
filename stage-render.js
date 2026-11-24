@@ -57,6 +57,18 @@ export function renderStages(data) {
       <p class="coverage-note">Measured across ${measured.modules} game modules on ${escapeText(testDate(measured.measuredAt))}. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
     </section>`;
   }
+  const shaders = data.packageComputeCoverage;
+  if (shaders && Number.isSafeInteger(shaders.done) && Number.isSafeInteger(shaders.total) &&
+      shaders.total > 0 && shaders.done >= 0 && shaders.done <= shaders.total) {
+    const format = new Intl.NumberFormat('en-US');
+    coverage += `<section class="coverage" aria-labelledby="compute-coverage-title">
+      <h2 id="compute-coverage-title">Compute shaders in the package’s pipeline library</h2>
+      <p><strong>${format.format(shaders.done)} of ${format.format(shaders.total)} compiled for Metal</strong></p>
+      <progress aria-label="Package compute shaders compiled for Metal" value="${shaders.done}" max="${shaders.total}"></progress>
+      <p>${format.format(shaders.total - shaders.done)} remaining in this library</p>
+      <p class="coverage-note">Each count represents a distinct program with its thread-group settings. The first-frame ETA depends on which programs startup requests.</p>
+    </section>`;
+  }
   const current = active ? `
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -64,7 +76,8 @@ export function renderStages(data) {
         <h2 id="current-title">${escapeText(active.title)}</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Where it stops</h3><p>${formatDetail(active.blocker)}</p></div>
+        ${data.headline ? `<div><h3>Latest verified result</h3><p>${formatDetail(data.headline)}</p></div>` : ''}
+        <div><h3>Current status</h3><p>${formatDetail(active.blocker)}</p></div>
         <div><h3>Next test</h3><p>${formatDetail(active.nextTest)}</p></div>
       </div>
     </section>` : '';

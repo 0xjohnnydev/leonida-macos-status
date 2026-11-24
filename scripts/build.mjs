@@ -12,7 +12,7 @@ const html = `<!doctype html>
   <meta name="description" content="Track the native Mac port of GTA VI, from arm64 startup and Metal shader tests to a game-rendered frame and a playable scene.">
   <title>GTA VI on Mac · Progress tracker</title>
   <link rel="stylesheet" href="./style.css?v=4">
-  <script type="module" src="./tracker.js?v=3"></script>
+  <script type="module" src="./tracker.js?v=4"></script>
 </head>
 <body>
   <header>

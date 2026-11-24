@@ -7,7 +7,7 @@
   <meta name="description" content="Track the native Mac port of GTA VI, from arm64 startup and Metal shader tests to a game-rendered frame and a playable scene.">
   <title>GTA VI on Mac · Progress tracker</title>
   <link rel="stylesheet" href="./style.css?v=4">
-  <script type="module" src="./tracker.js?v=3"></script>
+  <script type="module" src="./tracker.js?v=4"></script>
 </head>
 <body>
   <header>
@@ -20,30 +20,37 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-24T21:08:46Z">Nov 24, 2026, 9:08 PM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-24T21:15:47Z">Nov 24, 2026, 9:15 PM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
-        <p class="stage-count">Current stage · 9 of 13</p>
-        <h2 id="current-title">Bind Direct3D 12 buffers and textures to Metal</h2>
+        <p class="stage-count">Current stage · 10 of 13</p>
+        <h2 id="current-title">Submit the game’s GPU commands to Metal</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Where it stops</h3><p>The game accepted the new Metal pipeline and continued startup. Its first GPU draw and displayed frame are still pending.</p></div>
-        <div><h3>Next test</h3><p>Follow the game beyond the newly loaded shader to its next GPU command, then check the first displayed frame.</p></div>
+        <div><h3>Latest verified result</h3><p>The running game linked 36 compute programs from its package library</p></div>
+        <div><h3>Current status</h3><p>One shader reads its wave number and group size from an Xbox GPU register. Both the 32-lane and 64-lane hardware tests now pass on the Mac. The package shader is next.</p></div>
+        <div><h3>Next test</h3><p>Run the package shader that needs wave information, then continue to the game’s first GPU submission.</p></div>
       </div>
     </section><section class="coverage" aria-labelledby="coverage-title">
       <h2 id="coverage-title">Native code translation</h2>
       <p><strong>16.8% of indexed function starts translated</strong></p>
       <progress aria-label="Translated function entry points" value="51008" max="304274">16.8%</progress>
       <p>51,008 of 304,274 translated · 253,266 remaining</p>
-      <p class="coverage-note">Measured across 8 game modules on Nov 24, 2026, 9:08 PM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
+      <p class="coverage-note">Measured across 8 game modules on Nov 24, 2026, 9:11 PM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
+    </section><section class="coverage" aria-labelledby="compute-coverage-title">
+      <h2 id="compute-coverage-title">Compute shaders in the package’s pipeline library</h2>
+      <p><strong>36 of 2,684 compiled for Metal</strong></p>
+      <progress aria-label="Package compute shaders compiled for Metal" value="36" max="2684"></progress>
+      <p>2,648 remaining in this library</p>
+      <p class="coverage-note">Each count represents a distinct program with its thread-group settings. The first-frame ETA depends on which programs startup requests.</p>
     </section>
     <section class="roadmap" aria-labelledby="stages-title">
       <div class="roadmap-head">
         <h2 id="stages-title">Steps to a playable scene</h2>
-        <nav class="stage-summary" aria-label="Jump to stages by status"><a class="state state-complete" href="#stage-1">8 complete</a>
-          <a class="state state-current" href="#stage-9">1 in progress</a>
-          <a class="state state-upcoming" href="#stage-10">4 upcoming</a></nav>
+        <nav class="stage-summary" aria-label="Jump to stages by status"><a class="state state-complete" href="#stage-1">9 complete</a>
+          <a class="state state-current" href="#stage-10">1 in progress</a>
+          <a class="state state-upcoming" href="#stage-11">3 upcoming</a></nav>
       </div>
       <ol role="list">
     <li id="stage-1" class="stage stage-complete">
@@ -110,21 +117,21 @@
       </div>
       <span class="state state-complete">Complete</span>
     </li>
-    <li id="stage-9" class="stage stage-current" aria-current="step">
+    <li id="stage-9" class="stage stage-complete">
       <span class="number"><span class="sr-only">Stage </span>9</span>
       <div class="step-body">
         <h3>Bind Direct3D 12 buffers and textures to Metal</h3>
-        <p>In one launch, 17 queues completed 4,199 local requests and delivered 262.4 MiB. The Mac then compiled a GPU program supplied in the game’s native pipeline format and linked its 54th compute pipeline.</p>
+        <p>The game bound shared buffers, both 4K display textures and its first uploaded texture to Metal. It linked six render pipelines and read local package data through 17 streaming queues.</p>
       </div>
-      <span class="state state-current">In progress</span>
+      <span class="state state-complete">Complete</span>
     </li>
-    <li id="stage-10" class="stage stage-upcoming">
+    <li id="stage-10" class="stage stage-current" aria-current="step">
       <span class="number"><span class="sr-only">Stage </span>10</span>
       <div class="step-body">
         <h3>Submit the game’s GPU commands to Metal</h3>
-        <p>Translate a Direct3D 12 command list issued by the running game into a Metal command buffer. Verify that the GPU executes the work and signals the fence the game uses to detect completion.</p>
+        <p>The game loads its compute library through the streaming queues. The Mac now compiles each new GPU program while the game stays open and resumes the same call after compilation.</p>
       </div>
-      <span class="state state-upcoming">Upcoming</span>
+      <span class="state state-current">In progress</span>
     </li>
     <li id="stage-11" class="stage stage-upcoming">
       <span class="number"><span class="sr-only">Stage </span>11</span>
