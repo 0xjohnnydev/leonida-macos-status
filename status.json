@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-24T21:15:47Z",
-  "headline": "The running game linked 36 compute programs from its package library",
-  "currentWork": "Run the package shader that needs wave information, then continue to the game’s first GPU submission.",
-  "graphicsStatus": "The game reached 89 Metal compute pipelines and six render pipelines in one launch. Its first game-rendered frame is pending.",
+  "updatedAt": "2026-11-24T21:19:38Z",
+  "headline": "Startup now links 42 compute programs from the game’s shader library and reaches a new graphics pipeline request.",
+  "currentWork": "Match the new graphics request to its shader programs and render settings, then build that pipeline on Metal.",
+  "graphicsStatus": "95 compute pipelines and six render pipelines linked during one launch. The game’s first presented frame is still ahead.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "Reached the next graphics pipeline format",
+      "detail": "The shader translator now handles the wave count and wave ID supplied at compute startup. Both wave widths passed hardware tests on the M5 Pro. Six more compute programs from the package linked on the Mac."
+    },
     {
       "title": "Metal compiled new programs while the same game launch stayed open",
       "detail": "One native launch linked 36 compute programs from the package library, including 23 built during that launch. The package index contains 2,684 distinct compute programs and thread-group configurations."
@@ -208,9 +212,9 @@
     {
       "title": "Submit the game’s GPU commands to Metal",
       "state": "current",
-      "detail": "The game loads its compute library through the streaming queues. The Mac now compiles each new GPU program while the game stays open and resumes the same call after compilation.",
-      "blocker": "One shader reads its wave number and group size from an Xbox GPU register. Both the 32-lane and 64-lane hardware tests now pass on the Mac. The package shader is next.",
-      "nextTest": "Run the package shader that needs wave information, then continue to the game’s first GPU submission."
+      "detail": "The M5 Pro linked 95 compute pipelines and six render pipelines. The new request comes after the game reads 262 MiB through its streaming queues.",
+      "blocker": "The game has reached graphics device method 57, which builds a pipeline from a different input format.",
+      "nextTest": "Match the new graphics request to its shader programs and render settings, then build that pipeline on Metal."
     },
     {
       "title": "Present a game-rendered frame in a Mac window",
@@ -229,13 +233,13 @@
     }
   ],
   "translationCoverage": {
-    "done": 51008,
+    "done": 51009,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-24T21:11:01Z"
+    "measuredAt": "2026-11-24T21:18:07Z"
   },
   "packageComputeCoverage": {
-    "done": 36,
+    "done": 42,
     "total": 2684
   }
 }

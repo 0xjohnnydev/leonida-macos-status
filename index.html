@@ -20,7 +20,7 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-24T21:15:47Z">Nov 24, 2026, 9:15 PM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-24T21:19:38Z">Nov 24, 2026, 9:19 PM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -28,21 +28,21 @@
         <h2 id="current-title">Submit the game’s GPU commands to Metal</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Latest verified result</h3><p>The running game linked 36 compute programs from its package library</p></div>
-        <div><h3>Current status</h3><p>One shader reads its wave number and group size from an Xbox GPU register. Both the 32-lane and 64-lane hardware tests now pass on the Mac. The package shader is next.</p></div>
-        <div><h3>Next test</h3><p>Run the package shader that needs wave information, then continue to the game’s first GPU submission.</p></div>
+        <div><h3>Latest verified result</h3><p>Startup now links 42 compute programs from the game’s shader library and reaches a new graphics pipeline request.</p></div>
+        <div><h3>Current status</h3><p>The game has reached graphics device method 57, which builds a pipeline from a different input format.</p></div>
+        <div><h3>Next test</h3><p>Match the new graphics request to its shader programs and render settings, then build that pipeline on Metal.</p></div>
       </div>
     </section><section class="coverage" aria-labelledby="coverage-title">
       <h2 id="coverage-title">Native code translation</h2>
       <p><strong>16.8% of indexed function starts translated</strong></p>
-      <progress aria-label="Translated function entry points" value="51008" max="304274">16.8%</progress>
-      <p>51,008 of 304,274 translated · 253,266 remaining</p>
-      <p class="coverage-note">Measured across 8 game modules on Nov 24, 2026, 9:11 PM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
+      <progress aria-label="Translated function entry points" value="51009" max="304274">16.8%</progress>
+      <p>51,009 of 304,274 translated · 253,265 remaining</p>
+      <p class="coverage-note">Measured across 8 game modules on Nov 24, 2026, 9:18 PM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
     </section><section class="coverage" aria-labelledby="compute-coverage-title">
       <h2 id="compute-coverage-title">Compute shaders in the package’s pipeline library</h2>
-      <p><strong>36 of 2,684 compiled for Metal</strong></p>
-      <progress aria-label="Package compute shaders compiled for Metal" value="36" max="2684"></progress>
-      <p>2,648 remaining in this library</p>
+      <p><strong>42 of 2,684 compiled for Metal</strong></p>
+      <progress aria-label="Package compute shaders compiled for Metal" value="42" max="2684"></progress>
+      <p>2,642 remaining in this library</p>
       <p class="coverage-note">Each count represents a distinct program with its thread-group settings. The first-frame ETA depends on which programs startup requests.</p>
     </section>
     <section class="roadmap" aria-labelledby="stages-title">
@@ -129,7 +129,7 @@
       <span class="number"><span class="sr-only">Stage </span>10</span>
       <div class="step-body">
         <h3>Submit the game’s GPU commands to Metal</h3>
-        <p>The game loads its compute library through the streaming queues. The Mac now compiles each new GPU program while the game stays open and resumes the same call after compilation.</p>
+        <p>The M5 Pro linked 95 compute pipelines and six render pipelines. The new request comes after the game reads 262 MiB through its streaming queues.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>
