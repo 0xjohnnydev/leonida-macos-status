@@ -57,16 +57,21 @@ export function renderStages(data) {
       <p class="coverage-note">Measured across ${measured.modules} game modules on ${escapeText(testDate(measured.measuredAt))}. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
     </section>`;
   }
-  const shaders = data.packageComputeCoverage;
-  if (shaders && Number.isSafeInteger(shaders.done) && Number.isSafeInteger(shaders.total) &&
-      shaders.total > 0 && shaders.done >= 0 && shaders.done <= shaders.total) {
+  const gpu = [
+    ['Compute shaders', data.packageComputeCoverage],
+    ['Graphics shaders', data.packageGraphicsCoverage]
+  ].filter(([, s]) => s && Number.isSafeInteger(s.done) && Number.isSafeInteger(s.total) &&
+      s.total > 0 && s.done >= 0 && s.done <= s.total);
+  if (gpu.length) {
     const format = new Intl.NumberFormat('en-US');
-    coverage += `<section class="coverage" aria-labelledby="compute-coverage-title">
-      <h2 id="compute-coverage-title">Compute shaders in the package’s pipeline library</h2>
-      <p><strong>${format.format(shaders.done)} of ${format.format(shaders.total)} compiled for Metal</strong></p>
-      <progress aria-label="Package compute shaders compiled for Metal" value="${shaders.done}" max="${shaders.total}"></progress>
-      <p>${format.format(shaders.total - shaders.done)} remaining in this library</p>
-      <p class="coverage-note">Each count represents a distinct program with its thread-group settings. The first-frame ETA depends on which programs startup requests.</p>
+    const rows = gpu.map(([label, s]) => `<div class="shader-count">
+      <h3>${label}</h3>
+      <p><strong>${format.format(s.done)} of ${format.format(s.total)} compiled for Metal</strong> · ${format.format(s.total - s.done)} remaining</p>
+      <progress aria-label="${label} compiled for Metal" value="${s.done}" max="${s.total}"></progress>
+    </div>`).join('');
+    coverage += `<section class="coverage" aria-labelledby="gpu-coverage-title">
+      <h2 id="gpu-coverage-title">GPU shader translation</h2>${rows}
+      <p class="coverage-note">Counts cover the game’s packaged compute, vertex, pixel and mesh programs. Each compiled program passed validation and has a Metal library. Startup builds the programs it requests.</p>
     </section>`;
   }
   const current = active ? `

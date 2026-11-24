@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-24T21:19:38Z",
-  "headline": "Startup now links 42 compute programs from the game’s shader library and reaches a new graphics pipeline request.",
-  "currentWork": "Match the new graphics request to its shader programs and render settings, then build that pipeline on Metal.",
-  "graphicsStatus": "95 compute pipelines and six render pipelines linked during one launch. The game’s first presented frame is still ahead.",
+  "updatedAt": "2026-11-24T21:25:51Z",
+  "headline": "The game loaded 27 packaged graphics pipelines on the M5 Pro. Its first vertex and pixel shader pair also linked in a separate Metal render test.",
+  "currentWork": "Check how the next pixel shader assigns work across 64 lanes, then rerun it on Apple’s 32-lane GPU groups.",
+  "graphicsStatus": "95 compute pipelines and six render pipelines linked in native startup. A further 27 packaged graphics pipelines loaded their Metal functions for use at draw time.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "Loaded the game’s packaged graphics shaders",
+      "detail": "The game accepted 27 packaged graphics pipelines. An independent hardware test linked the first pair against a color and depth target. The GPU progress section now tracks graphics and compute programs separately."
+    },
     {
       "title": "Reached the next graphics pipeline format",
       "detail": "The shader translator now handles the wave count and wave ID supplied at compute startup. Both wave widths passed hardware tests on the M5 Pro. Six more compute programs from the package linked on the Mac."
@@ -212,9 +216,9 @@
     {
       "title": "Submit the game’s GPU commands to Metal",
       "state": "current",
-      "detail": "The M5 Pro linked 95 compute pipelines and six render pipelines. The new request comes after the game reads 262 MiB through its streaming queues.",
-      "blocker": "The game has reached graphics device method 57, which builds a pipeline from a different input format.",
-      "nextTest": "Match the new graphics request to its shader programs and render settings, then build that pipeline on Metal."
+      "detail": "The game now loads vertex and pixel functions from its packaged graphics records. The first record’s programs and settings matched the game’s request exactly. A game frame still needs a draw and a presentation to the window.",
+      "blocker": "One pixel shader changes which pixels stay active. The Mac translator needs to preserve that decision across two GPU groups.",
+      "nextTest": "Check how the next pixel shader assigns work across 64 lanes, then rerun it on Apple’s 32-lane GPU groups."
     },
     {
       "title": "Present a game-rendered frame in a Mac window",
@@ -236,10 +240,14 @@
     "done": 51009,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-24T21:18:07Z"
+    "measuredAt": "2026-11-24T21:25:11Z"
   },
   "packageComputeCoverage": {
     "done": 42,
     "total": 2684
+  },
+  "packageGraphicsCoverage": {
+    "done": 33,
+    "total": 18837
   }
 }

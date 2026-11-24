@@ -6,8 +6,8 @@
   <meta name="color-scheme" content="light">
   <meta name="description" content="Track the native Mac port of GTA VI, from arm64 startup and Metal shader tests to a game-rendered frame and a playable scene.">
   <title>GTA VI on Mac · Progress tracker</title>
-  <link rel="stylesheet" href="./style.css?v=4">
-  <script type="module" src="./tracker.js?v=4"></script>
+  <link rel="stylesheet" href="./style.css?v=5">
+  <script type="module" src="./tracker.js?v=5"></script>
 </head>
 <body>
   <header>
@@ -20,7 +20,7 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-24T21:19:38Z">Nov 24, 2026, 9:19 PM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-24T21:25:51Z">Nov 24, 2026, 9:25 PM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -28,22 +28,27 @@
         <h2 id="current-title">Submit the game’s GPU commands to Metal</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Latest verified result</h3><p>Startup now links 42 compute programs from the game’s shader library and reaches a new graphics pipeline request.</p></div>
-        <div><h3>Current status</h3><p>The game has reached graphics device method 57, which builds a pipeline from a different input format.</p></div>
-        <div><h3>Next test</h3><p>Match the new graphics request to its shader programs and render settings, then build that pipeline on Metal.</p></div>
+        <div><h3>Latest verified result</h3><p>The game loaded 27 packaged graphics pipelines on the M5 Pro. Its first vertex and pixel shader pair also linked in a separate Metal render test.</p></div>
+        <div><h3>Current status</h3><p>One pixel shader changes which pixels stay active. The Mac translator needs to preserve that decision across two GPU groups.</p></div>
+        <div><h3>Next test</h3><p>Check how the next pixel shader assigns work across 64 lanes, then rerun it on Apple’s 32-lane GPU groups.</p></div>
       </div>
     </section><section class="coverage" aria-labelledby="coverage-title">
       <h2 id="coverage-title">Native code translation</h2>
       <p><strong>16.8% of indexed function starts translated</strong></p>
       <progress aria-label="Translated function entry points" value="51009" max="304274">16.8%</progress>
       <p>51,009 of 304,274 translated · 253,265 remaining</p>
-      <p class="coverage-note">Measured across 8 game modules on Nov 24, 2026, 9:18 PM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
-    </section><section class="coverage" aria-labelledby="compute-coverage-title">
-      <h2 id="compute-coverage-title">Compute shaders in the package’s pipeline library</h2>
-      <p><strong>42 of 2,684 compiled for Metal</strong></p>
-      <progress aria-label="Package compute shaders compiled for Metal" value="42" max="2684"></progress>
-      <p>2,642 remaining in this library</p>
-      <p class="coverage-note">Each count represents a distinct program with its thread-group settings. The first-frame ETA depends on which programs startup requests.</p>
+      <p class="coverage-note">Measured across 8 game modules on Nov 24, 2026, 9:25 PM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
+    </section><section class="coverage" aria-labelledby="gpu-coverage-title">
+      <h2 id="gpu-coverage-title">GPU shader translation</h2><div class="shader-count">
+      <h3>Compute shaders</h3>
+      <p><strong>42 of 2,684 compiled for Metal</strong> · 2,642 remaining</p>
+      <progress aria-label="Compute shaders compiled for Metal" value="42" max="2684"></progress>
+    </div><div class="shader-count">
+      <h3>Graphics shaders</h3>
+      <p><strong>33 of 18,837 compiled for Metal</strong> · 18,804 remaining</p>
+      <progress aria-label="Graphics shaders compiled for Metal" value="33" max="18837"></progress>
+    </div>
+      <p class="coverage-note">Counts cover the game’s packaged compute, vertex, pixel and mesh programs. Each compiled program passed validation and has a Metal library. Startup builds the programs it requests.</p>
     </section>
     <section class="roadmap" aria-labelledby="stages-title">
       <div class="roadmap-head">
@@ -129,7 +134,7 @@
       <span class="number"><span class="sr-only">Stage </span>10</span>
       <div class="step-body">
         <h3>Submit the game’s GPU commands to Metal</h3>
-        <p>The M5 Pro linked 95 compute pipelines and six render pipelines. The new request comes after the game reads 262 MiB through its streaming queues.</p>
+        <p>The game now loads vertex and pixel functions from its packaged graphics records. The first record’s programs and settings matched the game’s request exactly. A game frame still needs a draw and a presentation to the window.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>
