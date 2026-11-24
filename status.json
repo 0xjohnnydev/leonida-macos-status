@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-24T21:40:26Z",
-  "headline": "The native game has prepared more than 100 packaged render pipelines on the M5 Pro.",
-  "currentWork": "Continue loading the title’s graphics programs and check the first draw that uses them.",
-  "graphicsStatus": "The game has prepared 118 packaged render pipelines and linked six other Metal render pipelines. Its first presented frame is pending.",
+  "updatedAt": "2026-11-24T21:49:12Z",
+  "headline": "The M5 Pro has prepared more than 3,500 of the game’s packaged render pipelines in one launch.",
+  "currentWork": "Prepare the next group of shaders before launch, then test how far the game gets with them already installed.",
+  "graphicsStatus": "A single native launch prepared at least 3,574 packaged render pipelines. The game has two 4K display textures. Its first presented frame is pending.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "Preparing shaders before launch passed 3,500 render pipelines",
+      "detail": "The first 512 graphics records took 104 seconds to prepare from a partly warm cache. The startup window now shows a progress bar for the selected batch and an estimate based on recent compilation speed."
+    },
     {
       "title": "Startup prepared more than 100 packaged render pipelines",
       "detail": "The Mac passed two pixel-mask tests on real GPU hardware. The nested test kept 4,032 pixels and discarded exactly 64. With that change the same game launch passed its previous stop at 27 render pipelines and prepared at least 118."
@@ -220,9 +224,9 @@
     {
       "title": "Submit the game’s GPU commands to Metal",
       "state": "current",
-      "detail": "One launch passed the earlier pixel-shader stop and prepared at least 118 packaged render pipelines. The game has also linked 42 packaged compute pipelines, uploaded a texture and read 262 MiB through its local streaming queues.",
-      "blocker": "Startup is still preparing GPU programs. The game has yet to submit a verified draw to either 4K display texture.",
-      "nextTest": "Continue loading the title’s graphics programs and check the first draw that uses them."
+      "detail": "Ahead-of-launch compilation moved startup past the earlier stop. The first 512 graphics records share 418 distinct stages. All 418 compiled and validated on the M5 Pro, and the game used the cache to prepare at least 3,574 render pipelines.",
+      "blocker": "Two earlier launches stopped in the game’s timing checks while the Mac was compiling shaders. Startup still needs a verified game draw and a presented frame.",
+      "nextTest": "Prepare the next group of shaders before launch, then test how far the game gets with them already installed."
     },
     {
       "title": "Present a game-rendered frame in a Mac window",
@@ -244,14 +248,14 @@
     "done": 51009,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-24T21:39:55Z"
+    "measuredAt": "2026-11-24T21:48:52Z"
   },
   "packageComputeCoverage": {
     "done": 42,
     "total": 2684
   },
   "packageGraphicsCoverage": {
-    "done": 63,
+    "done": 477,
     "total": 18837
   }
 }
