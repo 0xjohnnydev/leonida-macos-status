@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-24T23:23:19Z",
-  "headline": "The running game created its first four-sample color target on Metal. It then asked to read the individual samples from a shader.",
-  "currentWork": "Test the four-sample shader view on the Mac GPU, then launch the game and follow its next graphics request.",
+  "updatedAt": "2026-11-24T23:52:06Z",
+  "headline": "The game created a four-sample Metal color target and its shader view. Startup now reaches the matching depth and stencil texture.",
+  "currentWork": "Measure the storage needed for the four-sample depth and stencil texture, then test it on Apple Silicon.",
   "graphicsStatus": "The launch cache holds 1,270 of 18,837 packaged graphics stage and layout combinations. The newly added vertex and pixel pair linked as a Metal render pipeline on the M5 Pro.",
   "initializers": {
     "complete": true,
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "Game created its four-sample shader view",
+      "detail": "The real game passed CreateShaderResourceView and requested a four-sample depth and stencil texture. The native platform regression passed, including the three-resource placement test and the new shader view."
+    },
     {
       "title": "Game created its first four-sample Metal target",
       "detail": "Both placement queries and CreatePlacedResourceX completed in the running game. The following call requested a multisample shader view in Direct3D format 28 (RGBA8)."
@@ -280,9 +284,9 @@
     {
       "title": "Submit the game’s GPU commands to Metal",
       "state": "current",
-      "detail": "The title created a Metal render target with four color samples per pixel and a 192 KiB game-memory reservation. The next graphics call asks for a shader view that preserves those four samples.",
-      "blocker": "The last launch stopped at CreateShaderResourceView for the new four-sample texture. First frame and gameplay are still pending.",
-      "nextTest": "Test the four-sample shader view on the Mac GPU, then launch the game and follow its next graphics request."
+      "detail": "The game now creates a four-sample color target and a shader view that can read each sample. A separate native test confirmed the resource address, sample count and channel order. The game next asks how much memory its depth and stencil target needs.",
+      "blocker": "The latest launch stopped at the allocation query for a four-sample depth and stencil texture. The game has yet to present its first frame.",
+      "nextTest": "Measure the storage needed for the four-sample depth and stencil texture, then test it on Apple Silicon."
     },
     {
       "title": "Present a game-rendered frame in a Mac window",
@@ -304,7 +308,7 @@
     "done": 51020,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-24T23:22:06Z"
+    "measuredAt": "2026-11-24T23:25:52Z"
   },
   "packageComputeCoverage": {
     "done": 42,

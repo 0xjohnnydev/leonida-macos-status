@@ -20,7 +20,7 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-24T23:23:19Z">Nov 24, 2026, 11:23 PM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-24T23:52:06Z">Nov 24, 2026, 11:52 PM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -28,16 +28,16 @@
         <h2 id="current-title">Submit the game’s GPU commands to Metal</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Latest verified result</h3><p>The running game created its first four-sample color target on Metal. It then asked to read the individual samples from a shader.</p></div>
-        <div><h3>Current status</h3><p>The last launch stopped at CreateShaderResourceView for the new four-sample texture. First frame and gameplay are still pending.</p></div>
-        <div><h3>Next test</h3><p>Test the four-sample shader view on the Mac GPU, then launch the game and follow its next graphics request.</p></div>
+        <div><h3>Latest verified result</h3><p>The game created a four-sample Metal color target and its shader view. Startup now reaches the matching depth and stencil texture.</p></div>
+        <div><h3>Current status</h3><p>The latest launch stopped at the allocation query for a four-sample depth and stencil texture. The game has yet to present its first frame.</p></div>
+        <div><h3>Next test</h3><p>Measure the storage needed for the four-sample depth and stencil texture, then test it on Apple Silicon.</p></div>
       </div>
     </section><section class="coverage" aria-labelledby="coverage-title">
       <h2 id="coverage-title">Native code translation</h2>
       <p><strong>16.8% of indexed function starts translated</strong></p>
       <progress aria-label="Translated function entry points" value="51020" max="304274">16.8%</progress>
       <p>51,020 of 304,274 translated · 253,254 remaining</p>
-      <p class="coverage-note">Measured across 8 game modules on Nov 24, 2026, 11:22 PM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
+      <p class="coverage-note">Measured across 8 game modules on Nov 24, 2026, 11:25 PM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
     </section><section class="coverage" aria-labelledby="gpu-coverage-title">
       <h2 id="gpu-coverage-title">GPU shader translation</h2><div class="shader-count">
       <h3>Compute shaders</h3>
@@ -137,7 +137,7 @@
       <span class="number"><span class="sr-only">Stage </span>10</span>
       <div class="step-body">
         <h3>Submit the game’s GPU commands to Metal</h3>
-        <p>The title created a Metal render target with four color samples per pixel and a 192 KiB game-memory reservation. The next graphics call asks for a shader view that preserves those four samples.</p>
+        <p>The game now creates a four-sample color target and a shader view that can read each sample. A separate native test confirmed the resource address, sample count and channel order. The game next asks how much memory its depth and stencil target needs.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>
