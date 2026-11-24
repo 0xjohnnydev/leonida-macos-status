@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-24T23:11:01Z",
-  "headline": "The game uploaded 14 textures, including three volume textures. All 5,959 shader translator tests passed.",
-  "currentWork": "Run the title through the allocation request for its four-sample render target and identify how it uses the samples.",
+  "updatedAt": "2026-11-24T23:21:50Z",
+  "headline": "The game accepted the memory layout for its first four-sample render target. The Mac GPU passed a separate draw and resolve test.",
+  "currentWork": "Run the real game with the new Metal resource and identify the next graphics call before the first frame.",
   "graphicsStatus": "The launch cache holds 1,270 of 18,837 packaged graphics stage and layout combinations. The newly added vertex and pixel pair linked as a Metal render pipeline on the M5 Pro.",
   "initializers": {
     "complete": true,
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "Game accepted four-sample placement details",
+      "detail": "The running title passed both allocation queries and reached resource creation. In a separate M5 Pro test, Metal drew four distinct colors into one pixel and resolved them to the expected value."
+    },
     {
       "title": "The game uploaded its volume textures and the full shader test suite passed",
       "detail": "The package produced three 3D texture uploads in the title. All 5,959 translator tests passed across 447 files. A hardware test also preserved four distinct color samples for the next graphics request."
@@ -272,9 +276,9 @@
     {
       "title": "Submit the game’s GPU commands to Metal",
       "state": "current",
-      "detail": "The game has uploaded 14 textures and loaded Metal functions for 10,241 packaged graphics pipelines. A separate M5 Pro test rendered four different sample colors, read each one, and verified the final averaged pixel.",
-      "blocker": "The previous launch reached a render target with four color samples per pixel. The Mac has verified its storage reservation and tested sample readback on Metal.",
-      "nextTest": "Run the title through the allocation request for its four-sample render target and identify how it uses the samples."
+      "detail": "The game uploaded 14 textures, including three 3D textures. It accepted the size, alignment and individual allocation details for a four-sample color target. A Mac GPU test read back all four distinct sample colors.",
+      "blocker": "The last completed launch stopped when the game requested its four-sample render target in mapped memory.",
+      "nextTest": "Run the real game with the new Metal resource and identify the next graphics call before the first frame."
     },
     {
       "title": "Present a game-rendered frame in a Mac window",
@@ -296,7 +300,7 @@
     "done": 51020,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-24T23:06:37Z"
+    "measuredAt": "2026-11-24T23:16:28Z"
   },
   "packageComputeCoverage": {
     "done": 42,

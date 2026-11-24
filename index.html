@@ -20,7 +20,7 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-24T23:11:01Z">Nov 24, 2026, 11:11 PM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-24T23:21:50Z">Nov 24, 2026, 11:21 PM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -28,16 +28,16 @@
         <h2 id="current-title">Submit the game’s GPU commands to Metal</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Latest verified result</h3><p>The game uploaded 14 textures, including three volume textures. All 5,959 shader translator tests passed.</p></div>
-        <div><h3>Current status</h3><p>The previous launch reached a render target with four color samples per pixel. The Mac has verified its storage reservation and tested sample readback on Metal.</p></div>
-        <div><h3>Next test</h3><p>Run the title through the allocation request for its four-sample render target and identify how it uses the samples.</p></div>
+        <div><h3>Latest verified result</h3><p>The game accepted the memory layout for its first four-sample render target. The Mac GPU passed a separate draw and resolve test.</p></div>
+        <div><h3>Current status</h3><p>The last completed launch stopped when the game requested its four-sample render target in mapped memory.</p></div>
+        <div><h3>Next test</h3><p>Run the real game with the new Metal resource and identify the next graphics call before the first frame.</p></div>
       </div>
     </section><section class="coverage" aria-labelledby="coverage-title">
       <h2 id="coverage-title">Native code translation</h2>
       <p><strong>16.8% of indexed function starts translated</strong></p>
       <progress aria-label="Translated function entry points" value="51020" max="304274">16.8%</progress>
       <p>51,020 of 304,274 translated · 253,254 remaining</p>
-      <p class="coverage-note">Measured across 8 game modules on Nov 24, 2026, 11:06 PM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
+      <p class="coverage-note">Measured across 8 game modules on Nov 24, 2026, 11:16 PM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
     </section><section class="coverage" aria-labelledby="gpu-coverage-title">
       <h2 id="gpu-coverage-title">GPU shader translation</h2><div class="shader-count">
       <h3>Compute shaders</h3>
@@ -137,7 +137,7 @@
       <span class="number"><span class="sr-only">Stage </span>10</span>
       <div class="step-body">
         <h3>Submit the game’s GPU commands to Metal</h3>
-        <p>The game has uploaded 14 textures and loaded Metal functions for 10,241 packaged graphics pipelines. A separate M5 Pro test rendered four different sample colors, read each one, and verified the final averaged pixel.</p>
+        <p>The game uploaded 14 textures, including three 3D textures. It accepted the size, alignment and individual allocation details for a four-sample color target. A Mac GPU test read back all four distinct sample colors.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>
