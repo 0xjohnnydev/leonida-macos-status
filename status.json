@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-24T18:50:56Z",
-  "headline": "The game created its first graphics command list on the Mac.",
-  "currentWork": "Identify what method 132 asks the graphics runtime to do, then verify that behavior on the Mac.",
-  "graphicsStatus": "The game opened its window and created a command list. Its first game-rendered frame is still pending.",
+  "updatedAt": "2026-11-24T18:55:17Z",
+  "headline": "The game created and closed 581 graphics command lists.",
+  "currentWork": "Trace the next graphics-device request and verify its inputs on the Mac.",
+  "graphicsStatus": "The game opened its window and closed its startup command lists. Its first game-rendered frame is still pending.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "The game closed 581 graphics command lists",
+      "detail": "Methods 131 and 132 order GPU memory operations. Both calls now record a full barrier for the startup requests. The game completed command-list setup and advanced to another device method."
+    },
     {
       "title": "The game opened its first graphics command list",
       "detail": "The running title created a command allocator and a direct graphics command list. A separate native test verified list close, allocator reset, and submission of an empty list to Metal."
@@ -139,9 +143,9 @@
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",
       "state": "current",
-      "detail": "The game created one direct queue, four compute queues, five GPU fences, and its first command allocator and list. A command list holds instructions for the GPU.",
-      "blocker": "The game called console command-list method 132 during setup. Its purpose and required behavior are still under investigation.",
-      "nextTest": "Identify what method 132 asks the graphics runtime to do, then verify that behavior on the Mac."
+      "detail": "The title recorded ten synchronization commands across its first five lists. It went on to close 513 direct lists and 68 compute lists. A separate native test submitted two synchronization commands and verified GPU completion on the M5 Pro.",
+      "blocker": "Startup stops at graphics-device method 78 after closing the command lists.",
+      "nextTest": "Trace the next graphics-device request and verify its inputs on the Mac."
     },
     {
       "title": "Submit the game’s GPU commands to Metal",
@@ -165,9 +169,9 @@
     }
   ],
   "translationCoverage": {
-    "done": 50630,
+    "done": 50632,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-24T18:50:56Z"
+    "measuredAt": "2026-11-24T18:55:16Z"
   }
 }

@@ -20,7 +20,7 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-24T18:50:56Z">Nov 24, 2026, 6:50 PM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-24T18:55:17Z">Nov 24, 2026, 6:55 PM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -28,15 +28,15 @@
         <h2 id="current-title">Bind Direct3D 12 buffers and textures to Metal</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Where it stops</h3><p>The game called console command-list method 132 during setup. Its purpose and required behavior are still under investigation.</p></div>
-        <div><h3>Next test</h3><p>Identify what method 132 asks the graphics runtime to do, then verify that behavior on the Mac.</p></div>
+        <div><h3>Where it stops</h3><p>Startup stops at graphics-device method 78 after closing the command lists.</p></div>
+        <div><h3>Next test</h3><p>Trace the next graphics-device request and verify its inputs on the Mac.</p></div>
       </div>
     </section><section class="coverage" aria-labelledby="coverage-title">
       <h2 id="coverage-title">Native code translation</h2>
       <p><strong>16.6% of indexed function starts translated</strong></p>
-      <progress aria-label="Translated function entry points" value="50630" max="304274">16.6%</progress>
-      <p>50,630 of 304,274 translated · 253,644 remaining</p>
-      <p class="coverage-note">Measured across 8 game modules on Nov 24, 2026, 6:50 PM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
+      <progress aria-label="Translated function entry points" value="50632" max="304274">16.6%</progress>
+      <p>50,632 of 304,274 translated · 253,642 remaining</p>
+      <p class="coverage-note">Measured across 8 game modules on Nov 24, 2026, 6:55 PM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
     </section>
     <section class="roadmap" aria-labelledby="stages-title">
       <div class="roadmap-head">
@@ -114,7 +114,7 @@
       <span class="number"><span class="sr-only">Stage </span>9</span>
       <div class="step-body">
         <h3>Bind Direct3D 12 buffers and textures to Metal</h3>
-        <p>The game created one direct queue, four compute queues, five GPU fences, and its first command allocator and list. A command list holds instructions for the GPU.</p>
+        <p>The title recorded ten synchronization commands across its first five lists. It went on to close 513 direct lists and 68 compute lists. A separate native test submitted two synchronization commands and verified GPU completion on the M5 Pro.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>
