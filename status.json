@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-24T23:03:49Z",
-  "headline": "The game uploaded nine textures. A three-dimensional Metal texture passed readback across three mip levels.",
-  "currentWork": "Run the game with the new 3D texture path and verify its next graphics request.",
+  "updatedAt": "2026-11-24T23:11:01Z",
+  "headline": "The game uploaded 14 textures, including three volume textures. All 5,959 shader translator tests passed.",
+  "currentWork": "Run the title through the allocation request for its four-sample render target and identify how it uses the samples.",
   "graphicsStatus": "The launch cache holds 1,270 of 18,837 packaged graphics stage and layout combinations. The newly added vertex and pixel pair linked as a Metal render pipeline on the M5 Pro.",
   "initializers": {
     "complete": true,
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "The game uploaded its volume textures and the full shader test suite passed",
+      "detail": "The package produced three 3D texture uploads in the title. All 5,959 translator tests passed across 447 files. A hardware test also preserved four distinct color samples for the next graphics request."
+    },
     {
       "title": "Native startup passed the integer texture and reached a volume texture",
       "detail": "A Metal shader read all four unsigned channel values correctly. A separate 17 × 9 × 5 volume test checked all 837 texels across three resolutions, including padded rows and depth planes."
@@ -268,9 +272,9 @@
     {
       "title": "Submit the game’s GPU commands to Metal",
       "state": "current",
-      "detail": "Native startup passed the unsigned integer texture that stopped the previous launch. It uploaded nine textures and requested its first volume texture, which has width, height and depth.",
-      "blocker": "The previous game launch stopped when it requested a 3D texture. The updated Mac build is testing that request using the game’s own tile layout.",
-      "nextTest": "Run the game with the new 3D texture path and verify its next graphics request."
+      "detail": "The game has uploaded 14 textures and loaded Metal functions for 10,241 packaged graphics pipelines. A separate M5 Pro test rendered four different sample colors, read each one, and verified the final averaged pixel.",
+      "blocker": "The previous launch reached a render target with four color samples per pixel. The Mac has verified its storage reservation and tested sample readback on Metal.",
+      "nextTest": "Run the title through the allocation request for its four-sample render target and identify how it uses the samples."
     },
     {
       "title": "Present a game-rendered frame in a Mac window",
@@ -292,7 +296,7 @@
     "done": 51020,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-24T23:00:48Z"
+    "measuredAt": "2026-11-24T23:06:37Z"
   },
   "packageComputeCoverage": {
     "done": 42,
