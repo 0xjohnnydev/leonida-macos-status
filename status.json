@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-24T21:03:10Z",
-  "headline": "The game opened 17 queues to stream assets from its local package",
-  "currentWork": "Verify file reads and completion signals through the new queues, then follow startup to its next graphics command.",
-  "graphicsStatus": "Six render pipelines, 53 compute pipelines and the first shader-readable game texture are ready on Metal. The game has opened 17 local streaming queues. First game frame pending.",
+  "updatedAt": "2026-11-24T21:05:11Z",
+  "headline": "The game streamed more than 262 MiB of its own data on Apple Silicon",
+  "currentWork": "Follow asset loading to the next startup checkpoint, then verify the first GPU submission and displayed frame.",
+  "graphicsStatus": "Six render pipelines, 53 compute pipelines and a shader-readable game texture are ready on Metal. The game’s streaming queues delivered more than 262 MiB in one launch. First game frame pending.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "The game streamed more than 262 MiB in one launch",
+      "detail": "The Mac completed the game’s requests against the local package and recorded the number of bytes delivered. Separate tests verified the exact output of a file read and a compressed memory transfer, along with completion and end-of-file results."
+    },
     {
       "title": "The game opened 17 local streaming queues",
       "detail": "The running title created 17 high-priority file queues and a completion array for each. It then continued reading its local package. A completed transfer through one of these queues is the next storage check."
@@ -191,9 +195,9 @@
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",
       "state": "current",
-      "detail": "The game has six Metal render pipelines and a shader-readable texture. It also allocated space for GPU pipeline statistics and opened 17 file queues with 4,159 request slots each.",
-      "blocker": "The last launch reached the test limit of 150 million executed CPU blocks after opening the queues. A longer run will show which startup path comes next.",
-      "nextTest": "Verify file reads and completion signals through the new queues, then follow startup to its next graphics command."
+      "detail": "The game opened 17 queues and completed file transfers totaling more than 262 MiB in one launch. Six Metal render pipelines and the first shader-readable game texture are ready.",
+      "blocker": "Package streaming now runs through the game’s own queues. The first game-rendered frame is still pending.",
+      "nextTest": "Follow asset loading to the next startup checkpoint, then verify the first GPU submission and displayed frame."
     },
     {
       "title": "Submit the game’s GPU commands to Metal",
@@ -217,9 +221,9 @@
     }
   ],
   "translationCoverage": {
-    "done": 50875,
+    "done": 50895,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-24T21:02:47Z"
+    "measuredAt": "2026-11-24T21:05:06Z"
   }
 }
