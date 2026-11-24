@@ -20,24 +20,24 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-24T15:27:03Z">Nov 24, 2026, 3:27 PM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-24T16:16:24Z">Nov 24, 2026, 4:16 PM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
-        <p class="stage-count">Current stage · 7 of 12</p>
-        <h2 id="current-title">Connect the Xbox task queue and app-state callbacks</h2>
+        <p class="stage-count">Current stage · 8 of 13</p>
+        <h2 id="current-title">Complete offline platform startup</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Where it stops</h3><p>The game requests the Xbox task queue, which the Mac runtime cannot yet provide. Startup then stops at <code>RegisterAppStateChangeNotification</code>, the call that subscribes to suspend and resume events.</p></div>
-        <div><h3>Next test</h3><p>Connect <code>XTaskQueue</code> and the macOS notification handler. Verify that both deliver callbacks, then relaunch and check that the game advances past registration.</p></div>
+        <div><h3>Where it stops</h3><p>Startup got past both lifecycle registrations. The Xbox connectivity interface is unavailable, and the next call stops at <code>WSAStartup</code>, which initializes the Windows sockets library.</p></div>
+        <div><h3>Next test</h3><p>Initialize the sockets interface locally, expose the Xbox connectivity status as offline, and relaunch to identify the next startup request.</p></div>
       </div>
     </section>
     <section class="roadmap" aria-labelledby="stages-title">
       <div class="roadmap-head">
         <h2 id="stages-title">Steps to a playable scene</h2>
-        <nav class="stage-summary" aria-label="Jump to stages by status"><a class="state state-complete" href="#stage-1">6 complete</a>
-          <a class="state state-current" href="#stage-7">1 in progress</a>
-          <a class="state state-upcoming" href="#stage-8">5 upcoming</a></nav>
+        <nav class="stage-summary" aria-label="Jump to stages by status"><a class="state state-complete" href="#stage-1">7 complete</a>
+          <a class="state state-current" href="#stage-8">1 in progress</a>
+          <a class="state state-upcoming" href="#stage-9">5 upcoming</a></nav>
       </div>
       <ol role="list">
     <li id="stage-1" class="stage stage-complete">
@@ -88,48 +88,56 @@
       </div>
       <span class="state state-complete">Complete</span>
     </li>
-    <li id="stage-7" class="stage stage-current" aria-current="step">
+    <li id="stage-7" class="stage stage-complete">
       <span class="number"><span class="sr-only">Stage </span>7</span>
       <div class="step-body">
         <h3>Connect the Xbox task queue and app-state callbacks</h3>
-        <p>The Xbox <code>XTaskQueue</code> library now builds for arm64. This milestone passes when the game can schedule background work and receive a suspend or resume event on the Mac.</p>
+        <p>The game created its Xbox task queue and registered both lifecycle handlers. A translated-code test ran a callback on a separate Mac thread. Local event tests delivered suspend, resume, and focus changes.</p>
+      </div>
+      <span class="state state-complete">Complete</span>
+    </li>
+    <li id="stage-8" class="stage stage-current" aria-current="step">
+      <span class="number"><span class="sr-only">Stage </span>8</span>
+      <div class="step-body">
+        <h3>Complete offline platform startup</h3>
+        <p>The game has reached its network initialization code. This stage covers the local system interfaces it needs before it can issue graphics commands.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>
-    <li id="stage-8" class="stage stage-upcoming">
-      <span class="number"><span class="sr-only">Stage </span>8</span>
+    <li id="stage-9" class="stage stage-upcoming">
+      <span class="number"><span class="sr-only">Stage </span>9</span>
       <div class="step-body">
         <h3>Bind Direct3D 12 buffers and textures to Metal</h3>
         <p>Map the game’s buffers and textures to Metal resources. Verify that a game shader can find the correct resource through a descriptor table, the list of bindings supplied to the GPU.</p>
       </div>
       <span class="state state-upcoming">Upcoming</span>
     </li>
-    <li id="stage-9" class="stage stage-upcoming">
-      <span class="number"><span class="sr-only">Stage </span>9</span>
+    <li id="stage-10" class="stage stage-upcoming">
+      <span class="number"><span class="sr-only">Stage </span>10</span>
       <div class="step-body">
         <h3>Submit the game’s GPU commands to Metal</h3>
         <p>Translate a Direct3D 12 command list issued by the running game into a Metal command buffer. Verify that the GPU executes the work and signals the fence the game uses to detect completion.</p>
       </div>
       <span class="state state-upcoming">Upcoming</span>
     </li>
-    <li id="stage-10" class="stage stage-upcoming">
-      <span class="number"><span class="sr-only">Stage </span>10</span>
+    <li id="stage-11" class="stage stage-upcoming">
+      <span class="number"><span class="sr-only">Stage </span>11</span>
       <div class="step-body">
         <h3>Present a game-rendered frame in a Mac window</h3>
         <p>Connect the game’s display path to <code>CAMetalLayer</code>, the macOS surface that presents Metal frames. Verify that a frame drawn by the running game appears in the window.</p>
       </div>
       <span class="state state-upcoming">Upcoming</span>
     </li>
-    <li id="stage-11" class="stage stage-upcoming">
-      <span class="number"><span class="sr-only">Stage </span>11</span>
+    <li id="stage-12" class="stage stage-upcoming">
+      <span class="number"><span class="sr-only">Stage </span>12</span>
       <div class="step-body">
         <h3>Route keyboard or controller input to the menu</h3>
         <p>Deliver macOS input events through the interface the game reads. Open the menu, select an option, and verify that the game changes the selection on screen.</p>
       </div>
       <span class="state state-upcoming">Upcoming</span>
     </li>
-    <li id="stage-12" class="stage stage-upcoming">
-      <span class="number"><span class="sr-only">Stage </span>12</span>
+    <li id="stage-13" class="stage stage-upcoming">
+      <span class="number"><span class="sr-only">Stage </span>13</span>
       <div class="step-body">
         <h3>Stream world assets through a playable scene</h3>
         <p>Load geometry and textures from the local package. Move the character through the scene and verify that new assets load while input and successive frames continue.</p>

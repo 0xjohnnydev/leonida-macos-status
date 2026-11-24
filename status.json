@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-24T15:27:03Z",
-  "headline": "The native arm64 build reaches the offline Xbox runtime on the M5 Pro. The current stop is app-state notification registration.",
-  "currentWork": "Connect the Xbox task queue and app-state callbacks to macOS, then verify delivery and relaunch.",
+  "updatedAt": "2026-11-24T16:16:24Z",
+  "headline": "The game created its Xbox task queue and registered suspend, resume, and focus notifications on the M5 Pro.",
+  "currentWork": "Initialize the sockets interface locally, expose the Xbox connectivity status as offline, and relaunch to identify the next startup request.",
   "graphicsStatus": "Two separate graphics tests have drawn images with code from the game. The running game has yet to draw into a Mac window.",
   "initializers": {
     "complete": true,
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "The game registered its lifecycle callbacks",
+      "detail": "The game created its native task queue and advanced through both lifecycle registrations. Independent Mac tests verified worker callbacks and event delivery."
+    },
     {
       "title": "Offline platform runtime initialized",
       "detail": "The game found and called the native implementation of its platform startup interface."
@@ -64,10 +68,15 @@
     },
     {
       "title": "Connect the Xbox task queue and app-state callbacks",
+      "state": "complete",
+      "detail": "The game created its Xbox task queue and registered both lifecycle handlers. A translated-code test ran a callback on a separate Mac thread. Local event tests delivered suspend, resume, and focus changes."
+    },
+    {
+      "title": "Complete offline platform startup",
       "state": "current",
-      "detail": "The Xbox `XTaskQueue` library now builds for arm64. This milestone passes when the game can schedule background work and receive a suspend or resume event on the Mac.",
-      "blocker": "The game requests the Xbox task queue, which the Mac runtime cannot yet provide. Startup then stops at `RegisterAppStateChangeNotification`, the call that subscribes to suspend and resume events.",
-      "nextTest": "Connect `XTaskQueue` and the macOS notification handler. Verify that both deliver callbacks, then relaunch and check that the game advances past registration."
+      "detail": "The game has reached its network initialization code. This stage covers the local system interfaces it needs before it can issue graphics commands.",
+      "blocker": "Startup got past both lifecycle registrations. The Xbox connectivity interface is unavailable, and the next call stops at `WSAStartup`, which initializes the Windows sockets library.",
+      "nextTest": "Initialize the sockets interface locally, expose the Xbox connectivity status as offline, and relaunch to identify the next startup request."
     },
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",
