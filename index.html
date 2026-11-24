@@ -20,7 +20,7 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-24T20:52:17Z">Nov 24, 2026, 8:52 PM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-24T20:57:40Z">Nov 24, 2026, 8:57 PM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -28,15 +28,15 @@
         <h2 id="current-title">Bind Direct3D 12 buffers and textures to Metal</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Where it stops</h3><p>Startup has passed the first graphics pipeline. The next launches are translating newly reached CPU functions. A game frame has yet to appear.</p></div>
-        <div><h3>Next test</h3><p>Translate the CPU functions the game now reaches after graphics setup, then follow its first draw and display submission.</p></div>
+        <div><h3>Where it stops</h3><p>The game has uploaded texture pixels and created a view its shaders can read. Startup next requested storage for GPU pipeline statistics.</p></div>
+        <div><h3>Next test</h3><p>Follow the game through its pipeline statistics setup and into the next graphics or display command.</p></div>
       </div>
     </section><section class="coverage" aria-labelledby="coverage-title">
       <h2 id="coverage-title">Native code translation</h2>
       <p><strong>16.7% of indexed function starts translated</strong></p>
-      <progress aria-label="Translated function entry points" value="50813" max="304274">16.7%</progress>
-      <p>50,813 of 304,274 translated · 253,461 remaining</p>
-      <p class="coverage-note">Measured across 8 game modules on Nov 24, 2026, 8:52 PM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
+      <progress aria-label="Translated function entry points" value="50824" max="304274">16.7%</progress>
+      <p>50,824 of 304,274 translated · 253,450 remaining</p>
+      <p class="coverage-note">Measured across 8 game modules on Nov 24, 2026, 8:57 PM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
     </section>
     <section class="roadmap" aria-labelledby="stages-title">
       <div class="roadmap-head">
@@ -114,7 +114,7 @@
       <span class="number"><span class="sr-only">Stage </span>9</span>
       <div class="step-body">
         <h3>Bind Direct3D 12 buffers and textures to Metal</h3>
-        <p>Six game render pipelines linked on the M5 Pro, including a pipeline with depth and stencil. A separate draw test passed all 4,096 reference pixels through the new vertex path.</p>
+        <p>Six render pipelines linked. The game tiled a 256 × 128 single-channel image and uploaded it to Metal. Tests also passed for vertex and instance offsets, including two overlapping draws.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>

@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-24T20:52:17Z",
-  "headline": "The game linked six native Metal render pipelines",
-  "currentWork": "Translate the CPU functions the game now reaches after graphics setup, then follow its first draw and display submission.",
-  "graphicsStatus": "53 compute pipelines and six render pipelines observed in game startup. The separate vertex-capture draw test passed. First game frame pending.",
+  "updatedAt": "2026-11-24T20:57:40Z",
+  "headline": "The game uploaded its first texture from the local package to Metal",
+  "currentWork": "Follow the game through its pipeline statistics setup and into the next graphics or display command.",
+  "graphicsStatus": "The game created 53 compute pipelines, six render pipelines and a shader-readable Metal texture with game-provided pixels. First game frame pending.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "The game uploaded a texture for its shaders",
+      "detail": "The game copied 32,768 pixels into its console tile layout. The Mac runtime converted them into a native Metal texture and returned the shader view requested by the game."
+    },
     {
       "title": "Six game render pipelines linked on Apple Silicon",
       "detail": "Metal linked the game’s vertex and pixel stages. A separate test rendered a full triangle through the same two-pass vertex path and matched the Leonida team’s expected pixels."
@@ -183,9 +187,9 @@
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",
       "state": "current",
-      "detail": "Six game render pipelines linked on the M5 Pro, including a pipeline with depth and stencil. A separate draw test passed all 4,096 reference pixels through the new vertex path.",
-      "blocker": "Startup has passed the first graphics pipeline. The next launches are translating newly reached CPU functions. A game frame has yet to appear.",
-      "nextTest": "Translate the CPU functions the game now reaches after graphics setup, then follow its first draw and display submission."
+      "detail": "Six render pipelines linked. The game tiled a 256 × 128 single-channel image and uploaded it to Metal. Tests also passed for vertex and instance offsets, including two overlapping draws.",
+      "blocker": "The game has uploaded texture pixels and created a view its shaders can read. Startup next requested storage for GPU pipeline statistics.",
+      "nextTest": "Follow the game through its pipeline statistics setup and into the next graphics or display command."
     },
     {
       "title": "Submit the game’s GPU commands to Metal",
@@ -209,9 +213,9 @@
     }
   ],
   "translationCoverage": {
-    "done": 50813,
+    "done": 50824,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-24T20:52:15Z"
+    "measuredAt": "2026-11-24T20:57:15Z"
   }
 }
