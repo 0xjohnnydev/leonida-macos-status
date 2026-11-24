@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-24T18:44:44Z",
-  "headline": "The running game created its Metal device, five command queues, and five GPU fences.",
-  "currentWork": "Create the game’s command allocators, then check how it records its first command list.",
-  "graphicsStatus": "The title showed its own native window and created Metal queues on the M5 Pro. Its first game-rendered frame is still pending.",
+  "updatedAt": "2026-11-24T18:50:56Z",
+  "headline": "The game created its first graphics command list on the Mac.",
+  "currentWork": "Identify what method 132 asks the graphics runtime to do, then verify that behavior on the Mac.",
+  "graphicsStatus": "The game opened its window and created a command list. Its first game-rendered frame is still pending.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "The game opened its first graphics command list",
+      "detail": "The running title created a command allocator and a direct graphics command list. A separate native test verified list close, allocator reset, and submission of an empty list to Metal."
+    },
     {
       "title": "The game created Metal queues and fences",
       "detail": "The running title created one direct queue, four compute queues, and five GPU fences. A separate native test submitted a fence signal to Metal and verified completion."
@@ -135,9 +139,9 @@
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",
       "state": "current",
-      "detail": "The game created one direct queue, four compute queues, and five Metal shared events. The events implement GPU fences, which let the game wait for graphics work to finish.",
-      "blocker": "The game reached command allocation. It needs storage for its command lists before it can submit rendering work.",
-      "nextTest": "Create the game’s command allocators, then check how it records its first command list."
+      "detail": "The game created one direct queue, four compute queues, five GPU fences, and its first command allocator and list. A command list holds instructions for the GPU.",
+      "blocker": "The game called console command-list method 132 during setup. Its purpose and required behavior are still under investigation.",
+      "nextTest": "Identify what method 132 asks the graphics runtime to do, then verify that behavior on the Mac."
     },
     {
       "title": "Submit the game’s GPU commands to Metal",
@@ -164,6 +168,6 @@
     "done": 50630,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-24T18:44:44Z"
+    "measuredAt": "2026-11-24T18:50:56Z"
   }
 }
