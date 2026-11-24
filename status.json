@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-24T22:34:01Z",
-  "headline": "The running game loaded Metal functions for 9,962 packaged graphics pipelines and reached new CPU code.",
-  "currentWork": "Translate the newly reached CPU path and relaunch the game. Watch for its first command that draws a frame.",
-  "graphicsStatus": "1,268 of 18,837 packaged graphics stage and layout combinations are compiled in the game’s launch cache. The latest graphics batch is complete.",
+  "updatedAt": "2026-11-24T22:41:34Z",
+  "headline": "The game loaded Metal functions for 10,003 graphics pipelines. The new CPU loader passed its first in-place execution test.",
+  "currentWork": "Run the title with in-place arm64 compilation and verify which startup path it reaches in the same launch.",
+  "graphicsStatus": "The launch cache holds 1,270 of 18,837 packaged graphics stage and layout combinations. The newly added vertex and pixel pair linked as a Metal render pipeline on the M5 Pro.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "Passed 10,000 loaded graphics pipelines and tested CPU compilation in place",
+      "detail": "A native test called an untranslated function, loaded two arm64 blocks into the running process and returned the expected value. Running the updated standalone executable produced the same result again."
+    },
     {
       "title": "Native game startup passed 9,900 graphics pipelines",
       "detail": "The title opened its Mac window, streamed its local files and loaded Metal functions for 9,962 packaged pipelines. It then requested an untranslated CPU path, which the native compiler is now building."
@@ -256,9 +260,9 @@
     {
       "title": "Submit the game’s GPU commands to Metal",
       "state": "current",
-      "detail": "The title showed its own window on the M5 Pro. In that launch it loaded 9,962 packaged graphics pipelines with their Metal functions ready and reached another CPU entry point.",
-      "blocker": "This launch passed the earlier timing stop. The next startup path needs more Xbox CPU instructions translated to arm64.",
-      "nextTest": "Translate the newly reached CPU path and relaunch the game. Watch for its first command that draws a frame."
+      "detail": "The game opened its Mac window and loaded Metal functions for 10,003 packaged graphics pipelines. The launch cache now also contains two programs from the executable that supply all shader stages for 14 additional records.",
+      "blocker": "Earlier launches restarted for newly reached CPU code. A native test now loads the missing code, preserves the caller’s state and continues in the same process.",
+      "nextTest": "Run the title with in-place arm64 compilation and verify which startup path it reaches in the same launch."
     },
     {
       "title": "Present a game-rendered frame in a Mac window",
@@ -277,17 +281,17 @@
     }
   ],
   "translationCoverage": {
-    "done": 51009,
+    "done": 51015,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-24T22:32:56Z"
+    "measuredAt": "2026-11-24T22:40:33Z"
   },
   "packageComputeCoverage": {
     "done": 42,
     "total": 2684
   },
   "packageGraphicsCoverage": {
-    "done": 1268,
+    "done": 1270,
     "total": 18837
   },
   "graphicsBatch": {
