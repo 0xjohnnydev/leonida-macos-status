@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-24T20:33:05Z",
-  "headline": "The game created Metal pipelines for all 52 ray-tracing builder shaders",
-  "currentWork": "Continue translating the game’s CPU startup after the builder returns and verify selected compute outputs on the Mac GPU.",
-  "graphicsStatus": "Two 4K display textures and all 52 ray-tracing builder programs are ready. First game frame pending.",
+  "updatedAt": "2026-11-24T20:36:49Z",
+  "headline": "Six ray-tracing builder programs produced the expected results on the Mac GPU",
+  "currentWork": "Connect the GPU readback buffer used by the game’s visibility queries and follow the next native startup call.",
+  "graphicsStatus": "Two 4K display textures, 53 compute pipelines and storage for 2,460 visibility queries. First game frame pending.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "Six builder output tests passed on the Mac GPU",
+      "detail": "The Mac ran six of the original Leonida team’s GPU checks against the translated builder programs. Each output matched the expected result. The game also advanced into visibility-query setup."
+    },
     {
       "title": "Every ray-tracing builder shader became a Metal pipeline",
       "detail": "All 52 distinct builder programs compiled and linked in the Metal driver through the game’s own calls. The game returned from the builder to continue startup."
@@ -167,9 +171,9 @@
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",
       "state": "current",
-      "detail": "The title created its two 4K display textures, configured their views and initialized every compute shader in its ray-tracing builder. The Mac recorded 53 pipeline creations for 52 distinct shader programs.",
-      "blocker": "The ray-tracing builder returned to the game after creating 53 Metal pipelines from 52 distinct shaders. The next CPU path uses a 256-bit vector permutation.",
-      "nextTest": "Continue translating the game’s CPU startup after the builder returns and verify selected compute outputs on the Mac GPU."
+      "detail": "The game created 53 Metal pipelines from 52 distinct builder shaders. After returning from the builder, it created storage for 2,460 visibility queries. Six separate GPU tests matched Leonida’s reference outputs.",
+      "blocker": "Startup reached GPU visibility checks. The game requested a CPU-readable buffer for the results.",
+      "nextTest": "Connect the GPU readback buffer used by the game’s visibility queries and follow the next native startup call."
     },
     {
       "title": "Submit the game’s GPU commands to Metal",
@@ -196,6 +200,6 @@
     "done": 50767,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-24T20:32:00Z"
+    "measuredAt": "2026-11-24T20:34:51Z"
   }
 }
