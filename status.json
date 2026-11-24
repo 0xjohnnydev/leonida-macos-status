@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-24T18:42:34Z",
-  "headline": "The running game opened its own Mac window and requested its Direct3D graphics device.",
-  "currentWork": "Rerun with the requested device interface and trace which queue, buffer, or texture the game creates next.",
-  "graphicsStatus": "The game showed a native Mac window. Its first game-rendered frame is still pending. Two separate Metal tests have already rendered game shaders.",
+  "updatedAt": "2026-11-24T18:44:44Z",
+  "headline": "The running game created its Metal device, five command queues, and five GPU fences.",
+  "currentWork": "Create the game’s command allocators, then check how it records its first command list.",
+  "graphicsStatus": "The title showed its own native window and created Metal queues on the M5 Pro. Its first game-rendered frame is still pending.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "The game created Metal queues and fences",
+      "detail": "The running title created one direct queue, four compute queues, and five GPU fences. A separate native test submitted a fence signal to Metal and verified completion."
+    },
     {
       "title": "The game showed its own Mac window",
       "detail": "The title requested a 3,840 × 2,160 window, showed it, and called Direct3D device creation. The startup monitor remains visible between retries."
@@ -131,9 +135,9 @@
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",
       "state": "current",
-      "detail": "A translated test created a Metal compute queue. The running game now requests its graphics device. Buffers and textures from the game still need to reach Metal.",
-      "blocker": "The first game run with a native window stopped when the Mac runtime rejected the Direct3D 12 device interface requested by the title.",
-      "nextTest": "Rerun with the requested device interface and trace which queue, buffer, or texture the game creates next."
+      "detail": "The game created one direct queue, four compute queues, and five Metal shared events. The events implement GPU fences, which let the game wait for graphics work to finish.",
+      "blocker": "The game reached command allocation. It needs storage for its command lists before it can submit rendering work.",
+      "nextTest": "Create the game’s command allocators, then check how it records its first command list."
     },
     {
       "title": "Submit the game’s GPU commands to Metal",
@@ -157,9 +161,9 @@
     }
   ],
   "translationCoverage": {
-    "done": 50624,
+    "done": 50630,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-24T18:42:34Z"
+    "measuredAt": "2026-11-24T18:44:44Z"
   }
 }
