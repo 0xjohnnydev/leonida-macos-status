@@ -20,7 +20,7 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-24T17:42:07Z">Nov 24, 2026, 5:42 PM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-24T17:46:54Z">Nov 24, 2026, 5:46 PM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -28,8 +28,8 @@
         <h2 id="current-title">Complete offline platform startup</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Where it stops</h3><p>The game now requests <code>DStorageGetFactory</code>, the Xbox interface used to create storage queues and open package files. The Mac port has reached that request.</p></div>
-        <div><h3>Next test</h3><p>Connect the DirectStorage factory to the local package and check which operation the game requests first.</p></div>
+        <div><h3>Where it stops</h3><p>The last game run opened the archive and then stopped at <code>GetFileTime</code>, which asks for file timestamps.</p></div>
+        <div><h3>Next test</h3><p>Return the file’s Mac timestamps in the Windows format, then check whether the game reads the archive or asks for another system interface.</p></div>
       </div>
     </section>
     <section class="roadmap" aria-labelledby="stages-title">
@@ -100,7 +100,7 @@
       <span class="number"><span class="sr-only">Stage </span>8</span>
       <div class="step-body">
         <h3>Complete offline platform startup</h3>
-        <p>The game registered for gamepad connection events with <code>GameInput</code>. The Mac returned success. A separate test verified connection, disconnection, filtering, and removal of the callback.</p>
+        <p>Controller registration succeeded. The game then obtained the Xbox DirectStorage factory, allocated its requested 32 MiB staging buffer, converted the archive path to UTF-16, and opened the file read-only on macOS.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>

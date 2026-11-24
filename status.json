@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-24T17:42:07Z",
-  "headline": "The game registered for controller notifications and reached DirectStorage.",
-  "currentWork": "Connect the DirectStorage factory to the local package and check which operation the game requests first.",
+  "updatedAt": "2026-11-24T17:46:54Z",
+  "headline": "The game opened its first local package archive through DirectStorage.",
+  "currentWork": "Return the file’s Mac timestamps in the Windows format, then check whether the game reads the archive or asks for another system interface.",
   "graphicsStatus": "Two separate graphics tests have drawn images with code from the game. The running game has yet to draw into a Mac window.",
   "initializers": {
     "complete": true,
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "The game opened a package archive",
+      "detail": "DirectStorage allocated a 32 MiB staging buffer. The game opened the local archive read-only and requested its file timestamps."
+    },
     {
       "title": "Controller registration succeeded in the game",
       "detail": "The game registered for gamepad notifications, continued its startup string parsing, and requested the Xbox DirectStorage factory."
@@ -94,9 +98,9 @@
     {
       "title": "Complete offline platform startup",
       "state": "current",
-      "detail": "The game registered for gamepad connection events with `GameInput`. The Mac returned success. A separate test verified connection, disconnection, filtering, and removal of the callback.",
-      "blocker": "The game now requests `DStorageGetFactory`, the Xbox interface used to create storage queues and open package files. The Mac port has reached that request.",
-      "nextTest": "Connect the DirectStorage factory to the local package and check which operation the game requests first."
+      "detail": "Controller registration succeeded. The game then obtained the Xbox DirectStorage factory, allocated its requested 32 MiB staging buffer, converted the archive path to UTF-16, and opened the file read-only on macOS.",
+      "blocker": "The last game run opened the archive and then stopped at `GetFileTime`, which asks for file timestamps.",
+      "nextTest": "Return the file’s Mac timestamps in the Windows format, then check whether the game reads the archive or asks for another system interface."
     },
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",
