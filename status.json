@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-24T22:01:36Z",
-  "headline": "All 774 stages in the latest graphics batch are ready. The Mac is checking the larger cache for the next game launch.",
-  "currentWork": "Replay game startup with the newly compiled graphics batch and measure which pipeline the game requests next.",
-  "graphicsStatus": "One native launch prepared 4,005 packaged graphics pipelines. A separate test linked the first packaged mesh output with its pixel stage. First presented game frame pending.",
+  "updatedAt": "2026-11-24T22:04:03Z",
+  "headline": "Native startup prepared 8,680 packaged graphics pipelines before reaching a new pixel shader.",
+  "currentWork": "Verify the next pixel shader on the M5 Pro, then replay startup with the translated program.",
+  "graphicsStatus": "The game prepared 8,680 packaged graphics pipelines in one native launch. A separate M5 Pro test linked the first packaged mesh output with its pixel stage.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "One native launch prepared 8,680 graphics pipelines",
+      "detail": "The larger shader cache let the game pass its previous high of 4,005 packaged graphics pipelines. The next program controls which pixels survive before normal shading continues."
+    },
     {
       "title": "The Mac completed the 774-stage graphics batch",
       "detail": "All 774 stages passed SPIR-V validation and have native Metal libraries. A mesh shader generates geometry on the GPU. The first one tested used 128 threads per workgroup, with a separate Metal vertex program to read the geometry."
@@ -232,9 +236,9 @@
     {
       "title": "Submit the game’s GPU commands to Metal",
       "state": "current",
-      "detail": "The Mac completed the 774-stage graphics batch for the next 1,024 library records in 135 seconds. Separately, the first packaged mesh program compiled to a Metal compute kernel, and its output reader linked to its original pixel shader on the M5 Pro.",
-      "blocker": "The most recent game run ended in its timing checks after preparing 4,005 pipelines. A game draw and a presented frame remain to be verified.",
-      "nextTest": "Replay game startup with the newly compiled graphics batch and measure which pipeline the game requests next."
+      "detail": "The game read 262 MiB from the local package and prepared 8,680 packaged graphics pipelines. Its first frame is still pending.",
+      "blocker": "This shader can drop an entire group of pixels and keep shading the others. The translator needs to prove that both outcomes stay the same on Apple's smaller execution groups.",
+      "nextTest": "Verify the next pixel shader on the M5 Pro, then replay startup with the translated program."
     },
     {
       "title": "Present a game-rendered frame in a Mac window",
@@ -256,14 +260,14 @@
     "done": 51009,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-24T21:48:52Z"
+    "measuredAt": "2026-11-24T22:01:47Z"
   },
   "packageComputeCoverage": {
     "done": 42,
     "total": 2684
   },
   "packageGraphicsCoverage": {
-    "done": 824,
+    "done": 825,
     "total": 18837
   },
   "graphicsBatch": {

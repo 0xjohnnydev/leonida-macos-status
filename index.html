@@ -20,7 +20,7 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-24T22:01:36Z">Nov 24, 2026, 10:01 PM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-24T22:04:03Z">Nov 24, 2026, 10:04 PM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -28,16 +28,16 @@
         <h2 id="current-title">Submit the game’s GPU commands to Metal</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Latest verified result</h3><p>All 774 stages in the latest graphics batch are ready. The Mac is checking the larger cache for the next game launch.</p></div>
-        <div><h3>Current status</h3><p>The most recent game run ended in its timing checks after preparing 4,005 pipelines. A game draw and a presented frame remain to be verified.</p></div>
-        <div><h3>Next test</h3><p>Replay game startup with the newly compiled graphics batch and measure which pipeline the game requests next.</p></div>
+        <div><h3>Latest verified result</h3><p>Native startup prepared 8,680 packaged graphics pipelines before reaching a new pixel shader.</p></div>
+        <div><h3>Current status</h3><p>This shader can drop an entire group of pixels and keep shading the others. The translator needs to prove that both outcomes stay the same on Apple&#39;s smaller execution groups.</p></div>
+        <div><h3>Next test</h3><p>Verify the next pixel shader on the M5 Pro, then replay startup with the translated program.</p></div>
       </div>
     </section><section class="coverage" aria-labelledby="coverage-title">
       <h2 id="coverage-title">Native code translation</h2>
       <p><strong>16.8% of indexed function starts translated</strong></p>
       <progress aria-label="Translated function entry points" value="51009" max="304274">16.8%</progress>
       <p>51,009 of 304,274 translated · 253,265 remaining</p>
-      <p class="coverage-note">Measured across 8 game modules on Nov 24, 2026, 9:48 PM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
+      <p class="coverage-note">Measured across 8 game modules on Nov 24, 2026, 10:01 PM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
     </section><section class="coverage" aria-labelledby="gpu-coverage-title">
       <h2 id="gpu-coverage-title">GPU shader translation</h2><div class="shader-count">
       <h3>Compute shaders</h3>
@@ -45,8 +45,8 @@
       <progress aria-label="Compute shaders compiled for Metal" value="42" max="2684"></progress>
     </div><div class="shader-count">
       <h3>Graphics shaders</h3>
-      <p><strong>824 of 18,837 compiled for Metal</strong> · 18,013 remaining</p>
-      <progress aria-label="Graphics shaders compiled for Metal" value="824" max="18837"></progress>
+      <p><strong>825 of 18,837 compiled for Metal</strong> · 18,012 remaining</p>
+      <progress aria-label="Graphics shaders compiled for Metal" value="825" max="18837"></progress>
     </div><div class="shader-count shader-batch"><h3>Last completed graphics batch</h3>
         <p><strong>774 of 774 stages ready</strong></p>
         <progress aria-label="Selected graphics batch" value="774" max="774"></progress>
@@ -137,7 +137,7 @@
       <span class="number"><span class="sr-only">Stage </span>10</span>
       <div class="step-body">
         <h3>Submit the game’s GPU commands to Metal</h3>
-        <p>The Mac completed the 774-stage graphics batch for the next 1,024 library records in 135 seconds. Separately, the first packaged mesh program compiled to a Metal compute kernel, and its output reader linked to its original pixel shader on the M5 Pro.</p>
+        <p>The game read 262 MiB from the local package and prepared 8,680 packaged graphics pipelines. Its first frame is still pending.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>
