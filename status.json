@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-24T23:52:06Z",
-  "headline": "The game created a four-sample Metal color target and its shader view. Startup now reaches the matching depth and stencil texture.",
-  "currentWork": "Measure the storage needed for the four-sample depth and stencil texture, then test it on Apple Silicon.",
+  "updatedAt": "2026-11-24T23:57:42Z",
+  "headline": "The real game created its four-sample Metal depth and stencil texture. It now asks to read the depth values in a shader.",
+  "currentWork": "Run the new depth shader view against the title and trace the next startup call.",
   "graphicsStatus": "The launch cache holds 1,270 of 18,837 packaged graphics stage and layout combinations. The newly added vertex and pixel pair linked as a Metal render pipeline on the M5 Pro.",
   "initializers": {
     "complete": true,
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "Game created the multisample depth target",
+      "detail": "Both allocation queries and the placed resource succeeded. Metal independently passed a four-sample depth and stencil readback. The next real request was a float depth shader view."
+    },
     {
       "title": "Game created its four-sample shader view",
       "detail": "The real game passed CreateShaderResourceView and requested a four-sample depth and stencil texture. The native platform regression passed, including the three-resource placement test and the new shader view."
@@ -284,9 +288,9 @@
     {
       "title": "Submit the game’s GPU commands to Metal",
       "state": "current",
-      "detail": "The game now creates a four-sample color target and a shader view that can read each sample. A separate native test confirmed the resource address, sample count and channel order. The game next asks how much memory its depth and stencil target needs.",
-      "blocker": "The latest launch stopped at the allocation query for a four-sample depth and stencil texture. The game has yet to present its first frame.",
-      "nextTest": "Measure the storage needed for the four-sample depth and stencil texture, then test it on Apple Silicon."
+      "detail": "Startup placed the four-sample color and depth targets in the same launch. A separate M5 Pro test cleared depth and stencil to different values and read both values back from every sample.",
+      "blocker": "The last launch stopped when the game asked its shader to read the new depth texture. A game-rendered frame is still pending.",
+      "nextTest": "Run the new depth shader view against the title and trace the next startup call."
     },
     {
       "title": "Present a game-rendered frame in a Mac window",
@@ -308,7 +312,7 @@
     "done": 51020,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-24T23:25:52Z"
+    "measuredAt": "2026-11-24T23:56:38Z"
   },
   "packageComputeCoverage": {
     "done": 42,
