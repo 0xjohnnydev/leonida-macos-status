@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-24T21:25:51Z",
-  "headline": "The game loaded 27 packaged graphics pipelines on the M5 Pro. Its first vertex and pixel shader pair also linked in a separate Metal render test.",
-  "currentWork": "Check how the next pixel shader assigns work across 64 lanes, then rerun it on Apple’s 32-lane GPU groups.",
-  "graphicsStatus": "95 compute pipelines and six render pipelines linked in native startup. A further 27 packaged graphics pipelines loaded their Metal functions for use at draw time.",
+  "updatedAt": "2026-11-24T21:40:26Z",
+  "headline": "The native game has prepared more than 100 packaged render pipelines on the M5 Pro.",
+  "currentWork": "Continue loading the title’s graphics programs and check the first draw that uses them.",
+  "graphicsStatus": "The game has prepared 118 packaged render pipelines and linked six other Metal render pipelines. Its first presented frame is pending.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "Startup prepared more than 100 packaged render pipelines",
+      "detail": "The Mac passed two pixel-mask tests on real GPU hardware. The nested test kept 4,032 pixels and discarded exactly 64. With that change the same game launch passed its previous stop at 27 render pipelines and prepared at least 118."
+    },
     {
       "title": "Loaded the game’s packaged graphics shaders",
       "detail": "The game accepted 27 packaged graphics pipelines. An independent hardware test linked the first pair against a color and depth target. The GPU progress section now tracks graphics and compute programs separately."
@@ -216,9 +220,9 @@
     {
       "title": "Submit the game’s GPU commands to Metal",
       "state": "current",
-      "detail": "The game now loads vertex and pixel functions from its packaged graphics records. The first record’s programs and settings matched the game’s request exactly. A game frame still needs a draw and a presentation to the window.",
-      "blocker": "One pixel shader changes which pixels stay active. The Mac translator needs to preserve that decision across two GPU groups.",
-      "nextTest": "Check how the next pixel shader assigns work across 64 lanes, then rerun it on Apple’s 32-lane GPU groups."
+      "detail": "One launch passed the earlier pixel-shader stop and prepared at least 118 packaged render pipelines. The game has also linked 42 packaged compute pipelines, uploaded a texture and read 262 MiB through its local streaming queues.",
+      "blocker": "Startup is still preparing GPU programs. The game has yet to submit a verified draw to either 4K display texture.",
+      "nextTest": "Continue loading the title’s graphics programs and check the first draw that uses them."
     },
     {
       "title": "Present a game-rendered frame in a Mac window",
@@ -240,14 +244,14 @@
     "done": 51009,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-24T21:25:11Z"
+    "measuredAt": "2026-11-24T21:39:55Z"
   },
   "packageComputeCoverage": {
     "done": 42,
     "total": 2684
   },
   "packageGraphicsCoverage": {
-    "done": 33,
+    "done": 63,
     "total": 18837
   }
 }
