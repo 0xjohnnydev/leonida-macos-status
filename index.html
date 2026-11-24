@@ -20,7 +20,7 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-24T21:56:59Z">Nov 24, 2026, 9:56 PM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-24T22:01:36Z">Nov 24, 2026, 10:01 PM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -28,9 +28,9 @@
         <h2 id="current-title">Submit the game’s GPU commands to Metal</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Latest verified result</h3><p>One native startup prepared 4,005 packaged render pipelines. The next graphics batch is compiling on the Mac.</p></div>
-        <div><h3>Current status</h3><p>The game’s timing check ended the last run while it waited for more shaders. Startup has yet to submit its first verified game draw.</p></div>
-        <div><h3>Next test</h3><p>Compile the selected 774 graphics stages and replay startup with the larger shader cache.</p></div>
+        <div><h3>Latest verified result</h3><p>All 774 stages in the latest graphics batch are ready. The Mac is checking the larger cache for the next game launch.</p></div>
+        <div><h3>Current status</h3><p>The most recent game run ended in its timing checks after preparing 4,005 pipelines. A game draw and a presented frame remain to be verified.</p></div>
+        <div><h3>Next test</h3><p>Replay game startup with the newly compiled graphics batch and measure which pipeline the game requests next.</p></div>
       </div>
     </section><section class="coverage" aria-labelledby="coverage-title">
       <h2 id="coverage-title">Native code translation</h2>
@@ -45,12 +45,12 @@
       <progress aria-label="Compute shaders compiled for Metal" value="42" max="2684"></progress>
     </div><div class="shader-count">
       <h3>Graphics shaders</h3>
-      <p><strong>606 of 18,837 compiled for Metal</strong> · 18,231 remaining</p>
-      <progress aria-label="Graphics shaders compiled for Metal" value="606" max="18837"></progress>
-    </div><div class="shader-count shader-batch"><h3>Latest graphics batch</h3>
-        <p><strong>144 of 774 stages ready</strong> · about 1 min for this batch at the measured rate</p>
-        <progress aria-label="Selected graphics batch" value="144" max="774"></progress>
-        <p class="coverage-note">Measured Nov 24, 2026, 9:56 PM UTC. These stages are part of the graphics total above.</p></div>
+      <p><strong>824 of 18,837 compiled for Metal</strong> · 18,013 remaining</p>
+      <progress aria-label="Graphics shaders compiled for Metal" value="824" max="18837"></progress>
+    </div><div class="shader-count shader-batch"><h3>Last completed graphics batch</h3>
+        <p><strong>774 of 774 stages ready</strong></p>
+        <progress aria-label="Selected graphics batch" value="774" max="774"></progress>
+        <p class="coverage-note">Measured Nov 24, 2026, 9:58 PM UTC. These stages are part of the graphics total above.</p></div>
       <p class="coverage-note">Counts cover the game’s packaged compute, vertex, pixel and mesh programs. Each compiled program passed validation and has a Metal library. Startup builds the programs it requests.</p>
     </section>
     <section class="roadmap" aria-labelledby="stages-title">
@@ -137,7 +137,7 @@
       <span class="number"><span class="sr-only">Stage </span>10</span>
       <div class="step-body">
         <h3>Submit the game’s GPU commands to Metal</h3>
-        <p>All 418 stages selected for the previous batch passed both compilers. The game used them to prepare 4,005 pipelines in one run. Six programs in the next batch needed a new rule for loops that operate on groups of four pixels. Those programs now pass validation.</p>
+        <p>The Mac completed the 774-stage graphics batch for the next 1,024 library records in 135 seconds. Separately, the first packaged mesh program compiled to a Metal compute kernel, and its output reader linked to its original pixel shader on the M5 Pro.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>

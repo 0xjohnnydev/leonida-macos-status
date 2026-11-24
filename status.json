@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-24T21:56:59Z",
-  "headline": "One native startup prepared 4,005 packaged render pipelines. The next graphics batch is compiling on the Mac.",
-  "currentWork": "Compile the selected 774 graphics stages and replay startup with the larger shader cache.",
-  "graphicsStatus": "One native launch prepared 4,005 packaged graphics pipelines and linked six other Metal render pipelines. The game's first draw and presented frame are pending.",
+  "updatedAt": "2026-11-24T22:01:36Z",
+  "headline": "All 774 stages in the latest graphics batch are ready. The Mac is checking the larger cache for the next game launch.",
+  "currentWork": "Replay game startup with the newly compiled graphics batch and measure which pipeline the game requests next.",
+  "graphicsStatus": "One native launch prepared 4,005 packaged graphics pipelines. A separate test linked the first packaged mesh output with its pixel stage. First presented game frame pending.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "The Mac completed the 774-stage graphics batch",
+      "detail": "All 774 stages passed SPIR-V validation and have native Metal libraries. A mesh shader generates geometry on the GPU. The first one tested used 128 threads per workgroup, with a separate Metal vertex program to read the geometry."
+    },
     {
       "title": "The next shader batch now has a progress bar and time estimate",
       "detail": "The public tracker shows how many stages in the selected batch are ready. The Mac startup window refreshes during each batch. A separate M5 Pro test matched all 4,096 pixels for both the zero-iteration and two-iteration cases."
@@ -228,9 +232,9 @@
     {
       "title": "Submit the game’s GPU commands to Metal",
       "state": "current",
-      "detail": "All 418 stages selected for the previous batch passed both compilers. The game used them to prepare 4,005 pipelines in one run. Six programs in the next batch needed a new rule for loops that operate on groups of four pixels. Those programs now pass validation.",
-      "blocker": "The game’s timing check ended the last run while it waited for more shaders. Startup has yet to submit its first verified game draw.",
-      "nextTest": "Compile the selected 774 graphics stages and replay startup with the larger shader cache."
+      "detail": "The Mac completed the 774-stage graphics batch for the next 1,024 library records in 135 seconds. Separately, the first packaged mesh program compiled to a Metal compute kernel, and its output reader linked to its original pixel shader on the M5 Pro.",
+      "blocker": "The most recent game run ended in its timing checks after preparing 4,005 pipelines. A game draw and a presented frame remain to be verified.",
+      "nextTest": "Replay game startup with the newly compiled graphics batch and measure which pipeline the game requests next."
     },
     {
       "title": "Present a game-rendered frame in a Mac window",
@@ -259,13 +263,12 @@
     "total": 2684
   },
   "packageGraphicsCoverage": {
-    "done": 606,
+    "done": 824,
     "total": 18837
   },
   "graphicsBatch": {
-    "done": 144,
+    "done": 774,
     "total": 774,
-    "measuredAt": "2026-11-24T21:56:46Z",
-    "etaSeconds": 75
+    "measuredAt": "2026-11-24T21:58:43Z"
   }
 }
