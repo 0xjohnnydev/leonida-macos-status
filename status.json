@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-24T22:29:40Z",
-  "headline": "All 444 stages in the selected graphics batch are ready. The next native game launch is under way.",
-  "currentWork": "Run the game with the larger shader cache and record which graphics command it reaches next.",
-  "graphicsStatus": "The Mac has validated and compiled 1,268 of 18,837 distinct packaged graphics stage and layout combinations. The 444 stages selected for the latest batch are ready.",
+  "updatedAt": "2026-11-24T22:34:01Z",
+  "headline": "The running game loaded Metal functions for 9,962 packaged graphics pipelines and reached new CPU code.",
+  "currentWork": "Translate the newly reached CPU path and relaunch the game. Watch for its first command that draws a frame.",
+  "graphicsStatus": "1,268 of 18,837 packaged graphics stage and layout combinations are compiled in the game’s launch cache. The latest graphics batch is complete.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "Native game startup passed 9,900 graphics pipelines",
+      "detail": "The title opened its Mac window, streamed its local files and loaded Metal functions for 9,962 packaged pipelines. It then requested an untranslated CPU path, which the native compiler is now building."
+    },
     {
       "title": "Finished the 444-stage shader batch and tested compilation at first use",
       "detail": "In one native launch, a command-list test registered a real package record, overwrote the original shader input, then compiled and bound both Metal functions successfully. The game’s first visible frame is still pending."
@@ -252,9 +256,9 @@
     {
       "title": "Submit the game’s GPU commands to Metal",
       "state": "current",
-      "detail": "The game previously loaded Metal functions for 8,690 packaged graphics pipelines. A separate native command-list test now compiles a verified vertex and pixel pair at first use, even after the original shader memory was overwritten.",
-      "blocker": "The Mac has checked 864 of 1,313 installed shader stages against the updated translator before the next game launch. At the measured rate, this check has about 3 minutes left.",
-      "nextTest": "Run the game with the larger shader cache and record which graphics command it reaches next."
+      "detail": "The title showed its own window on the M5 Pro. In that launch it loaded 9,962 packaged graphics pipelines with their Metal functions ready and reached another CPU entry point.",
+      "blocker": "This launch passed the earlier timing stop. The next startup path needs more Xbox CPU instructions translated to arm64.",
+      "nextTest": "Translate the newly reached CPU path and relaunch the game. Watch for its first command that draws a frame."
     },
     {
       "title": "Present a game-rendered frame in a Mac window",
@@ -276,7 +280,7 @@
     "done": 51009,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-24T22:10:10Z"
+    "measuredAt": "2026-11-24T22:32:56Z"
   },
   "packageComputeCoverage": {
     "done": 42,

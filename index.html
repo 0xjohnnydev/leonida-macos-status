@@ -20,7 +20,7 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-24T22:29:40Z">Nov 24, 2026, 10:29 PM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-24T22:34:01Z">Nov 24, 2026, 10:34 PM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -28,16 +28,16 @@
         <h2 id="current-title">Submit the game’s GPU commands to Metal</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Latest verified result</h3><p>All 444 stages in the selected graphics batch are ready. The next native game launch is under way.</p></div>
-        <div><h3>Current status</h3><p>The Mac has checked 864 of 1,313 installed shader stages against the updated translator before the next game launch. At the measured rate, this check has about 3 minutes left.</p></div>
-        <div><h3>Next test</h3><p>Run the game with the larger shader cache and record which graphics command it reaches next.</p></div>
+        <div><h3>Latest verified result</h3><p>The running game loaded Metal functions for 9,962 packaged graphics pipelines and reached new CPU code.</p></div>
+        <div><h3>Current status</h3><p>This launch passed the earlier timing stop. The next startup path needs more Xbox CPU instructions translated to arm64.</p></div>
+        <div><h3>Next test</h3><p>Translate the newly reached CPU path and relaunch the game. Watch for its first command that draws a frame.</p></div>
       </div>
     </section><section class="coverage" aria-labelledby="coverage-title">
       <h2 id="coverage-title">Native code translation</h2>
       <p><strong>16.8% of indexed function starts translated</strong></p>
       <progress aria-label="Translated function entry points" value="51009" max="304274">16.8%</progress>
       <p>51,009 of 304,274 translated · 253,265 remaining</p>
-      <p class="coverage-note">Measured across 8 game modules on Nov 24, 2026, 10:10 PM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
+      <p class="coverage-note">Measured across 8 game modules on Nov 24, 2026, 10:32 PM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
     </section><section class="coverage" aria-labelledby="gpu-coverage-title">
       <h2 id="gpu-coverage-title">GPU shader translation</h2><div class="shader-count">
       <h3>Compute shaders</h3>
@@ -137,7 +137,7 @@
       <span class="number"><span class="sr-only">Stage </span>10</span>
       <div class="step-body">
         <h3>Submit the game’s GPU commands to Metal</h3>
-        <p>The game previously loaded Metal functions for 8,690 packaged graphics pipelines. A separate native command-list test now compiles a verified vertex and pixel pair at first use, even after the original shader memory was overwritten.</p>
+        <p>The title showed its own window on the M5 Pro. In that launch it loaded 9,962 packaged graphics pipelines with their Metal functions ready and reached another CPU entry point.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>
