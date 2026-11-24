@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-24T20:41:05Z",
-  "headline": "The game configured GPU visibility checks and indirect draw commands",
-  "currentWork": "Follow startup beyond the indirect command layouts and connect the next graphics request from the game.",
-  "graphicsStatus": "Two 4K display textures, 53 compute pipelines and four visibility-query buffers. The game has reached indirect command setup. First game frame pending.",
+  "updatedAt": "2026-11-24T20:49:27Z",
+  "headline": "The game supplied its first pair of graphics shaders",
+  "currentWork": "Connect the vertex shader’s Metal compute pass to the renderer and test the game’s first graphics pipeline.",
+  "graphicsStatus": "The game has 53 Metal compute pipelines. Both shaders for its first graphics pipeline compile. First frame pending.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "First game graphics shaders compiled on the Mac",
+      "detail": "The game requested its first vertex and pixel shaders during startup. Both compiled to Metal. The first graphics pipeline still needs to link before the game can draw."
+    },
     {
       "title": "The game configured visibility readback and indirect commands",
       "detail": "Four visibility-query buffers are ready for the CPU to read. The game also registered five indirect command layouts, including indexed draws, compute dispatches and mesh dispatches."
@@ -175,9 +179,9 @@
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",
       "state": "current",
-      "detail": "The game created four sets of 2,460 visibility queries and four matching 19,680-byte readback buffers. It then registered layouts for GPU-driven draws and dispatches. These layouts tell the GPU how to read commands from a buffer.",
-      "blocker": "Startup is translating code reached after the game registered indirect draw, compute and mesh command layouts.",
-      "nextTest": "Follow startup beyond the indirect command layouts and connect the next graphics request from the game."
+      "detail": "The game created its first Metal sampler, registered a 6.09 GiB streaming pool and opened a copy queue. Its first vertex and pixel shaders both passed validation and compiled to Metal.",
+      "blocker": "The vertex program uses GPU lane information. Metal provides that information in a compute pass on this Mac. The render pipeline needs the vertices from that pass.",
+      "nextTest": "Connect the vertex shader’s Metal compute pass to the renderer and test the game’s first graphics pipeline."
     },
     {
       "title": "Submit the game’s GPU commands to Metal",
@@ -201,9 +205,9 @@
     }
   ],
   "translationCoverage": {
-    "done": 50809,
+    "done": 50813,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-24T20:41:04Z"
+    "measuredAt": "2026-11-24T20:48:11Z"
   }
 }

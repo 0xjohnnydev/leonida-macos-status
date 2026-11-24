@@ -20,7 +20,7 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-24T20:41:05Z">Nov 24, 2026, 8:41 PM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-24T20:49:27Z">Nov 24, 2026, 8:49 PM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -28,15 +28,15 @@
         <h2 id="current-title">Bind Direct3D 12 buffers and textures to Metal</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Where it stops</h3><p>Startup is translating code reached after the game registered indirect draw, compute and mesh command layouts.</p></div>
-        <div><h3>Next test</h3><p>Follow startup beyond the indirect command layouts and connect the next graphics request from the game.</p></div>
+        <div><h3>Where it stops</h3><p>The vertex program uses GPU lane information. Metal provides that information in a compute pass on this Mac. The render pipeline needs the vertices from that pass.</p></div>
+        <div><h3>Next test</h3><p>Connect the vertex shader’s Metal compute pass to the renderer and test the game’s first graphics pipeline.</p></div>
       </div>
     </section><section class="coverage" aria-labelledby="coverage-title">
       <h2 id="coverage-title">Native code translation</h2>
       <p><strong>16.7% of indexed function starts translated</strong></p>
-      <progress aria-label="Translated function entry points" value="50809" max="304274">16.7%</progress>
-      <p>50,809 of 304,274 translated · 253,465 remaining</p>
-      <p class="coverage-note">Measured across 8 game modules on Nov 24, 2026, 8:41 PM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
+      <progress aria-label="Translated function entry points" value="50813" max="304274">16.7%</progress>
+      <p>50,813 of 304,274 translated · 253,461 remaining</p>
+      <p class="coverage-note">Measured across 8 game modules on Nov 24, 2026, 8:48 PM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
     </section>
     <section class="roadmap" aria-labelledby="stages-title">
       <div class="roadmap-head">
@@ -114,7 +114,7 @@
       <span class="number"><span class="sr-only">Stage </span>9</span>
       <div class="step-body">
         <h3>Bind Direct3D 12 buffers and textures to Metal</h3>
-        <p>The game created four sets of 2,460 visibility queries and four matching 19,680-byte readback buffers. It then registered layouts for GPU-driven draws and dispatches. These layouts tell the GPU how to read commands from a buffer.</p>
+        <p>The game created its first Metal sampler, registered a 6.09 GiB streaming pool and opened a copy queue. Its first vertex and pixel shaders both passed validation and compiled to Metal.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>
