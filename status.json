@@ -1,8 +1,8 @@
 {
   "updatedAt": "2026-11-24T15:27:03Z",
-  "headline": "The game finished its startup table and initialized its offline platform runtime on the M5 Pro.",
-  "currentWork": "Connecting the game’s task queues and its requests for app suspend and resume notifications. The latest launch stopped at the notification registration call.",
-  "graphicsStatus": "Metal has rendered two offscreen tests using shaders from the game. The game itself has yet to present a frame.",
+  "headline": "The game has finished its startup sequence on the M5 Pro. Work is now on the macOS services it needs to keep running.",
+  "currentWork": "Connect the game’s background tasks and pause and resume notifications to macOS, then launch it again.",
+  "graphicsStatus": "Two separate graphics tests have drawn images with code from the game. The running game has yet to draw into a Mac window.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -29,6 +29,40 @@
     {
       "title": "Real shaders rendered offscreen",
       "detail": "Two Metal tests used shaders from the game. Both checked the result across 4,096 pixels."
+    }
+  ],
+  "stages": [
+    {
+      "title": "Verify the game files",
+      "state": "complete",
+      "detail": "All 108 files in the Xbox package matched their expected contents."
+    },
+    {
+      "title": "Run the game’s startup code on the Mac",
+      "state": "complete",
+      "detail": "The game’s early startup code ran directly on the M5 Pro and completed all 1,115 setup steps."
+    },
+    {
+      "title": "Connect the game to macOS services",
+      "state": "current",
+      "detail": "Graphics memory and basic offline services work. This stage finishes when the game gets through its remaining system requests and can begin drawing.",
+      "blocker": "Startup stops when the game asks to be notified if the app pauses or resumes.",
+      "nextTest": "Connect those notifications and the game’s background tasks to macOS. Launch the game again and check that startup gets past this request."
+    },
+    {
+      "title": "Show the first game image in a Mac window",
+      "state": "upcoming",
+      "detail": "Two separate graphics tests have drawn images using game code. This stage finishes when the game itself draws an image in its own window."
+    },
+    {
+      "title": "Use the game menu",
+      "state": "upcoming",
+      "detail": "Open the game menu and verify that a player can select an option with a keyboard or controller."
+    },
+    {
+      "title": "Play a scene",
+      "state": "upcoming",
+      "detail": "Load the game world, move the character, and check that the picture and controls keep responding during play."
     }
   ]
 }

@@ -4,39 +4,93 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark">
-  <meta name="description" content="Verified progress toward running GTA VI natively on Apple Silicon through Leonida and Metal.">
-  <title>Leonida on Mac · Port progress</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="tracker.js" defer></script>
+  <meta name="description" content="Follow the six stages of getting GTA VI running natively on a Mac, from checking the game files to playing a scene.">
+  <title>GTA VI on Mac · Progress tracker</title>
+  <link rel="stylesheet" href="./style.css?v=stages-1">
+  <script type="module" src="./tracker.js?v=stages-1"></script>
 </head>
 <body>
-  <header><div class="wrap mast"><span>Leonida on Mac</span><span class="meta">Apple Silicon · Metal</span></div></header>
-  <main class="wrap">
-    <section class="hero" aria-labelledby="title">
-      <div class="eyebrow">Native Mac port</div>
-      <h1 id="title">GTA VI on Apple Silicon</h1>
-      <p class="lead" id="headline">Loading the latest verified run.</p>
-      <p class="date" id="updated"></p>
-      <p class="problem" id="error" role="status" hidden></p>
-    </section>
-    <dl class="meters" aria-label="Verified checkpoints">
-      <div><dt>Startup table</dt><dd id="initializers">Loading</dd></div>
-      <div><dt>First game frame</dt><dd id="frame">Loading</dd></div>
-      <div><dt>Playable</dt><dd id="playable">Loading</dd></div>
-    </dl>
-    <div class="details">
-      <section aria-labelledby="current-title" class="current">
-        <h2 id="current-title">Current work</h2>
-        <p id="current"></p>
-        <p class="muted" id="scope"></p>
-      </section>
-      <section aria-labelledby="history-title">
-        <h2 id="history-title">Verified milestones</h2>
-        <ol id="history"></ol>
-      </section>
+  <header>
+    <div class="wrap mast">
+      <span>Leonida · Native Mac port</span>
+      <span class="machine">Test machine · Apple M5 Pro</span>
     </div>
+  </header>
+  <main id="board" class="wrap">
+    <div class="heading">
+      <h1>GTA VI on Mac</h1>
+      <p class="tested">Last tested <time datetime="2026-11-24T15:27:03Z">Nov 24, 2026, 3:27 PM UTC</time></p>
+    </div>
+    <section class="focus" aria-labelledby="current-title">
+      <div class="focus-head">
+        <p class="stage-count">Current stage · 3 of 6</p>
+        <h2 id="current-title">Connect the game to macOS services</h2>
+      </div>
+      <div class="focus-notes">
+        <div><h3>Where it stops</h3><p>Startup stops when the game asks to be notified if the app pauses or resumes.</p></div>
+        <div><h3>Next test</h3><p>Connect those notifications and the game’s background tasks to macOS. Launch the game again and check that startup gets past this request.</p></div>
+      </div>
+    </section>
+    <section class="roadmap" aria-labelledby="stages-title">
+      <div class="roadmap-head">
+        <h2 id="stages-title">Steps to a playable scene</h2>
+        <p>2 complete · 3 upcoming</p>
+      </div>
+      <ol role="list">
+    <li class="stage stage-complete">
+      <span class="number"><span class="sr-only">Stage </span>1</span>
+      <div class="step-body">
+        <h3>Verify the game files</h3>
+        <p>All 108 files in the Xbox package matched their expected contents.</p>
+      </div>
+      <span class="state state-complete">Complete</span>
+    </li>
+    <li class="stage stage-complete">
+      <span class="number"><span class="sr-only">Stage </span>2</span>
+      <div class="step-body">
+        <h3>Run the game’s startup code on the Mac</h3>
+        <p>The game’s early startup code ran directly on the M5 Pro and completed all 1,115 setup steps.</p>
+      </div>
+      <span class="state state-complete">Complete</span>
+    </li>
+    <li class="stage stage-current" aria-current="step">
+      <span class="number"><span class="sr-only">Stage </span>3</span>
+      <div class="step-body">
+        <h3>Connect the game to macOS services</h3>
+        <p>Graphics memory and basic offline services work. This stage finishes when the game gets through its remaining system requests and can begin drawing.</p>
+      </div>
+      <span class="state state-current">In progress</span>
+    </li>
+    <li class="stage stage-upcoming">
+      <span class="number"><span class="sr-only">Stage </span>4</span>
+      <div class="step-body">
+        <h3>Show the first game image in a Mac window</h3>
+        <p>Two separate graphics tests have drawn images using game code. This stage finishes when the game itself draws an image in its own window.</p>
+      </div>
+      <span class="state state-upcoming">Upcoming</span>
+    </li>
+    <li class="stage stage-upcoming">
+      <span class="number"><span class="sr-only">Stage </span>5</span>
+      <div class="step-body">
+        <h3>Use the game menu</h3>
+        <p>Open the game menu and verify that a player can select an option with a keyboard or controller.</p>
+      </div>
+      <span class="state state-upcoming">Upcoming</span>
+    </li>
+    <li class="stage stage-upcoming">
+      <span class="number"><span class="sr-only">Stage </span>6</span>
+      <div class="step-body">
+        <h3>Play a scene</h3>
+        <p>Load the game world, move the character, and check that the picture and controls keep responding during play.</p>
+      </div>
+      <span class="state state-upcoming">Upcoming</span>
+    </li></ol>
+    </section>
   </main>
-  <footer class="wrap"><span>Test machine · Apple M5 Pro</span><span id="refresh">Checks for updates every 30 seconds.</span></footer>
-  <noscript><p class="wrap">Enable JavaScript or open <a href="status.json">the latest status file</a>.</p></noscript>
+  <p id="refresh-error" class="wrap notice" role="status" hidden>Showing the last published update. The tracker will check again.</p>
+  <footer class="wrap">
+    <span id="refresh-schedule" hidden>Checks for updates every 30 seconds.</span>
+    <noscript>Refresh this page for the latest published update.</noscript>
+  </footer>
 </body>
 </html>

@@ -1,54 +1,35 @@
-'use strict';
-const field = id => document.getElementById(id);
-let lastUpdate = '';
+import { renderStages } from './stage-render.js';
+
+const board = document.getElementById('board');
+const notice = document.getElementById('refresh-error');
+document.getElementById('refresh-schedule').hidden = false;
+let lastPayload = '';
 let loading = false;
-const localTime = new Intl.DateTimeFormat(undefined, {
-  dateStyle: 'medium', timeStyle: 'short'
-});
-function outcome(id, complete, pending, success) {
-  const element = field(id);
-  element.textContent = complete ? success : pending;
-  element.className = complete ? 'verified' : 'pending';
-}
-function render(data) {
-  field('headline').textContent = data.headline;
-  field('current').textContent = data.currentWork;
-  field('scope').textContent = data.graphicsStatus;
-  const stamp = document.createElement('time');
-  stamp.dateTime = data.updatedAt;
-  stamp.textContent = localTime.format(new Date(data.updatedAt));
-  stamp.title = new Date(data.updatedAt).toISOString();
-  field('updated').replaceChildren('Last verified ', stamp, ' · your local time');
-  outcome('initializers', data.initializers.complete, 'In progress',
-          data.initializers.entries.toLocaleString() + ' / ' + data.initializers.entries.toLocaleString());
-  outcome('frame', data.firstGameFrame, 'Pending', 'Presented');
-  outcome('playable', data.playable, 'Pending', 'Verified');
-  const rows = data.milestones.map(item => {
-    const row = document.createElement('li');
-    const title = document.createElement('strong');
-    const detail = document.createElement('span');
-    title.textContent = item.title;
-    detail.textContent = item.detail;
-    row.append(title, detail);
-    return row;
-  });
-  field('history').replaceChildren(...rows);
-}
+
 async function refresh() {
-  if (loading) return;
+  if (loading || document.hidden) return;
   loading = true;
   try {
-    const response = await fetch('./status.json?v=' + Date.now(), {cache:'no-store'});
-    if (!response.ok) throw new Error(String(response.status));
-    const data = await response.json();
-    if (data.updatedAt !== lastUpdate) { render(data); lastUpdate = data.updatedAt; }
-    field('error').hidden = true;
+    const response = await fetch('./status.json?v=' + Date.now(), {
+      cache: 'no-store', signal: AbortSignal.timeout(10000)
+    });
+    if (!response.ok) throw new Error('Status unavailable');
+
+    const payload = await response.text();
+    if (payload !== lastPayload) {
+      const content = renderStages(JSON.parse(payload));
+      board.innerHTML = content;
+      lastPayload = payload;
+    }
+    notice.hidden = true;
   } catch {
-    field('error').textContent = lastUpdate ? 'Update unavailable. Showing the last verified status.'
-                                          : 'Status unavailable. The tracker will retry automatically.';
-    field('error').hidden = false;
-  } finally { loading = false; }
+    notice.hidden = false;
+  } finally {
+    loading = false;
+  }
 }
+
 refresh();
-setInterval(() => { if (!document.hidden) refresh(); }, 30000);
-document.addEventListener('visibilitychange', () => { if (!document.hidden) refresh(); });
+setInterval(refresh, 30000);
+document.addEventListener('visibilitychange', refresh);
+window.addEventListener('focus', refresh);
