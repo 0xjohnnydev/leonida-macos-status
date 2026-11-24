@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-24T17:38:21Z",
-  "headline": "The game created its input interface and requested controller notifications.",
-  "currentWork": "Connect GameInput to macOS controller notifications. Test registration, event delivery, and removal, then relaunch the game.",
+  "updatedAt": "2026-11-24T17:42:07Z",
+  "headline": "The game registered for controller notifications and reached DirectStorage.",
+  "currentWork": "Connect the DirectStorage factory to the local package and check which operation the game requests first.",
   "graphicsStatus": "Two separate graphics tests have drawn images with code from the game. The running game has yet to draw into a Mac window.",
   "initializers": {
     "complete": true,
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "Controller registration succeeded in the game",
+      "detail": "The game registered for gamepad notifications, continued its startup string parsing, and requested the Xbox DirectStorage factory."
+    },
     {
       "title": "The game created its input interface",
       "detail": "The title continued after the scheduling call, read the Mac’s region, and requested notification when controllers connect or disconnect."
@@ -90,9 +94,9 @@
     {
       "title": "Complete offline platform startup",
       "state": "current",
-      "detail": "The game passed callback startup, continued with the Mac’s default scheduling, and read the system region. It created its `GameInput` interface and called `RegisterDeviceCallback`.",
-      "blocker": "The game is waiting for the Mac port to register for controller connection and disconnection events. Its offline Xbox user interface is also unavailable.",
-      "nextTest": "Connect GameInput to macOS controller notifications. Test registration, event delivery, and removal, then relaunch the game."
+      "detail": "The game registered for gamepad connection events with `GameInput`. The Mac returned success. A separate test verified connection, disconnection, filtering, and removal of the callback.",
+      "blocker": "The game now requests `DStorageGetFactory`, the Xbox interface used to create storage queues and open package files. The Mac port has reached that request.",
+      "nextTest": "Connect the DirectStorage factory to the local package and check which operation the game requests first."
     },
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",

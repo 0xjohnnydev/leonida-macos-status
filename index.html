@@ -20,7 +20,7 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-24T17:38:21Z">Nov 24, 2026, 5:38 PM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-24T17:42:07Z">Nov 24, 2026, 5:42 PM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -28,8 +28,8 @@
         <h2 id="current-title">Complete offline platform startup</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Where it stops</h3><p>The game is waiting for the Mac port to register for controller connection and disconnection events. Its offline Xbox user interface is also unavailable.</p></div>
-        <div><h3>Next test</h3><p>Connect GameInput to macOS controller notifications. Test registration, event delivery, and removal, then relaunch the game.</p></div>
+        <div><h3>Where it stops</h3><p>The game now requests <code>DStorageGetFactory</code>, the Xbox interface used to create storage queues and open package files. The Mac port has reached that request.</p></div>
+        <div><h3>Next test</h3><p>Connect the DirectStorage factory to the local package and check which operation the game requests first.</p></div>
       </div>
     </section>
     <section class="roadmap" aria-labelledby="stages-title">
@@ -100,7 +100,7 @@
       <span class="number"><span class="sr-only">Stage </span>8</span>
       <div class="step-body">
         <h3>Complete offline platform startup</h3>
-        <p>The game passed callback startup, continued with the Mac’s default scheduling, and read the system region. It created its <code>GameInput</code> interface and called <code>RegisterDeviceCallback</code>.</p>
+        <p>The game registered for gamepad connection events with <code>GameInput</code>. The Mac returned success. A separate test verified connection, disconnection, filtering, and removal of the callback.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>
