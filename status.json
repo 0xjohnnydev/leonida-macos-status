@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-24T19:10:12Z",
-  "headline": "The game wrote graphics descriptors and reached resource sizing",
-  "currentWork": "Measure the memory size and alignment of the game’s next resource and verify that the Mac can back it.",
-  "graphicsStatus": "The title wrote twelve observed GPU descriptors and reached resource placement. First game frame pending.",
+  "updatedAt": "2026-11-24T20:24:33Z",
+  "headline": "The game created its first 4K display texture on Metal",
+  "currentWork": "Connect the game’s shader and render-target views to this texture, then follow its first use.",
+  "graphicsStatus": "The game owns a 4K display texture on Metal. Its first rendered frame is still pending.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "The game created its first 4K Metal display texture",
+      "detail": "The game accepted the tiled memory calculation and received a real Metal texture. Its next call requests a shader view of that image."
+    },
     {
       "title": "The game wrote readable and writable buffer views",
       "detail": "Cache-line writeback works on Apple Silicon. The game completed twelve observed descriptor writes and advanced to its next graphics allocation."
@@ -155,9 +159,9 @@
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",
       "state": "current",
-      "detail": "The game created five descriptor heaps and a 174 MiB shared Metal buffer. It wrote ten null descriptors, one readable buffer view and one writable buffer view, then requested the memory requirements for its next resource.",
-      "blocker": "The title now asks the graphics device how many bytes to reserve and how to align the next resource.",
-      "nextTest": "Measure the memory size and alignment of the game’s next resource and verify that the Mac can back it."
+      "detail": "The game allocated a 3840 × 2160 RGBA8 display texture. Its tiled Xbox image needs 33,423,360 bytes at 64 KiB alignment. An independent test on this Mac verified texture upload, a Metal render pass, and pixel readback across two mip levels and two array slices.",
+      "blocker": "The first 3840 × 2160 display texture exists on Metal. Startup stops when the game asks to read it from a shader.",
+      "nextTest": "Connect the game’s shader and render-target views to this texture, then follow its first use."
     },
     {
       "title": "Submit the game’s GPU commands to Metal",
@@ -181,9 +185,9 @@
     }
   ],
   "translationCoverage": {
-    "done": 50680,
+    "done": 50681,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-24T19:09:17Z"
+    "measuredAt": "2026-11-24T20:23:57Z"
   }
 }
