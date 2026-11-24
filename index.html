@@ -20,7 +20,7 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-24T19:02:18Z">Nov 24, 2026, 7:02 PM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-24T19:06:41Z">Nov 24, 2026, 7:06 PM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -28,15 +28,15 @@
         <h2 id="current-title">Bind Direct3D 12 buffers and textures to Metal</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Where it stops</h3><p>The game is creating a descriptor heap. This table tells the GPU where to find buffers and textures, and the game expects to supply its memory.</p></div>
-        <div><h3>Next test</h3><p>Honor the game’s allocation callback when creating its first descriptor heap, then verify the address the game receives.</p></div>
+        <div><h3>Where it stops</h3><p>The game reached a CPU cache-line writeback after writing its first shader-resource view.</p></div>
+        <div><h3>Next test</h3><p>Test cache-line writeback on Apple Silicon and continue through the game’s first descriptor updates.</p></div>
       </div>
     </section><section class="coverage" aria-labelledby="coverage-title">
       <h2 id="coverage-title">Native code translation</h2>
-      <p><strong>16.6% of indexed function starts translated</strong></p>
-      <progress aria-label="Translated function entry points" value="50644" max="304274">16.6%</progress>
-      <p>50,644 of 304,274 translated · 253,630 remaining</p>
-      <p class="coverage-note">Measured across 8 game modules on Nov 24, 2026, 7:01 PM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
+      <p><strong>16.7% of indexed function starts translated</strong></p>
+      <progress aria-label="Translated function entry points" value="50679" max="304274">16.7%</progress>
+      <p>50,679 of 304,274 translated · 253,595 remaining</p>
+      <p class="coverage-note">Measured across 8 game modules on Nov 24, 2026, 7:05 PM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
     </section>
     <section class="roadmap" aria-labelledby="stages-title">
       <div class="roadmap-head">
@@ -114,7 +114,7 @@
       <span class="number"><span class="sr-only">Stage </span>9</span>
       <div class="step-body">
         <h3>Bind Direct3D 12 buffers and textures to Metal</h3>
-        <p>The game configured a 33.3 ms frame interval, split a 185 MiB reservation into five regions, and placed a 174 MiB GPU buffer across three of them. Metal shares the same physical pages as the CPU.</p>
+        <p>The title created a 174 MiB Metal-backed buffer and five GPU descriptor heaps. The largest holds 1,245,184 entries at the address the game requested. The game then wrote its first shader-resource view.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>

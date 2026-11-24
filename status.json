@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-24T19:02:18Z",
-  "headline": "The game placed a 174 MiB graphics buffer in memory shared with Metal.",
-  "currentWork": "Honor the game’s allocation callback when creating its first descriptor heap, then verify the address the game receives.",
-  "graphicsStatus": "The game opened its window, closed 581 command lists, configured frame timing, and placed a shared Metal buffer. Its first rendered frame remains pending.",
+  "updatedAt": "2026-11-24T19:06:41Z",
+  "headline": "The game created its five GPU descriptor heaps",
+  "currentWork": "Test cache-line writeback on Apple Silicon and continue through the game’s first descriptor updates.",
+  "graphicsStatus": "The title has five descriptor heaps and a 174 MiB Metal-backed buffer. First game frame pending.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "The game created five descriptor heaps",
+      "detail": "The native Mac run used the game’s own allocation callbacks and passed its descriptor-address check. It reached the first update to the table."
+    },
     {
       "title": "The game placed its first large Metal buffer",
       "detail": "A hand-written test copied data across two reordered physical pages on the M5 Pro, issued a barrier and a dependent copy, then verified both results from the CPU. The running game reached descriptor-heap creation."
@@ -147,9 +151,9 @@
     {
       "title": "Bind Direct3D 12 buffers and textures to Metal",
       "state": "current",
-      "detail": "The game configured a 33.3 ms frame interval, split a 185 MiB reservation into five regions, and placed a 174 MiB GPU buffer across three of them. Metal shares the same physical pages as the CPU.",
-      "blocker": "The game is creating a descriptor heap. This table tells the GPU where to find buffers and textures, and the game expects to supply its memory.",
-      "nextTest": "Honor the game’s allocation callback when creating its first descriptor heap, then verify the address the game receives."
+      "detail": "The title created a 174 MiB Metal-backed buffer and five GPU descriptor heaps. The largest holds 1,245,184 entries at the address the game requested. The game then wrote its first shader-resource view.",
+      "blocker": "The game reached a CPU cache-line writeback after writing its first shader-resource view.",
+      "nextTest": "Test cache-line writeback on Apple Silicon and continue through the game’s first descriptor updates."
     },
     {
       "title": "Submit the game’s GPU commands to Metal",
@@ -173,9 +177,9 @@
     }
   ],
   "translationCoverage": {
-    "done": 50644,
+    "done": 50679,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-24T19:01:18Z"
+    "measuredAt": "2026-11-24T19:05:15Z"
   }
 }
