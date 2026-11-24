@@ -11,7 +11,7 @@ const html = `<!doctype html>
   <meta name="color-scheme" content="light">
   <meta name="description" content="Track the native Mac port of GTA VI, from arm64 startup and Metal shader tests to a game-rendered frame and a playable scene.">
   <title>GTA VI on Mac · Progress tracker</title>
-  <link rel="stylesheet" href="./style.css?v=2">
+  <link rel="stylesheet" href="./style.css?v=3">
   <script type="module" src="./tracker.js?v=2"></script>
 </head>
 <body>
@@ -20,6 +20,7 @@ const html = `<!doctype html>
       <span>Leonida · Native Mac port</span>
       <span class="machine">Test machine · Apple M5 Pro</span>
     </div>
+    <p class="wrap credit"><strong>Original porting project by the Leonida team and contributors.</strong> This Mac port builds on their shader translator, asset tools, and offline runtime.</p>
   </header>
   <main id="board" class="wrap">${renderStages(status)}
   </main>

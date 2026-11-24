@@ -26,6 +26,8 @@ header { border-bottom: 1px solid var(--line); }
   gap: .25rem 1rem;
 }
 .mast { padding-block: .75rem; font-size: .925rem; font-weight: 600; }
+.credit { margin-block: -.2rem .7rem; color: var(--secondary); font-size: .9rem; }
+.credit strong { color: var(--ink); font-weight: 600; }
 .machine, .tested, .roadmap-head p, footer, .notice {
   color: var(--muted);
   font-size: .9rem;
