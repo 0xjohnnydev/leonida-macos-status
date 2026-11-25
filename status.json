@@ -1,16 +1,20 @@
 {
-  "updatedAt": "2026-11-25T10:58:25Z",
-  "headline": "The game passed the graphics setup step that had stopped movie startup",
-  "currentWork": "Follow the movie updater from its timing check to a playback request and watch the window for a visible image.",
+  "updatedAt": "2026-11-25T11:01:18Z",
+  "headline": "The game reached its movie manager on Apple Silicon",
+  "currentWork": "Trace how the game selects a movie for playback, then check the decoded frame and the window.",
   "graphicsStatus": "The Mac GPU can read separate constants from vertex and pixel programs. A hardware test produced the expected color at every pixel in its small test image.",
   "initializers": {
     "complete": true,
     "entries": 1115
   },
   "firstGameFrame": false,
-  "screenStatus": "The inspected window still showed black after the game created the requested graphics pipeline.",
+  "screenStatus": "The inspected window showed black after the movie manager ran.",
   "playable": false,
   "milestones": [
+    {
+      "title": "The game reached its movie manager",
+      "detail": "The game completed its timing and setup checks, found that movies were enabled and ran the manager that checks its configured players. It had issued no playback request at the first observed visit. The inspected game window was black."
+    },
     {
       "title": "The game passed the previous graphics setup stop",
       "detail": "The game created a pipeline with its requested pixel coverage setting and continued. All 52 calls in the observed initialization sequence returned. The movie updater reached its timing check about 90 seconds into this run. The inspected window still showed black."
