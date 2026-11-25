@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-25T00:36:41Z",
-  "headline": "The game passed the missing CPU instruction and reached graphics command memory",
-  "currentWork": "Identify the Xbox allocator operation from the running game and check its effects before implementing it in Metal.",
+  "updatedAt": "2026-11-25T00:43:20Z",
+  "headline": "The game registered its graphics command allocator on the Mac",
+  "currentWork": "Run the game with the corrected GPU clock and command-list reset, then trace the next graphics operation.",
   "graphicsStatus": "The launch cache holds 1,270 of 18,837 packaged graphics stage and layout combinations. The newly added vertex and pixel pair linked as a Metal render pipeline on the M5 Pro.",
   "initializers": {
     "complete": true,
@@ -11,6 +11,10 @@
   "screenStatus": "The game opens its own Mac window. The next visible milestone is the first frame drawn by the game. Its timing is still unknown.",
   "playable": false,
   "milestones": [
+    {
+      "title": "The game registered its command memory callback",
+      "detail": "Startup reached the point where the game registers its own routine for allocating graphics command memory. The next call asks Metal to start a fresh command list."
+    },
     {
       "title": "Native startup passed the cache-line instruction",
       "detail": "The Mac executed the previously missing CLZERO instruction and reached graphics command allocation. An independent native test checked every byte offset in a 64-byte line across five address forms."
@@ -317,9 +321,9 @@
     {
       "title": "Submit the game’s GPU commands to Metal",
       "state": "current",
-      "detail": "The game passed both the startup timer and the instruction that clears memory. The latest launch reached the graphics command allocator after 22 texture uploads. A first game-rendered frame is still pending.",
-      "blocker": "The game calls an Xbox-specific method on the object that owns graphics command memory. The Mac runtime currently stops at that call.",
-      "nextTest": "Identify the Xbox allocator operation from the running game and check its effects before implementing it in Metal."
+      "detail": "The game has opened a native Mac window, uploaded 22 textures and registered its command allocator. A native test also verified the GPU clock and a command-list reset. The first game-rendered frame is still pending.",
+      "blocker": "The previous game launch stopped when it asked to start a fresh command list. The Mac implementation now passes an independent test. Verification in the game is in progress.",
+      "nextTest": "Run the game with the corrected GPU clock and command-list reset, then trace the next graphics operation."
     },
     {
       "title": "Present a game-rendered frame in a Mac window",
@@ -341,7 +345,7 @@
     "done": 51029,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-25T00:35:31Z"
+    "measuredAt": "2026-11-25T00:39:58Z"
   },
   "packageComputeCoverage": {
     "done": 42,
