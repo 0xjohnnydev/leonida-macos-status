@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-25T00:11:52Z",
-  "headline": "The game created its four-sample Metal render-target view and loaded 30 more native CPU blocks in the same launch.",
-  "currentWork": "Test the depth and stencil view that the game requested after creating its color render-target view.",
+  "updatedAt": "2026-11-25T00:16:10Z",
+  "headline": "The game created both drawing views and reached a six-face texture",
+  "currentWork": "Check face order and mip levels on the Mac GPU, then retry the game's cube texture.",
   "graphicsStatus": "The launch cache holds 1,270 of 18,837 packaged graphics stage and layout combinations. The newly added vertex and pixel pair linked as a Metal render pipeline on the M5 Pro.",
   "initializers": {
     "complete": true,
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "Game created its Metal depth and stencil view",
+      "detail": "The game created a four-sample depth/stencil view after its color view. A separate native test bound a copied color-view handle to a command list. The next title run reached a six-face texture."
+    },
     {
       "title": "Game accepted its native Metal render-target view",
       "detail": "The title stored the new render-target handle and continued to graphics device method 21, CreateDepthStencilView. A one-pixel hardware test drew and resolved four colors through the same type of Metal attachment."
@@ -296,9 +300,9 @@
     {
       "title": "Submit the game’s GPU commands to Metal",
       "state": "current",
-      "detail": "The game accepted a native Metal handle for drawing into its four-sample color target. It then loaded 30 newly translated CPU blocks without relaunching and called the depth and stencil view method.",
-      "blocker": "Startup has reached depth and stencil view creation. The first game-rendered frame is still pending.",
-      "nextTest": "Test the depth and stencil view that the game requested after creating its color render-target view."
+      "detail": "Metal accepted the four-sample color and depth/stencil views that the game uses to draw. The next request reads a texture in six directions. No game-rendered frame has been observed.",
+      "blocker": "The game requests a cube texture. The Mac path still needs to prove it can supply all six faces to a shader.",
+      "nextTest": "Check face order and mip levels on the Mac GPU, then retry the game's cube texture."
     },
     {
       "title": "Present a game-rendered frame in a Mac window",
@@ -320,7 +324,7 @@
     "done": 51022,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-25T00:10:39Z"
+    "measuredAt": "2026-11-25T00:13:05Z"
   },
   "packageComputeCoverage": {
     "done": 42,
