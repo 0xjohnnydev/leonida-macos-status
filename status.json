@@ -1,16 +1,20 @@
 {
-  "updatedAt": "2026-11-25T11:09:17Z",
-  "headline": "The game reached its movie manager on Apple Silicon",
-  "currentWork": "Check the game’s next shader-readable buffer and follow movie selection during loading.",
+  "updatedAt": "2026-11-25T11:13:26Z",
+  "headline": "The game passed its shader buffer setup and checked its movie players",
+  "currentWork": "Support the staging buffer requested next in graphics setup and trace the first request to play a movie.",
   "graphicsStatus": "The Mac GPU passed coverage and depth checks for supported single-sample triangles, including a triangle that only touches the corner of a pixel.",
   "initializers": {
     "complete": true,
     "entries": 1115
   },
   "firstGameFrame": false,
-  "screenStatus": "The inspected window showed black after the movie manager ran.",
+  "screenStatus": "The last inspected game window was black. The movie manager had no player bound during its observed visit.",
   "playable": false,
   "milestones": [
+    {
+      "title": "The game passed the shader buffer setup that stopped the prior run",
+      "detail": "The Mac created the requested shader view and loading continued. The movie manager checked all 58 configured slots. Each was empty, and the game issued no playback request before the next graphics allocation."
+    },
     {
       "title": "The Mac GPU rendered the tested partial-pixel triangle cases",
       "detail": "A hardware test verified pixel coverage, clipping, culling, depth and single writes for the supported triangle shape. A separate test checked the exact descriptor the Mac created for a 16-byte graphics buffer. The full native startup check passed."
