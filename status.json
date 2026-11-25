@@ -1,16 +1,20 @@
 {
-  "updatedAt": "2026-11-25T12:11:25Z",
-  "headline": "One startup group went from 249 jobs to 14",
-  "currentWork": "Support the 16-bit depth-only surface requested at the latest stop and follow the remaining startup jobs.",
-  "graphicsStatus": "The Mac GPU verified packed color channels through uploads, clears, blending and copies. It also preserved 16-bit depth and stencil values across compute writes.",
+  "updatedAt": "2026-11-25T12:22:55Z",
+  "headline": "The game verified its packed color and depth-only allocations",
+  "currentWork": "Support the new graphics state record requested while the last startup jobs are still running.",
+  "graphicsStatus": "The game accepted the 16-bit packed color, depth-only, and combined depth and stencil allocations. GPU tests verified the image formats independently.",
   "initializers": {
     "complete": true,
     "entries": 1115
   },
   "firstGameFrame": false,
-  "screenStatus": "The last inspected window showed black. The waiting startup group had 14 jobs remaining when this launch stopped.",
+  "screenStatus": "The window was black when inspected after those allocations. The group had 13 jobs remaining and had issued no completion signal.",
   "playable": false,
   "milestones": [
+    {
+      "title": "The game accepted the packed color and depth-only size requests",
+      "detail": "The game supplied the exact formats and received their sizes. Eight jobs from the waiting startup group made more than 1,000 graphics allocation queries. The next stop was a request to change the rendering state of a graphics pipeline."
+    },
     {
       "title": "The game’s startup group reached 14 remaining jobs",
       "detail": "The group started with 249 jobs. Eight jobs in that group made more than 1,000 graphics memory queries. The next stop was a 16-bit depth-only surface. The window still showed black."
