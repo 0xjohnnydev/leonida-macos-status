@@ -1,16 +1,20 @@
 {
-  "updatedAt": "2026-11-25T09:46:49Z",
-  "headline": "The game passed its compressed texture loading step on Mac",
-  "currentWork": "Follow the loading state that requests movie playback and verify any image directly in the game window.",
-  "graphicsStatus": "Hardware checks now cover texture tiles across two array layers, depth and stencil writes, video-plane copies, and GPU timing.",
+  "updatedAt": "2026-11-25T10:04:30Z",
+  "headline": "The game reached local player selection on Mac",
+  "currentWork": "Complete local player selection and follow the loading jobs that precede movie playback.",
+  "graphicsStatus": "The Mac GPU sampled a compressed 3D texture at eight resolution levels. A hardware check also detected a single changed pixel anywhere inside the game viewport.",
   "initializers": {
     "complete": true,
     "entries": 1115
   },
   "firstGameFrame": false,
-  "screenStatus": "The inspected game window still showed black. Movie initialization finished, and playback has yet to begin.",
+  "screenStatus": "The inspected game window still showed black. Movie startup was waiting for a local job to complete.",
   "playable": false,
   "milestones": [
+    {
+      "title": "The game reached local player selection on Mac",
+      "detail": "Startup requested the default local player. A separate hardware test verified 3D texture sampling at eight resolution levels. The game window still showed black, and the movie player had received no playback request."
+    },
     {
       "title": "The game passed its compressed texture loading step on Mac",
       "detail": "The game received more than 170 texture tile layouts, including layouts for several compressed formats, and continued beyond the previous stop. Local storage completed more than 8,000 reads. The inspected game window remained black."
