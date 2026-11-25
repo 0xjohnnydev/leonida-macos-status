@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-25T09:32:30Z",
-  "headline": "The game passed the GPU timing failure and continued loading",
-  "currentWork": "Trace the startup task that tells the initialized movie player to begin.",
-  "graphicsStatus": "Four hardware tests verified GPU timing across memory remaps. Separate tests verified video-plane copies, indexed draws and vertex texture reads.",
+  "updatedAt": "2026-11-25T09:43:51Z",
+  "headline": "The Mac passed the texture layout check for the next loading step",
+  "currentWork": "Follow the next loading run to see which textures the game requests and when it starts its movie player.",
+  "graphicsStatus": "Hardware checks now cover texture tiles across two array layers, depth and stencil writes, video-plane copies, and GPU timing.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -11,6 +11,10 @@
   "screenStatus": "The inspected game window still showed black. Movie initialization finished, and playback has yet to begin.",
   "playable": false,
   "milestones": [
+    {
+      "title": "The Mac passed the texture layout check for the next loading step",
+      "detail": "Loading stopped while the game asked how a texture fits in memory. A game-free test verified tile ranges for both large and small versions of a compressed texture. The full native startup check passed. The last inspected game window was black."
+    },
     {
       "title": "The game passed the GPU timing failure and continued loading",
       "detail": "In the game, the Mac passed the earlier GPU timing failure, completed more than 5,200 local storage requests and registered over 2,500 compute programs for compilation on first use. The game window still showed black."
