@@ -20,8 +20,8 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p>The game opens its own Mac window, and macOS has displayed the game’s frame 1 in it. All 64 sampled pixels of that frame were black. No logo, menu or gameplay is visible yet.</p>
-      <p class="tested">Last tested <time datetime="2026-11-25T01:40:45Z">Nov 25, 2026, 1:40 AM UTC</time></p>
+      <p>The game opens its own Mac window, and macOS displays the game’s frame 1 in it. The frame is black: the game cleared its display target to black and has not drawn into it yet. No logo, menu or gameplay is visible.</p>
+      <p class="tested">Last tested <time datetime="2026-11-25T02:01:32Z">Nov 25, 2026, 2:01 AM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -29,16 +29,16 @@
         <h2 id="current-title">Present a game-rendered frame in a Mac window</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Latest verified result</h3><p>macOS displayed the game’s first frame in its Mac window</p></div>
-        <div><h3>Current status</h3><p>The launch continued for more than three minutes after the frame. It stopped when the game asked for the storage size of a 1,280 × 720 floating-point color target with console options the Mac had not seen before.</p></div>
-        <div><h3>Next test</h3><p>Answer the game’s size request for a 1,280 × 720 floating-point color target. Relaunch and trace the next draw or display request. Check the window for the first frame with more than one color.</p></div>
+        <div><h3>Latest verified result</h3><p>After its first displayed frame, the game set up four more render targets</p></div>
+        <div><h3>Current status</h3><p>The game now asks the graphics device to build a render pipeline from a packaged shader pair and a block of render state. The Mac runtime does not implement that console device method yet.</p></div>
+        <div><h3>Next test</h3><p>Decode the block of render state that the game passes with a packaged shader pair. Build the matching Metal render pipeline, relaunch, and watch for the first draw into a render target.</p></div>
       </div>
     </section><details class="coverage">
       <summary><strong>CPU translation details</strong></summary>
       <p><strong>16.8% of indexed function starts translated</strong></p>
-      <progress aria-label="Translated function entry points" value="51170" max="304274">16.8%</progress>
-      <p>51,170 of 304,274 translated · 253,104 remaining</p>
-      <p class="coverage-note">Measured across 8 game modules on Nov 25, 2026, 1:39 AM UTC. Startup uses part of this index. Graphics and display work can advance while this percentage stays the same.</p>
+      <progress aria-label="Translated function entry points" value="51229" max="304274">16.8%</progress>
+      <p>51,229 of 304,274 translated · 253,045 remaining</p>
+      <p class="coverage-note">Measured across 8 game modules on Nov 25, 2026, 2:00 AM UTC. Startup uses part of this index. Graphics and display work can advance while this percentage stays the same.</p>
     </details><section class="coverage" aria-labelledby="gpu-coverage-title">
       <h2 id="gpu-coverage-title">GPU shader translation</h2><div class="shader-count">
       <h3>Compute shaders</h3>
@@ -146,7 +146,7 @@
       <span class="number"><span class="sr-only">Stage </span>11</span>
       <div class="step-body">
         <h3>Present a game-rendered frame in a Mac window</h3>
-        <p>All five milestones in the Mac monitor are verified. The game asked to display frame 1 from a 3,840 × 2,160 texture. The Mac drew it into the game window at its 16:9 shape, and macOS reported the time it reached the display. All 64 sampled pixels were black, so recognizable imagery is still pending.</p>
+        <p>All five milestones in the Mac monitor are verified. The game asked to display frame 1 from a 3,840 × 2,160 texture. The Mac drew it into the game window at its 16:9 shape, and macOS reported the time it reached the display. The frame is black, which matches the clear color the game chose. The game then placed four more render targets and created the views it draws through.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>
