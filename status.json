@@ -13,7 +13,7 @@
   "milestones": [
     {
       "title": "The game passed its compressed texture loading step on Mac",
-      "detail": "The game received tile layouts for more than 170 compressed texture requests and continued beyond the previous stop. Local storage completed more than 8,000 reads. The inspected game window remained black."
+      "detail": "The game received more than 170 texture tile layouts, including layouts for several compressed formats, and continued beyond the previous stop. Local storage completed more than 8,000 reads. The inspected game window remained black."
     },
     {
       "title": "The Mac passed the texture layout check for the next loading step",
