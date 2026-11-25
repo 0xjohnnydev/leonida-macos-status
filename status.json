@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-25T09:22:20Z",
-  "headline": "The game reached its movie-ready state on Mac",
-  "currentWork": "Verify GPU timestamp delivery and trace the update that selects the first movie.",
-  "graphicsStatus": "Hand-written GPU tests verified two video-plane formats, 16-bit and 32-bit indexed draws, vertex texture sampling and reuse of compiled compute programs.",
+  "updatedAt": "2026-11-25T09:27:47Z",
+  "headline": "Metal now writes the GPU finish time back to the game’s memory",
+  "currentWork": "Run the game with the timing fix and trace which loading step first requests playback.",
+  "graphicsStatus": "Four hardware tests verified GPU timing across memory remaps. Separate tests verified video-plane copies, indexed draws and vertex texture reads.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -11,6 +11,10 @@
   "screenStatus": "The window still showed black during loading. The game reached movie readiness but had yet to ask for playback.",
   "playable": false,
   "milestones": [
+    {
+      "title": "Metal now writes the GPU finish time back to the game’s memory",
+      "detail": "A hardware test reproduced an empty counter reading. Metal’s measured GPU finish time now reaches the correct memory page and the following GPU command reads it. The test passed four times, including after the address was remapped."
+    },
     {
       "title": "The game reached its movie-ready state on Mac",
       "detail": "The game completed movie initialization and marked it ready. Its outer update task then ran, but the movie player received no playback request. Local storage completed every queued read in this launch."
