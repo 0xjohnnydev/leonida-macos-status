@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-25T00:43:20Z",
-  "headline": "The game registered its graphics command allocator on the Mac",
-  "currentWork": "Run the game with the corrected GPU clock and command-list reset, then trace the next graphics operation.",
+  "updatedAt": "2026-11-25T00:46:27Z",
+  "headline": "The game now binds its resource and sampler tables on the Mac",
+  "currentWork": "Verify that Metal writes the requested value only when the command list executes, then launch the game again.",
   "graphicsStatus": "The launch cache holds 1,270 of 18,837 packaged graphics stage and layout combinations. The newly added vertex and pixel pair linked as a Metal render pipeline on the M5 Pro.",
   "initializers": {
     "complete": true,
@@ -11,6 +11,10 @@
   "screenStatus": "The game opens its own Mac window. The next visible milestone is the first frame drawn by the game. Its timing is still unknown.",
   "playable": false,
   "milestones": [
+    {
+      "title": "Startup bound both shader-visible descriptor heaps",
+      "detail": "The game queried the GPU clock, reopened a command list and attached both tables its shaders use to find resources and samplers. The next request was a 32-bit GPU write into shared memory."
+    },
     {
       "title": "The game registered its command memory callback",
       "detail": "Startup reached the point where the game registers its own routine for allocating graphics command memory. The next call asks Metal to start a fresh command list."
@@ -321,9 +325,9 @@
     {
       "title": "Submit the game’s GPU commands to Metal",
       "state": "current",
-      "detail": "The game has opened a native Mac window, uploaded 22 textures and registered its command allocator. A native test also verified the GPU clock and a command-list reset. The first game-rendered frame is still pending.",
-      "blocker": "The previous game launch stopped when it asked to start a fresh command list. The Mac implementation now passes an independent test. Verification in the game is in progress.",
-      "nextTest": "Run the game with the corrected GPU clock and command-list reset, then trace the next graphics operation."
+      "detail": "The game has passed the GPU clock query, command-list reset and binding of two descriptor heaps. The native Mac window opens. The first game-rendered frame is still pending.",
+      "blocker": "The latest launch reached a request for the GPU to write a 32-bit progress value into memory. Recording and executing this command must preserve the order of GPU work.",
+      "nextTest": "Verify that Metal writes the requested value only when the command list executes, then launch the game again."
     },
     {
       "title": "Present a game-rendered frame in a Mac window",
@@ -345,7 +349,7 @@
     "done": 51029,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-25T00:39:58Z"
+    "measuredAt": "2026-11-25T00:45:13Z"
   },
   "packageComputeCoverage": {
     "done": 42,
