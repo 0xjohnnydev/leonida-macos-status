@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-25T07:28:06Z",
-  "headline": "The loading shader that stopped startup now compiles for Metal",
-  "currentWork": "Run the game with the translated shader and check the next displayed frame.",
+  "updatedAt": "2026-11-25T07:48:58Z",
+  "headline": "The game completed its startup request for random bytes on Mac",
+  "currentWork": "Follow the game’s offline socket setup and watch for its first visible image.",
   "graphicsStatus": "The launch cache holds 1,270 of 18,837 packaged graphics stage and layout combinations. The newly added vertex and pixel pair linked as a Metal render pipeline on the M5 Pro.",
   "initializers": {
     "complete": true,
@@ -11,6 +11,10 @@
   "screenStatus": "The game window opens and stays black during the observed loading sequence. A visible image, the menu and gameplay remain unverified.",
   "playable": false,
   "milestones": [
+    {
+      "title": "The game completed its startup request for random bytes on Mac",
+      "detail": "The game obtained random bytes from macOS, closed the provider, and continued into its offline socket setup. Inspection of the game window still showed black."
+    },
     {
       "title": "The loading shader that stopped startup now compiles for Metal",
       "detail": "The Mac GPU passed a 64-lane test for the instruction that stopped loading. Every output byte matched the expected result, and the game’s affected shader compiled into a Metal library."
@@ -410,9 +414,9 @@
     {
       "title": "Present a game-rendered frame in a Mac window",
       "state": "current",
-      "detail": "The Mac GPU passed a 64-lane test for the instruction that stopped loading. Every output byte matched the expected result, and the game’s affected shader compiled into a Metal library.",
-      "blocker": "The most recent inspected game window showed black. A movie frame has yet to appear.",
-      "nextTest": "Run the game with the translated shader and check the next displayed frame."
+      "detail": "The game obtained random bytes from macOS, closed the provider, and continued into its offline socket setup. Inspection of the game window still showed black.",
+      "blocker": "The loader reached a Windows socket call that the Mac runtime did not yet handle.",
+      "nextTest": "Follow the game’s offline socket setup and watch for its first visible image."
     },
     {
       "title": "Route keyboard or controller input to the menu",

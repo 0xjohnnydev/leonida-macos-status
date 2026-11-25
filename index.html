@@ -21,7 +21,7 @@
     <div class="heading">
       <h1>GTA VI on Mac</h1>
       <p>The game window opens and stays black during the observed loading sequence. A visible image, the menu and gameplay remain unverified.</p>
-      <p class="tested">Last tested <time datetime="2026-11-25T07:28:06Z">Nov 25, 2026, 7:28 AM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-25T07:48:58Z">Nov 25, 2026, 7:48 AM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -29,9 +29,9 @@
         <h2 id="current-title">Present a game-rendered frame in a Mac window</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Latest verified result</h3><p>The loading shader that stopped startup now compiles for Metal</p></div>
-        <div><h3>Current status</h3><p>The most recent inspected game window showed black. A movie frame has yet to appear.</p></div>
-        <div><h3>Next test</h3><p>Run the game with the translated shader and check the next displayed frame.</p></div>
+        <div><h3>Latest verified result</h3><p>The game completed its startup request for random bytes on Mac</p></div>
+        <div><h3>Current status</h3><p>The loader reached a Windows socket call that the Mac runtime did not yet handle.</p></div>
+        <div><h3>Next test</h3><p>Follow the game’s offline socket setup and watch for its first visible image.</p></div>
       </div>
     </section><details class="coverage">
       <summary><strong>CPU translation details</strong></summary>
@@ -146,7 +146,7 @@
       <span class="number"><span class="sr-only">Stage </span>11</span>
       <div class="step-body">
         <h3>Present a game-rendered frame in a Mac window</h3>
-        <p>The Mac GPU passed a 64-lane test for the instruction that stopped loading. Every output byte matched the expected result, and the game’s affected shader compiled into a Metal library.</p>
+        <p>The game obtained random bytes from macOS, closed the provider, and continued into its offline socket setup. Inspection of the game window still showed black.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>
