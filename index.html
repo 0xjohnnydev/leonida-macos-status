@@ -20,7 +20,7 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-25T00:16:10Z">Nov 25, 2026, 12:16 AM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-25T00:18:45Z">Nov 25, 2026, 12:18 AM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -28,16 +28,16 @@
         <h2 id="current-title">Submit the game’s GPU commands to Metal</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Latest verified result</h3><p>The game created both drawing views and reached a six-face texture</p></div>
-        <div><h3>Current status</h3><p>The game requests a cube texture. The Mac path still needs to prove it can supply all six faces to a shader.</p></div>
-        <div><h3>Next test</h3><p>Check face order and mip levels on the Mac GPU, then retry the game&#39;s cube texture.</p></div>
+        <div><h3>Latest verified result</h3><p>The game uploaded cube textures and reached a 256-pixel color strip</p></div>
+        <div><h3>Current status</h3><p>The next graphics request needs a one-dimensional texture in sRGB color format.</p></div>
+        <div><h3>Next test</h3><p>Add one-dimensional texture allocation and sampling, check the colors on the GPU, then retry startup.</p></div>
       </div>
     </section><section class="coverage" aria-labelledby="coverage-title">
       <h2 id="coverage-title">Native code translation</h2>
       <p><strong>16.8% of indexed function starts translated</strong></p>
       <progress aria-label="Translated function entry points" value="51022" max="304274">16.8%</progress>
       <p>51,022 of 304,274 translated · 253,252 remaining</p>
-      <p class="coverage-note">Measured across 8 game modules on Nov 25, 2026, 12:13 AM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
+      <p class="coverage-note">Measured across 8 game modules on Nov 25, 2026, 12:18 AM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
     </section><section class="coverage" aria-labelledby="gpu-coverage-title">
       <h2 id="gpu-coverage-title">GPU shader translation</h2><div class="shader-count">
       <h3>Compute shaders</h3>
@@ -137,7 +137,7 @@
       <span class="number"><span class="sr-only">Stage </span>10</span>
       <div class="step-body">
         <h3>Submit the game’s GPU commands to Metal</h3>
-        <p>Metal accepted the four-sample color and depth/stencil views that the game uses to draw. The next request reads a texture in six directions. No game-rendered frame has been observed.</p>
+        <p>One launch uploaded 21 textures, including two single cubes and two arrays of two cubes. A hardware test read the expected color for all 30 face and resolution selections. The first game frame is still ahead.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>

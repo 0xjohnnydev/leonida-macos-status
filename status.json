@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-25T00:16:10Z",
-  "headline": "The game created both drawing views and reached a six-face texture",
-  "currentWork": "Check face order and mip levels on the Mac GPU, then retry the game's cube texture.",
+  "updatedAt": "2026-11-25T00:18:45Z",
+  "headline": "The game uploaded cube textures and reached a 256-pixel color strip",
+  "currentWork": "Add one-dimensional texture allocation and sampling, check the colors on the GPU, then retry startup.",
   "graphicsStatus": "The launch cache holds 1,270 of 18,837 packaged graphics stage and layout combinations. The newly added vertex and pixel pair linked as a Metal render pipeline on the M5 Pro.",
   "initializers": {
     "complete": true,
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "Game uploaded its cube textures on Metal",
+      "detail": "The title accepted both single cubes and cube arrays after creating its color and depth drawing views. On the Mac GPU, a separate test also verified the six face directions at two resolutions."
+    },
     {
       "title": "Game created its Metal depth and stencil view",
       "detail": "The game created a four-sample depth/stencil view after its color view. A separate native test bound a copied color-view handle to a command list. The next title run reached a six-face texture."
@@ -300,9 +304,9 @@
     {
       "title": "Submit the game’s GPU commands to Metal",
       "state": "current",
-      "detail": "Metal accepted the four-sample color and depth/stencil views that the game uses to draw. The next request reads a texture in six directions. No game-rendered frame has been observed.",
-      "blocker": "The game requests a cube texture. The Mac path still needs to prove it can supply all six faces to a shader.",
-      "nextTest": "Check face order and mip levels on the Mac GPU, then retry the game's cube texture."
+      "detail": "One launch uploaded 21 textures, including two single cubes and two arrays of two cubes. A hardware test read the expected color for all 30 face and resolution selections. The first game frame is still ahead.",
+      "blocker": "The next graphics request needs a one-dimensional texture in sRGB color format.",
+      "nextTest": "Add one-dimensional texture allocation and sampling, check the colors on the GPU, then retry startup."
     },
     {
       "title": "Present a game-rendered frame in a Mac window",
@@ -324,7 +328,7 @@
     "done": 51022,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-25T00:13:05Z"
+    "measuredAt": "2026-11-25T00:18:08Z"
   },
   "packageComputeCoverage": {
     "done": 42,
