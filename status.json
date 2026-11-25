@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-25T06:18:13Z",
-  "headline": "The game found the Mac’s default audio output during loading",
-  "currentWork": "Continue through audio setup and movie loading, then inspect the first changing frame.",
+  "updatedAt": "2026-11-25T06:28:54Z",
+  "headline": "Metal now resolves the loading screen’s texture and sampler",
+  "currentWork": "Verify the output of each loading draw and continue through audio signal processing toward the first movie frame.",
   "graphicsStatus": "The launch cache holds 1,270 of 18,837 packaged graphics stage and layout combinations. The newly added vertex and pixel pair linked as a Metal render pipeline on the M5 Pro.",
   "initializers": {
     "complete": true,
@@ -11,6 +11,10 @@
   "screenStatus": "The game window opens and stays black during the observed loading sequence. A visible image, the menu and gameplay remain unverified.",
   "playable": false,
   "milestones": [
+    {
+      "title": "Metal now resolves the loading screen’s texture and sampler",
+      "detail": "The game’s final loading draw reads the 4K target used by its two preceding draws. The game also connected its audio command queues. The inspected window remained black."
+    },
     {
       "title": "The game found the Mac’s default audio output during loading",
       "detail": "On a native launch, the game enumerated local audio outputs and read the default device identifier. The game window remained black."
@@ -395,8 +399,8 @@
       "title": "Present a game-rendered frame in a Mac window",
       "state": "current",
       "detail": "Metal runs a full-screen triangle and two rectangles into the game’s 4K display target. One 15-minute launch displayed 3,639 frames.",
-      "blocker": "The game has reached console audio memory setup. Movie decoding and visible imagery remain unverified.",
-      "nextTest": "Continue through audio setup and movie loading, then inspect the first changing frame."
+      "blocker": "The launch reached audio signal processor setup. The first decoded movie frame and visible game imagery remain unverified.",
+      "nextTest": "Verify the output of each loading draw and continue through audio signal processing toward the first movie frame."
     },
     {
       "title": "Route keyboard or controller input to the menu",
