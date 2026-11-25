@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-25T00:05:55Z",
-  "headline": "The game created both four-sample textures and shader views on Metal. It now reaches the call that selects the color texture for drawing.",
-  "currentWork": "Verify the console descriptor for a four-sample RGBA8 render target, then use it in a native Metal render pass.",
+  "updatedAt": "2026-11-25T00:11:52Z",
+  "headline": "The game created its four-sample Metal render-target view and loaded 30 more native CPU blocks in the same launch.",
+  "currentWork": "Test the depth and stencil view that the game requested after creating its color render-target view.",
   "graphicsStatus": "The launch cache holds 1,270 of 18,837 packaged graphics stage and layout combinations. The newly added vertex and pixel pair linked as a Metal render pipeline on the M5 Pro.",
   "initializers": {
     "complete": true,
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "Game accepted its native Metal render-target view",
+      "detail": "The title stored the new render-target handle and continued to graphics device method 21, CreateDepthStencilView. A one-pixel hardware test drew and resolved four colors through the same type of Metal attachment."
+    },
     {
       "title": "Game passed both four-sample shader views",
       "detail": "A focused title trace confirmed both GPU resources and both shader views. The next call asks to draw into the four-sample color texture. The existing single-sample path also succeeded in this launch."
@@ -292,9 +296,9 @@
     {
       "title": "Submit the game’s GPU commands to Metal",
       "state": "current",
-      "detail": "The running game created its four-sample color and depth textures, plus a shader view for each. The next call uses a valid descriptor heap and requests a multisample RGBA8 render-target view. Startup stops at that call before the game presents a frame.",
-      "blocker": "The title asks for a four-sample render-target view. The Mac has drawn into this kind of texture in a hardware test. The console descriptor fields for this case still need verification.",
-      "nextTest": "Verify the console descriptor for a four-sample RGBA8 render target, then use it in a native Metal render pass."
+      "detail": "The game accepted a native Metal handle for drawing into its four-sample color target. It then loaded 30 newly translated CPU blocks without relaunching and called the depth and stencil view method.",
+      "blocker": "Startup has reached depth and stencil view creation. The first game-rendered frame is still pending.",
+      "nextTest": "Test the depth and stencil view that the game requested after creating its color render-target view."
     },
     {
       "title": "Present a game-rendered frame in a Mac window",
@@ -313,10 +317,10 @@
     }
   ],
   "translationCoverage": {
-    "done": 51020,
+    "done": 51022,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-25T00:00:06Z"
+    "measuredAt": "2026-11-25T00:10:39Z"
   },
   "packageComputeCoverage": {
     "done": 42,

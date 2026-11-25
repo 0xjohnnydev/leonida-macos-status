@@ -20,7 +20,7 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-25T00:05:55Z">Nov 25, 2026, 12:05 AM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-25T00:11:52Z">Nov 25, 2026, 12:11 AM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -28,16 +28,16 @@
         <h2 id="current-title">Submit the game’s GPU commands to Metal</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Latest verified result</h3><p>The game created both four-sample textures and shader views on Metal. It now reaches the call that selects the color texture for drawing.</p></div>
-        <div><h3>Current status</h3><p>The title asks for a four-sample render-target view. The Mac has drawn into this kind of texture in a hardware test. The console descriptor fields for this case still need verification.</p></div>
-        <div><h3>Next test</h3><p>Verify the console descriptor for a four-sample RGBA8 render target, then use it in a native Metal render pass.</p></div>
+        <div><h3>Latest verified result</h3><p>The game created its four-sample Metal render-target view and loaded 30 more native CPU blocks in the same launch.</p></div>
+        <div><h3>Current status</h3><p>Startup has reached depth and stencil view creation. The first game-rendered frame is still pending.</p></div>
+        <div><h3>Next test</h3><p>Test the depth and stencil view that the game requested after creating its color render-target view.</p></div>
       </div>
     </section><section class="coverage" aria-labelledby="coverage-title">
       <h2 id="coverage-title">Native code translation</h2>
       <p><strong>16.8% of indexed function starts translated</strong></p>
-      <progress aria-label="Translated function entry points" value="51020" max="304274">16.8%</progress>
-      <p>51,020 of 304,274 translated · 253,254 remaining</p>
-      <p class="coverage-note">Measured across 8 game modules on Nov 25, 2026, 12:00 AM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
+      <progress aria-label="Translated function entry points" value="51022" max="304274">16.8%</progress>
+      <p>51,022 of 304,274 translated · 253,252 remaining</p>
+      <p class="coverage-note">Measured across 8 game modules on Nov 25, 2026, 12:10 AM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
     </section><section class="coverage" aria-labelledby="gpu-coverage-title">
       <h2 id="gpu-coverage-title">GPU shader translation</h2><div class="shader-count">
       <h3>Compute shaders</h3>
@@ -137,7 +137,7 @@
       <span class="number"><span class="sr-only">Stage </span>10</span>
       <div class="step-body">
         <h3>Submit the game’s GPU commands to Metal</h3>
-        <p>The running game created its four-sample color and depth textures, plus a shader view for each. The next call uses a valid descriptor heap and requests a multisample RGBA8 render-target view. Startup stops at that call before the game presents a frame.</p>
+        <p>The game accepted a native Metal handle for drawing into its four-sample color target. It then loaded 30 newly translated CPU blocks without relaunching and called the depth and stencil view method.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>
