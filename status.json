@@ -1,16 +1,20 @@
 {
-  "updatedAt": "2026-11-25T12:22:55Z",
-  "headline": "The game verified its packed color and depth-only allocations",
-  "currentWork": "Support the new graphics state record requested while the last startup jobs are still running.",
-  "graphicsStatus": "The game accepted the 16-bit packed color, depth-only, and combined depth and stencil allocations. GPU tests verified the image formats independently.",
+  "updatedAt": "2026-11-25T12:32:34Z",
+  "headline": "A graphics job in the waiting startup group reached a six-layer depth surface",
+  "currentWork": "Support the six-layer depth surface that one of the group’s workers requested.",
+  "graphicsStatus": "The game created 108 graphics pipeline variants using the stencil settings that stopped the previous run.",
   "initializers": {
     "complete": true,
     "entries": 1115
   },
   "firstGameFrame": false,
-  "screenStatus": "The window was black when inspected after those allocations. The group had 13 jobs remaining and had issued no completion signal.",
+  "screenStatus": "The window was black on inspection. All recorded display color checks in this run showed black.",
   "playable": false,
   "milestones": [
+    {
+      "title": "The game passed its stencil pipeline failure",
+      "detail": "The game created 108 graphics pipeline variants and continued. The next failure came from a job in the waiting startup group. It requested a depth surface with six layers. The group had 13 jobs remaining."
+    },
     {
       "title": "The game accepted the packed color and depth-only size requests",
       "detail": "The game supplied the exact formats and received their sizes. Eight jobs from the waiting startup group made more than 1,000 graphics allocation queries. The next stop was a request to change the rendering state of a graphics pipeline."
