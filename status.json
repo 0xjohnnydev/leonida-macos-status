@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-25T07:24:00Z",
-  "headline": "The loading sequence now maps GPU memory pages on Mac",
-  "currentWork": "Translate the next loading shader and inspect the game window again.",
+  "updatedAt": "2026-11-25T07:28:06Z",
+  "headline": "The loading shader that stopped startup now compiles for Metal",
+  "currentWork": "Run the game with the translated shader and check the next displayed frame.",
   "graphicsStatus": "The launch cache holds 1,270 of 18,837 packaged graphics stage and layout combinations. The newly added vertex and pixel pair linked as a Metal render pipeline on the M5 Pro.",
   "initializers": {
     "complete": true,
@@ -11,6 +11,10 @@
   "screenStatus": "The game window opens and stays black during the observed loading sequence. A visible image, the menu and gameplay remain unverified.",
   "playable": false,
   "milestones": [
+    {
+      "title": "The loading shader that stopped startup now compiles for Metal",
+      "detail": "The Mac GPU passed a 64-lane test for the instruction that stopped loading. Every output byte matched the expected result, and the game’s affected shader compiled into a Metal library."
+    },
     {
       "title": "The loading sequence now maps GPU memory pages on Mac",
       "detail": "A Metal test verified that GPU copies read the intended memory after pages change. The game then mapped a 64 KiB page and continued loading. The window still showed black."
@@ -406,9 +410,9 @@
     {
       "title": "Present a game-rendered frame in a Mac window",
       "state": "current",
-      "detail": "A Metal test verified that GPU copies read the intended memory after pages change. The game then mapped a 64 KiB page and continued loading. The window still showed black.",
-      "blocker": "Loading reached a shader instruction that moves mask bits between GPU lanes.",
-      "nextTest": "Translate the next loading shader and inspect the game window again."
+      "detail": "The Mac GPU passed a 64-lane test for the instruction that stopped loading. Every output byte matched the expected result, and the game’s affected shader compiled into a Metal library.",
+      "blocker": "The most recent inspected game window showed black. A movie frame has yet to appear.",
+      "nextTest": "Run the game with the translated shader and check the next displayed frame."
     },
     {
       "title": "Route keyboard or controller input to the menu",
