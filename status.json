@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-25T10:09:27Z",
+  "updatedAt": "2026-11-25T10:28:20Z",
   "headline": "The game selected its local player and resumed movie setup",
-  "currentWork": "Follow the movie task through its first playback request and inspect the game window.",
+  "currentWork": "The game is running the first setup helper in its movie-work callback. Trace its return and watch for a first visible image.",
   "graphicsStatus": "The Mac GPU sampled a compressed 3D texture at eight resolution levels. A hardware check also detected a single changed pixel anywhere inside the game viewport.",
   "initializers": {
     "complete": true,
@@ -11,6 +11,10 @@
   "screenStatus": "The inspected game window remained black after local player selection and the completion of six loading jobs.",
   "playable": false,
   "milestones": [
+    {
+      "title": "Startup reused native code for more than 600 short game routines",
+      "detail": "A game-free test matched the regular compiler, then one launch served more than 600 different small routines without a separate compile for each. The Mac also prepared 33 registered callbacks before that launch. The inspected window remained black."
+    },
     {
       "title": "The game selected its local player and resumed movie setup",
       "detail": "The game collected its default local player, read both player IDs and uploaded the compressed 3D texture that had stopped an earlier run. Six loading jobs finished, the game released its movie setup wait, and its movie-work callback ran. The window still showed black."
