@@ -13,7 +13,7 @@
   "milestones": [
     {
       "title": "The Mac GPU rendered the tested partial-pixel triangle cases",
-      "detail": "A hardware test verified pixel coverage, clipping, culling, depth and single writes for the supported triangle shape. A separate test verified that a shader can read the data description of a small graphics buffer. The full native startup check passed."
+      "detail": "A hardware test verified pixel coverage, clipping, culling, depth and single writes for the supported triangle shape. A separate test checked the exact descriptor the Mac created for a 16-byte graphics buffer. The full native startup check passed."
     },
     {
       "title": "The game reached its movie manager",
