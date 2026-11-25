@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-25T10:39:06Z",
+  "updatedAt": "2026-11-25T10:44:13Z",
   "headline": "The game selected its local player and resumed movie setup",
   "currentWork": "Follow the remaining movie setup steps and check the game window when its colors change.",
-  "graphicsStatus": "The Mac GPU sampled a compressed 3D texture at eight resolution levels. A hardware check also detected a single changed pixel anywhere inside the game viewport.",
+  "graphicsStatus": "The Mac GPU can read separate constants from vertex and pixel programs. A hardware test produced the expected color at every pixel in its small test image.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -11,6 +11,10 @@
   "screenStatus": "The game window still showed black after a background loading result reached movie setup.",
   "playable": false,
   "milestones": [
+    {
+      "title": "The Mac GPU read constants from both graphics programs",
+      "detail": "The vertex and pixel programs each read a different value from their own code. All four test pixels matched the expected color. The full native startup check passed."
+    },
     {
       "title": "Movie setup received a completed loading result",
       "detail": "The game waited for background work, then ran its own completion callback when the result was ready. The Mac continued displaying frames. A fresh inspection of the game window showed black."
