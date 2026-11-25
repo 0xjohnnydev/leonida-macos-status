@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-25T06:28:54Z",
-  "headline": "Metal now resolves the loading screen’s texture and sampler",
-  "currentWork": "Verify the output of each loading draw and continue through audio signal processing toward the first movie frame.",
+  "updatedAt": "2026-11-25T07:04:42Z",
+  "headline": "All three loading draws cover the full 4K target on Metal",
+  "currentWork": "Follow the loader to its first movie open and verify the decoded image in the game window.",
   "graphicsStatus": "The launch cache holds 1,270 of 18,837 packaged graphics stage and layout combinations. The newly added vertex and pixel pair linked as a Metal render pipeline on the M5 Pro.",
   "initializers": {
     "complete": true,
@@ -11,6 +11,10 @@
   "screenStatus": "The game window opens and stays black during the observed loading sequence. A visible image, the menu and gameplay remain unverified.",
   "playable": false,
   "milestones": [
+    {
+      "title": "All three loading draws cover the full 4K target on Metal",
+      "detail": "Metal measured full-screen coverage for the triangle and both rectangles. The sampled output of each draw was black, and visual inspection confirmed a black game window."
+    },
     {
       "title": "Metal now resolves the loading screen’s texture and sampler",
       "detail": "The game’s final loading draw reads the 4K target used by its two preceding draws. The game also connected its audio command queues. The inspected window remained black."
@@ -398,9 +402,9 @@
     {
       "title": "Present a game-rendered frame in a Mac window",
       "state": "current",
-      "detail": "Metal runs a full-screen triangle and two rectangles into the game’s 4K display target. One 15-minute launch displayed 3,639 frames.",
-      "blocker": "The launch reached audio signal processor setup. The first decoded movie frame and visible game imagery remain unverified.",
-      "nextTest": "Verify the output of each loading draw and continue through audio signal processing toward the first movie frame."
+      "detail": "Metal measured full-screen coverage for the triangle and both rectangles. The sampled output of each draw was black, and visual inspection confirmed a black game window.",
+      "blocker": "Loading has completed audio setup and continued through new CPU translations. No decoded movie frame has been observed.",
+      "nextTest": "Follow the loader to its first movie open and verify the decoded image in the game window."
     },
     {
       "title": "Route keyboard or controller input to the menu",
