@@ -1,6 +1,6 @@
 {
   "updatedAt": "2026-11-25T07:24:00Z",
-  "headline": "The game mapped its first GPU memory page on Mac",
+  "headline": "The loading sequence now maps GPU memory pages on Mac",
   "currentWork": "Translate the next loading shader and inspect the game window again.",
   "graphicsStatus": "The launch cache holds 1,270 of 18,837 packaged graphics stage and layout combinations. The newly added vertex and pixel pair linked as a Metal render pipeline on the M5 Pro.",
   "initializers": {
@@ -12,7 +12,7 @@
   "playable": false,
   "milestones": [
     {
-      "title": "The game mapped its first GPU memory page on Mac",
+      "title": "The loading sequence now maps GPU memory pages on Mac",
       "detail": "A Metal test verified that GPU copies read the intended memory after pages change. The game then mapped a 64 KiB page and continued loading. The window still showed black."
     },
     {
