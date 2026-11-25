@@ -21,7 +21,7 @@
     <div class="heading">
       <h1>GTA VI on Mac</h1>
       <p>The game window opens and stays black during the observed loading sequence. A visible image, the menu and gameplay remain unverified.</p>
-      <p class="tested">Last tested <time datetime="2026-11-25T08:02:17Z">Nov 25, 2026, 8:02 AM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-25T08:10:45Z">Nov 25, 2026, 8:10 AM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -29,9 +29,9 @@
         <h2 id="current-title">Present a game-rendered frame in a Mac window</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Latest verified result</h3><p>The game passed its local configuration check on Mac</p></div>
-        <div><h3>Current status</h3><p>The next shader uses a comparison instruction that the Mac translator does not yet handle in this form.</p></div>
-        <div><h3>Next test</h3><p>Translate the next loading shader and check the game window.</p></div>
+        <div><h3>Latest verified result</h3><p>Metal compiled the blocked shader and six nearby shaders</p></div>
+        <div><h3>Current status</h3><p>The last inspected game window showed black. The game had yet to request playback of its first movie.</p></div>
+        <div><h3>Next test</h3><p>Continue startup with the newly compiled shaders and inspect the game window.</p></div>
       </div>
     </section><details class="coverage">
       <summary><strong>CPU translation details</strong></summary>
@@ -146,7 +146,7 @@
       <span class="number"><span class="sr-only">Stage </span>11</span>
       <div class="step-body">
         <h3>Present a game-rendered frame in a Mac window</h3>
-        <p>The game read its local title and system configuration, passed the check that had stopped startup, and requested another shader. The window still showed black after 92 frames.</p>
+        <p>A test of the new comparison instruction matched all 848 expected bytes on the Mac GPU. The shader that stopped loading and six nearby candidates compiled into Metal libraries before the next launch.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>

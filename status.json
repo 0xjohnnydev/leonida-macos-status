@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-25T08:02:17Z",
-  "headline": "The game passed its local configuration check on Mac",
-  "currentWork": "Translate the next loading shader and check the game window.",
+  "updatedAt": "2026-11-25T08:10:45Z",
+  "headline": "Metal compiled the blocked shader and six nearby shaders",
+  "currentWork": "Continue startup with the newly compiled shaders and inspect the game window.",
   "graphicsStatus": "The launch cache holds 1,270 of 18,837 packaged graphics stage and layout combinations. The newly added vertex and pixel pair linked as a Metal render pipeline on the M5 Pro.",
   "initializers": {
     "complete": true,
@@ -11,6 +11,10 @@
   "screenStatus": "The game window opens and stays black during the observed loading sequence. A visible image, the menu and gameplay remain unverified.",
   "playable": false,
   "milestones": [
+    {
+      "title": "Metal compiled the blocked shader and six nearby shaders",
+      "detail": "A test of the new comparison instruction matched all 848 expected bytes on the Mac GPU. The shader that stopped loading and six nearby candidates compiled into Metal libraries before the next launch."
+    },
     {
       "title": "The game passed its local configuration check on Mac",
       "detail": "The game read its local title and system configuration, passed the check that had stopped startup, and requested another shader. The window still showed black after 92 frames."
@@ -418,9 +422,9 @@
     {
       "title": "Present a game-rendered frame in a Mac window",
       "state": "current",
-      "detail": "The game read its local title and system configuration, passed the check that had stopped startup, and requested another shader. The window still showed black after 92 frames.",
-      "blocker": "The next shader uses a comparison instruction that the Mac translator does not yet handle in this form.",
-      "nextTest": "Translate the next loading shader and check the game window."
+      "detail": "A test of the new comparison instruction matched all 848 expected bytes on the Mac GPU. The shader that stopped loading and six nearby candidates compiled into Metal libraries before the next launch.",
+      "blocker": "The last inspected game window showed black. The game had yet to request playback of its first movie.",
+      "nextTest": "Continue startup with the newly compiled shaders and inspect the game window."
     },
     {
       "title": "Route keyboard or controller input to the menu",
