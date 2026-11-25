@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-25T11:01:18Z",
+  "updatedAt": "2026-11-25T11:09:17Z",
   "headline": "The game reached its movie manager on Apple Silicon",
-  "currentWork": "Trace how the game selects a movie for playback, then check the decoded frame and the window.",
-  "graphicsStatus": "The Mac GPU can read separate constants from vertex and pixel programs. A hardware test produced the expected color at every pixel in its small test image.",
+  "currentWork": "Check the game’s next shader-readable buffer and follow movie selection during loading.",
+  "graphicsStatus": "The Mac GPU passed coverage and depth checks for supported single-sample triangles, including a triangle that only touches the corner of a pixel.",
   "initializers": {
     "complete": true,
     "entries": 1115
@@ -11,6 +11,10 @@
   "screenStatus": "The inspected window showed black after the movie manager ran.",
   "playable": false,
   "milestones": [
+    {
+      "title": "The Mac GPU rendered the tested partial-pixel triangle cases",
+      "detail": "A hardware test verified pixel coverage, clipping, culling, depth and single writes for the supported triangle shape. A separate test verified that a shader can read the data description of a small graphics buffer. The full native startup check passed."
+    },
     {
       "title": "The game reached its movie manager",
       "detail": "The game completed its timing and setup checks, found that movies were enabled and ran the manager that checks its configured players. It had issued no playback request at the first observed visit. The inspected game window was black."
