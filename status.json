@@ -1,16 +1,20 @@
 {
-  "updatedAt": "2026-11-25T11:23:24Z",
-  "headline": "Graphics loading passed the staging buffer step",
-  "currentWork": "Support the small linear texture the game next selected as a render target.",
-  "graphicsStatus": "The Mac GPU passed coverage and depth checks for supported single-sample triangles, including a triangle that only touches the corner of a pixel.",
+  "updatedAt": "2026-11-25T11:33:27Z",
+  "headline": "The game created its small render targets and reached larger graphics surfaces",
+  "currentWork": "Verify the new depth surface in the game and follow loading to the first visible image.",
+  "graphicsStatus": "Hardware tests on the Mac verified depth writes and reads on the new surface and texture writes that a later compute task could read.",
   "initializers": {
     "complete": true,
     "entries": 1115
   },
   "firstGameFrame": false,
-  "screenStatus": "The last inspected game window was black. The movie manager had no player bound during its observed visit.",
+  "screenStatus": "The last inspected game window showed black. The game had issued no movie selection request before its next graphics allocation.",
   "playable": false,
   "milestones": [
+    {
+      "title": "The game created two small linear render targets",
+      "detail": "Loading continued to full-size graphics surfaces. The next stop was a memory size request for a depth surface. A Mac GPU test now verifies writing depth and reading it back through the same surface."
+    },
     {
       "title": "The game created its next four readback buffers",
       "detail": "A hardware test first copied data through the new allocation path and checked the result and its guard bytes. The game then created four readback buffers and advanced to a small linear render target. The last inspected window showed black."
