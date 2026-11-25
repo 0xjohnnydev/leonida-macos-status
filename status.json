@@ -403,7 +403,7 @@
       "title": "Present a game-rendered frame in a Mac window",
       "state": "current",
       "detail": "Metal measured full-screen coverage for the triangle and both rectangles. The sampled output of each draw was black, and visual inspection confirmed a black game window.",
-      "blocker": "Loading has completed audio setup and continued through new CPU translations. No decoded movie frame has been observed.",
+      "blocker": "Loading reached audio signal processor setup and continued through new CPU translations. No decoded movie frame has been observed.",
       "nextTest": "Follow the loader to its first movie open and verify the decoded image in the game window."
     },
     {
