@@ -1,16 +1,20 @@
 {
-  "updatedAt": "2026-11-25T10:04:30Z",
-  "headline": "The game reached local player selection on Mac",
-  "currentWork": "Complete local player selection and follow the loading jobs that precede movie playback.",
+  "updatedAt": "2026-11-25T10:09:27Z",
+  "headline": "The game selected its local player and resumed movie setup",
+  "currentWork": "Follow the movie task through its first playback request and inspect the game window.",
   "graphicsStatus": "The Mac GPU sampled a compressed 3D texture at eight resolution levels. A hardware check also detected a single changed pixel anywhere inside the game viewport.",
   "initializers": {
     "complete": true,
     "entries": 1115
   },
   "firstGameFrame": false,
-  "screenStatus": "The inspected game window still showed black. Movie startup was waiting for a local job to complete.",
+  "screenStatus": "The inspected game window remained black after local player selection and the completion of six loading jobs.",
   "playable": false,
   "milestones": [
+    {
+      "title": "The game selected its local player and resumed movie setup",
+      "detail": "The game collected its default local player, read both player IDs and uploaded the compressed 3D texture that had stopped an earlier run. Six loading jobs finished, the game released its movie setup wait, and its movie-work callback ran. The window still showed black."
+    },
     {
       "title": "The game reached local player selection on Mac",
       "detail": "Startup requested the default local player. A separate hardware test verified 3D texture sampling at eight resolution levels. The game window still showed black, and the movie player had received no playback request."
