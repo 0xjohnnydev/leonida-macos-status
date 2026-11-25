@@ -8,7 +8,7 @@
     "entries": 1115
   },
   "firstGameFrame": false,
-  "screenStatus": "The game opens its own Mac window. The next visible milestone is the first frame drawn by the game. Its timing is still unknown.",
+  "screenStatus": "The game opens its own Mac window. Metal has completed commands for frame 1. The first visible game-rendered frame is still pending.",
   "playable": false,
   "milestones": [
     {
@@ -340,15 +340,15 @@
     },
     {
       "title": "Submit the game’s GPU commands to Metal",
+      "state": "complete",
+      "detail": "The Mac issued frame token 1. The game submitted its own command list for that frame, and Metal reported completion with two synchronization barriers."
+    },
+    {
+      "title": "Present a game-rendered frame in a Mac window",
       "state": "current",
       "detail": "The Mac has verified a real command-list submission for the first frame. Next, the game must finish drawing and present the result in its own window.",
       "blocker": "The game stopped at an enhanced barrier, a command that orders GPU work before a resource can be used again. The first game-rendered frame is still pending.",
       "nextTest": "Trace the next barrier request, implement its resource synchronization, then check for the game’s first drawing and presentation calls."
-    },
-    {
-      "title": "Present a game-rendered frame in a Mac window",
-      "state": "upcoming",
-      "detail": "Connect the game’s display path to `CAMetalLayer`, the macOS surface that presents Metal frames. Verify that a frame drawn by the running game appears in the window."
     },
     {
       "title": "Route keyboard or controller input to the menu",

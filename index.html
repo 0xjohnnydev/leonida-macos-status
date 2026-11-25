@@ -20,13 +20,13 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p>The game opens its own Mac window. The next visible milestone is the first frame drawn by the game. Its timing is still unknown.</p>
+      <p>The game opens its own Mac window. Metal has completed commands for frame 1. The first visible game-rendered frame is still pending.</p>
       <p class="tested">Last tested <time datetime="2026-11-25T01:03:37Z">Nov 25, 2026, 1:03 AM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
-        <p class="stage-count">Current stage · 10 of 13</p>
-        <h2 id="current-title">Submit the game’s GPU commands to Metal</h2>
+        <p class="stage-count">Current stage · 11 of 13</p>
+        <h2 id="current-title">Present a game-rendered frame in a Mac window</h2>
       </div>
       <div class="focus-notes">
         <div><h3>Latest verified result</h3><p>Metal completed the game’s first frame-tagged command list</p></div>
@@ -57,9 +57,9 @@
     <section class="roadmap" aria-labelledby="stages-title">
       <div class="roadmap-head">
         <h2 id="stages-title">Steps to a playable scene</h2>
-        <nav class="stage-summary" aria-label="Jump to stages by status"><a class="state state-complete" href="#stage-1">9 complete</a>
-          <a class="state state-current" href="#stage-10">1 in progress</a>
-          <a class="state state-upcoming" href="#stage-11">3 upcoming</a></nav>
+        <nav class="stage-summary" aria-label="Jump to stages by status"><a class="state state-complete" href="#stage-1">10 complete</a>
+          <a class="state state-current" href="#stage-11">1 in progress</a>
+          <a class="state state-upcoming" href="#stage-12">2 upcoming</a></nav>
       </div>
       <ol role="list">
     <li id="stage-1" class="stage stage-complete">
@@ -134,21 +134,21 @@
       </div>
       <span class="state state-complete">Complete</span>
     </li>
-    <li id="stage-10" class="stage stage-current" aria-current="step">
+    <li id="stage-10" class="stage stage-complete">
       <span class="number"><span class="sr-only">Stage </span>10</span>
       <div class="step-body">
         <h3>Submit the game’s GPU commands to Metal</h3>
-        <p>The Mac has verified a real command-list submission for the first frame. Next, the game must finish drawing and present the result in its own window.</p>
+        <p>The Mac issued frame token 1. The game submitted its own command list for that frame, and Metal reported completion with two synchronization barriers.</p>
       </div>
-      <span class="state state-current">In progress</span>
+      <span class="state state-complete">Complete</span>
     </li>
-    <li id="stage-11" class="stage stage-upcoming">
+    <li id="stage-11" class="stage stage-current" aria-current="step">
       <span class="number"><span class="sr-only">Stage </span>11</span>
       <div class="step-body">
         <h3>Present a game-rendered frame in a Mac window</h3>
-        <p>Connect the game’s display path to <code>CAMetalLayer</code>, the macOS surface that presents Metal frames. Verify that a frame drawn by the running game appears in the window.</p>
+        <p>The Mac has verified a real command-list submission for the first frame. Next, the game must finish drawing and present the result in its own window.</p>
       </div>
-      <span class="state state-upcoming">Upcoming</span>
+      <span class="state state-current">In progress</span>
     </li>
     <li id="stage-12" class="stage stage-upcoming">
       <span class="number"><span class="sr-only">Stage </span>12</span>
