@@ -1,16 +1,20 @@
 {
-  "updatedAt": "2026-11-25T12:01:08Z",
-  "headline": "The game passed the combined depth and stencil allocation",
-  "currentWork": "Support the compact color surface requested next and follow the outstanding group of loading jobs.",
-  "graphicsStatus": "The Mac GPU verified 16-bit depth writes and clears, independent stencil values, and shader reads of both planes.",
+  "updatedAt": "2026-11-25T12:11:25Z",
+  "headline": "One startup group went from 249 jobs to 14",
+  "currentWork": "Support the 16-bit depth-only surface requested at the latest stop and follow the remaining startup jobs.",
+  "graphicsStatus": "The Mac GPU verified packed color channels through uploads, clears, blending and copies. It also preserved 16-bit depth and stencil values across compute writes.",
   "initializers": {
     "complete": true,
     "entries": 1115
   },
   "firstGameFrame": false,
-  "screenStatus": "The window was black when inspected after the combined depth and stencil request. No movie had been selected.",
+  "screenStatus": "The last inspected window showed black. The waiting startup group had 14 jobs remaining when this launch stopped.",
   "playable": false,
   "milestones": [
+    {
+      "title": "The game’s startup group reached 14 remaining jobs",
+      "detail": "The group started with 249 jobs. Eight jobs in that group made more than 1,000 graphics memory queries. The next stop was a 16-bit depth-only surface. The window still showed black."
+    },
     {
       "title": "The game advanced through more than 200 texture size queries",
       "detail": "After the new depth and stencil surface was supported, the loader continued sizing textures and requesting placements. It next stopped at a compact color surface. The window showed black on inspection."
