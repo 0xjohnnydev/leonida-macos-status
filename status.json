@@ -1,16 +1,20 @@
 {
-  "updatedAt": "2026-11-25T08:10:45Z",
-  "headline": "Metal compiled the blocked shader and six nearby shaders",
-  "currentWork": "Continue startup with the newly compiled shaders and inspect the game window.",
-  "graphicsStatus": "The launch cache holds 1,270 of 18,837 packaged graphics stage and layout combinations. The newly added vertex and pixel pair linked as a Metal render pipeline on the M5 Pro.",
+  "updatedAt": "2026-11-25T08:56:00Z",
+  "headline": "Metal reads texture changes made after the first upload",
+  "currentWork": "Trace the loading task that selects the first movie or screen.",
+  "graphicsStatus": "Hardware tests verified that a later CPU write reaches the texture on Metal and that a second compute operation reads the result of the first.",
   "initializers": {
     "complete": true,
     "entries": 1115
   },
   "firstGameFrame": false,
-  "screenStatus": "The game window opens and stays black during the observed loading sequence. A visible image, the menu and gameplay remain unverified.",
+  "screenStatus": "The game window still showed black after 110 displayed frames in the latest visual check. The menu and gameplay have yet to appear.",
   "playable": false,
   "milestones": [
+    {
+      "title": "Metal reads texture changes made after the first upload",
+      "detail": "A hardware test changed a texture after its first upload and read back the new value. A separate test verified two dependent compute operations on Metal. The game window still showed black during loading."
+    },
     {
       "title": "Metal compiled the blocked shader and six nearby shaders",
       "detail": "A test of the new comparison instruction matched all 848 expected bytes on the Mac GPU. The shader that stopped loading and six nearby candidates compiled into Metal libraries before the next launch."
