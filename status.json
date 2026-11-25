@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-25T02:01:32Z",
-  "headline": "After its first displayed frame, the game set up four more render targets",
-  "currentWork": "Decode the block of render state that the game passes with a packaged shader pair. Build the matching Metal render pipeline, relaunch, and watch for the first draw into a render target.",
+  "updatedAt": "2026-11-25T02:22:10Z",
+  "headline": "The game built 18,967 pipeline variants and more of its render targets on the Mac",
+  "currentWork": "Relaunch and follow the game’s render-target list to its first draw. Build the Metal render pipeline for a packaged pipeline variant when a draw selects its render-target formats.",
   "graphicsStatus": "The launch cache holds 1,270 of 18,837 packaged graphics stage and layout combinations. The newly added vertex and pixel pair linked as a Metal render pipeline on the M5 Pro.",
   "initializers": {
     "complete": true,
@@ -11,6 +11,14 @@
   "screenStatus": "The game opens its own Mac window, and macOS displays the game’s frame 1 in it. The frame is black: the game cleared its display target to black and has not drawn into it yet. No logo, menu or gameplay is visible.",
   "playable": false,
   "milestones": [
+    {
+      "title": "The game created 18,967 pipeline variants",
+      "detail": "The game loads a packaged pipeline with its programs, then asks the graphics device for copies with different depth, stencil or blend state. The Mac now builds those copies. One launch created 18,967 of them from 11,268 depth and stencil records and 15,212 blend records."
+    },
+    {
+      "title": "More render targets, and one image read through two formats",
+      "detail": "The game placed a second 1,280 × 720 integer image at a 256-byte-aligned address and read the first one as a shared-exponent float texture at the same address. It also sized single-sample depth targets and a 16-bit color target. Each launch showed the same black frame 1 in the window."
+    },
     {
       "title": "The game set up its next render targets",
       "detail": "After frame 1 the game placed four more render targets in its own graphics memory: a 2,560 × 1,440 floating-point color target, a 1,280 × 720 integer image, a 3,840 × 2,160 alpha-only target and a 2,048 × 2,048 RGBA target. It created the views it draws through. The Mac compiler also gained the horizontal integer add instruction the game reached, with a hand-written test."
@@ -366,9 +374,9 @@
     {
       "title": "Present a game-rendered frame in a Mac window",
       "state": "current",
-      "detail": "All five milestones in the Mac monitor are verified. The game asked to display frame 1 from a 3,840 × 2,160 texture. The Mac drew it into the game window at its 16:9 shape, and macOS reported the time it reached the display. The frame is black, which matches the clear color the game chose. The game then placed four more render targets and created the views it draws through.",
-      "blocker": "The game now asks the graphics device to build a render pipeline from a packaged shader pair and a block of render state. The Mac runtime does not implement that console device method yet.",
-      "nextTest": "Decode the block of render state that the game passes with a packaged shader pair. Build the matching Metal render pipeline, relaunch, and watch for the first draw into a render target."
+      "detail": "All five milestones in the Mac monitor are verified. macOS displays the game’s frame 1, which is black by the game’s own clear color. The game then creates its render pipelines in two steps: it loads a packaged pipeline with the programs, then asks for variants with their own depth, stencil and blend state. One launch created 18,967 variants. The game also placed color and depth render targets in seven pixel formats.",
+      "blocker": "The game is still creating its render targets and has not drawn into one yet. The last launch stopped at the size request for a 2,560 × 1,440 two-channel integer target. That format is now added and awaits its first launch.",
+      "nextTest": "Relaunch and follow the game’s render-target list to its first draw. Build the Metal render pipeline for a packaged pipeline variant when a draw selects its render-target formats."
     },
     {
       "title": "Route keyboard or controller input to the menu",
@@ -382,10 +390,10 @@
     }
   ],
   "translationCoverage": {
-    "done": 51229,
+    "done": 51249,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-25T02:00:14Z"
+    "measuredAt": "2026-11-25T02:21:02Z"
   },
   "packageComputeCoverage": {
     "done": 42,
