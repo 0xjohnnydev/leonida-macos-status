@@ -1,16 +1,20 @@
 {
-  "updatedAt": "2026-11-25T10:49:24Z",
-  "headline": "The game completed movie setup and marked movie work ready",
-  "currentWork": "Follow the ready movie work to its first playback request and decoded frame.",
+  "updatedAt": "2026-11-25T10:58:25Z",
+  "headline": "The game passed the graphics setup step that had stopped movie startup",
+  "currentWork": "Follow the movie updater from its timing check to a playback request and watch the window for a visible image.",
   "graphicsStatus": "The Mac GPU can read separate constants from vertex and pixel programs. A hardware test produced the expected color at every pixel in its small test image.",
   "initializers": {
     "complete": true,
     "entries": 1115
   },
   "firstGameFrame": false,
-  "screenStatus": "The inspected game window still showed black after all three movie setup steps finished.",
+  "screenStatus": "The inspected window still showed black after the game created the requested graphics pipeline.",
   "playable": false,
   "milestones": [
+    {
+      "title": "The game passed the previous graphics setup stop",
+      "detail": "The game created a pipeline with its requested pixel coverage setting and continued. All 52 calls in the observed initialization sequence returned. The movie updater reached its timing check about 90 seconds into this run. The inspected window still showed black."
+    },
     {
       "title": "The game completed its three movie setup steps",
       "detail": "A background worker finished the remaining loading items. The game then completed all three setup steps and marked movie work ready. A fresh inspection of the window showed black."
