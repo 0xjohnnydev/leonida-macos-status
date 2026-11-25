@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-25T00:18:45Z",
-  "headline": "The game uploaded cube textures and reached a 256-pixel color strip",
-  "currentWork": "Add one-dimensional texture allocation and sampling, check the colors on the GPU, then retry startup.",
+  "updatedAt": "2026-11-25T00:23:23Z",
+  "headline": "The game uploaded 22 textures and reached new startup code",
+  "currentWork": "Trace the worker that stopped after texture setup and verify the cause before the next launch.",
   "graphicsStatus": "The launch cache holds 1,270 of 18,837 packaged graphics stage and layout combinations. The newly added vertex and pixel pair linked as a Metal render pipeline on the M5 Pro.",
   "initializers": {
     "complete": true,
@@ -10,6 +10,10 @@
   "firstGameFrame": false,
   "playable": false,
   "milestones": [
+    {
+      "title": "Game passed the one-dimensional texture request",
+      "detail": "The same native launch uploaded 22 textures, including cube arrays and a 256-pixel color strip, and continued into new startup code. The next stop occurred in a CPU worker."
+    },
     {
       "title": "Game uploaded its cube textures on Metal",
       "detail": "The title accepted both single cubes and cube arrays after creating its color and depth drawing views. On the Mac GPU, a separate test also verified the six face directions at two resolutions."
@@ -304,9 +308,9 @@
     {
       "title": "Submit the game’s GPU commands to Metal",
       "state": "current",
-      "detail": "One launch uploaded 21 textures, including two single cubes and two arrays of two cubes. A hardware test read the expected color for all 30 face and resolution selections. The first game frame is still ahead.",
-      "blocker": "The next graphics request needs a one-dimensional texture in sRGB color format.",
-      "nextTest": "Add one-dimensional texture allocation and sampling, check the colors on the GPU, then retry startup."
+      "detail": "The game accepted a 256-pixel sRGB texture and loaded 297 newly translated CPU blocks without restarting. A separate GPU test checked all 256 color levels and the linear alpha channel. The game window has opened, and the first rendered frame is still ahead.",
+      "blocker": "A startup worker stopped on a memory access after the game uploaded its one-dimensional color texture. The cause is under investigation.",
+      "nextTest": "Trace the worker that stopped after texture setup and verify the cause before the next launch."
     },
     {
       "title": "Present a game-rendered frame in a Mac window",
@@ -325,10 +329,10 @@
     }
   ],
   "translationCoverage": {
-    "done": 51022,
+    "done": 51024,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-25T00:18:08Z"
+    "measuredAt": "2026-11-25T00:22:33Z"
   },
   "packageComputeCoverage": {
     "done": 42,

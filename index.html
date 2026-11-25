@@ -20,7 +20,7 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-25T00:18:45Z">Nov 25, 2026, 12:18 AM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-25T00:23:23Z">Nov 25, 2026, 12:23 AM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -28,16 +28,16 @@
         <h2 id="current-title">Submit the game’s GPU commands to Metal</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Latest verified result</h3><p>The game uploaded cube textures and reached a 256-pixel color strip</p></div>
-        <div><h3>Current status</h3><p>The next graphics request needs a one-dimensional texture in sRGB color format.</p></div>
-        <div><h3>Next test</h3><p>Add one-dimensional texture allocation and sampling, check the colors on the GPU, then retry startup.</p></div>
+        <div><h3>Latest verified result</h3><p>The game uploaded 22 textures and reached new startup code</p></div>
+        <div><h3>Current status</h3><p>A startup worker stopped on a memory access after the game uploaded its one-dimensional color texture. The cause is under investigation.</p></div>
+        <div><h3>Next test</h3><p>Trace the worker that stopped after texture setup and verify the cause before the next launch.</p></div>
       </div>
     </section><section class="coverage" aria-labelledby="coverage-title">
       <h2 id="coverage-title">Native code translation</h2>
       <p><strong>16.8% of indexed function starts translated</strong></p>
-      <progress aria-label="Translated function entry points" value="51022" max="304274">16.8%</progress>
-      <p>51,022 of 304,274 translated · 253,252 remaining</p>
-      <p class="coverage-note">Measured across 8 game modules on Nov 25, 2026, 12:18 AM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
+      <progress aria-label="Translated function entry points" value="51024" max="304274">16.8%</progress>
+      <p>51,024 of 304,274 translated · 253,250 remaining</p>
+      <p class="coverage-note">Measured across 8 game modules on Nov 25, 2026, 12:22 AM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
     </section><section class="coverage" aria-labelledby="gpu-coverage-title">
       <h2 id="gpu-coverage-title">GPU shader translation</h2><div class="shader-count">
       <h3>Compute shaders</h3>
@@ -137,7 +137,7 @@
       <span class="number"><span class="sr-only">Stage </span>10</span>
       <div class="step-body">
         <h3>Submit the game’s GPU commands to Metal</h3>
-        <p>One launch uploaded 21 textures, including two single cubes and two arrays of two cubes. A hardware test read the expected color for all 30 face and resolution selections. The first game frame is still ahead.</p>
+        <p>The game accepted a 256-pixel sRGB texture and loaded 297 newly translated CPU blocks without restarting. A separate GPU test checked all 256 color levels and the linear alpha channel. The game window has opened, and the first rendered frame is still ahead.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>
