@@ -20,8 +20,8 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p>The game opens its own Mac window, and macOS displays the game’s frame 1 in it. The frame is black: the game cleared its display target to black and has not drawn into it yet. No logo, menu or gameplay is visible.</p>
-      <p class="tested">Last tested <time datetime="2026-11-25T02:22:10Z">Nov 25, 2026, 2:22 AM UTC</time></p>
+      <p>The game opens its own Mac window, and macOS displays the game’s frame 1 in it. The frame is black: the game cleared its display target and the Mac cannot run the game’s draws yet. No logo, menu or gameplay is visible.</p>
+      <p class="tested">Last tested <time datetime="2026-11-25T03:09:29Z">Nov 25, 2026, 3:09 AM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -29,16 +29,16 @@
         <h2 id="current-title">Present a game-rendered frame in a Mac window</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Latest verified result</h3><p>The game built 18,967 pipeline variants and more of its render targets on the Mac</p></div>
-        <div><h3>Current status</h3><p>The game is still creating its render targets and has not drawn into one yet. The last launch stopped at the size request for a 2,560 × 1,440 two-channel integer target. That format is now added and awaits its first launch.</p></div>
-        <div><h3>Next test</h3><p>Relaunch and follow the game’s render-target list to its first draw. Build the Metal render pipeline for a packaged pipeline variant when a draw selects its render-target formats.</p></div>
+        <div><h3>Latest verified result</h3><p>The game finished its graphics setup and issued its first draw state</p></div>
+        <div><h3>Current status</h3><p>The Mac runtime replays clears, value writes and buffer copies only. It has no draw path yet, so the launch stops at the first draw state.</p></div>
+        <div><h3>Next test</h3><p>Build the draw path on Metal: record the game’s draw state, give translated shaders access to game memory, bind textures and samplers, and replay the first draw into the display target.</p></div>
       </div>
     </section><details class="coverage">
       <summary><strong>CPU translation details</strong></summary>
-      <p><strong>16.8% of indexed function starts translated</strong></p>
-      <progress aria-label="Translated function entry points" value="51249" max="304274">16.8%</progress>
-      <p>51,249 of 304,274 translated · 253,025 remaining</p>
-      <p class="coverage-note">Measured across 8 game modules on Nov 25, 2026, 2:21 AM UTC. Startup uses part of this index. Graphics and display work can advance while this percentage stays the same.</p>
+      <p><strong>16.9% of indexed function starts translated</strong></p>
+      <progress aria-label="Translated function entry points" value="51426" max="304274">16.9%</progress>
+      <p>51,426 of 304,274 translated · 252,848 remaining</p>
+      <p class="coverage-note">Measured across 8 game modules on Nov 25, 2026, 3:05 AM UTC. Startup uses part of this index. Graphics and display work can advance while this percentage stays the same.</p>
     </details><section class="coverage" aria-labelledby="gpu-coverage-title">
       <h2 id="gpu-coverage-title">GPU shader translation</h2><div class="shader-count">
       <h3>Compute shaders</h3>
@@ -146,7 +146,7 @@
       <span class="number"><span class="sr-only">Stage </span>11</span>
       <div class="step-body">
         <h3>Present a game-rendered frame in a Mac window</h3>
-        <p>All five milestones in the Mac monitor are verified. macOS displays the game’s frame 1, which is black by the game’s own clear color. The game then creates its render pipelines in two steps: it loads a packaged pipeline with the programs, then asks for variants with their own depth, stencil and blend state. One launch created 18,967 variants. The game also placed color and depth render targets in seven pixel formats.</p>
+        <p>All five milestones in the Mac monitor are verified, and macOS displays the game’s black frame 1. The game then finished its graphics setup on the Mac: render targets in many pixel formats, depth targets, 18,967 pipeline variants, fences it polls through memory, and a texture it fills from the CPU. About 107 seconds into startup it cleared its display target and set a triangle-list topology, its first draw state.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>
