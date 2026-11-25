@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-25T09:43:51Z",
-  "headline": "The Mac passed the texture layout check for the next loading step",
-  "currentWork": "Follow the next loading run to see which textures the game requests and when it starts its movie player.",
+  "updatedAt": "2026-11-25T09:46:49Z",
+  "headline": "The game passed its compressed texture loading step on Mac",
+  "currentWork": "Follow the loading state that requests movie playback and verify any image directly in the game window.",
   "graphicsStatus": "Hardware checks now cover texture tiles across two array layers, depth and stencil writes, video-plane copies, and GPU timing.",
   "initializers": {
     "complete": true,
@@ -11,6 +11,10 @@
   "screenStatus": "The inspected game window still showed black. Movie initialization finished, and playback has yet to begin.",
   "playable": false,
   "milestones": [
+    {
+      "title": "The game passed its compressed texture loading step on Mac",
+      "detail": "The game received tile layouts for more than 170 compressed texture requests and continued beyond the previous stop. Local storage completed more than 8,000 reads. The inspected game window remained black."
+    },
     {
       "title": "The Mac passed the texture layout check for the next loading step",
       "detail": "Loading stopped while the game asked how a texture fits in memory. A game-free test verified tile ranges for both large and small versions of a compressed texture. The full native startup check passed. The last inspected game window was black."
