@@ -1,16 +1,20 @@
 {
-  "updatedAt": "2026-11-25T09:11:28Z",
-  "headline": "Metal copied two video-plane formats and passed indexed drawing tests",
-  "currentWork": "Test whether loading advances when Metal compiles compute programs at their first dispatch.",
+  "updatedAt": "2026-11-25T09:22:20Z",
+  "headline": "The game reached its movie-ready state on Mac",
+  "currentWork": "Verify GPU timestamp delivery and trace the update that selects the first movie.",
   "graphicsStatus": "Hand-written GPU tests verified two video-plane formats, 16-bit and 32-bit indexed draws, vertex texture sampling and reuse of compiled compute programs.",
   "initializers": {
     "complete": true,
     "entries": 1115
   },
   "firstGameFrame": false,
-  "screenStatus": "The last inspected game window showed black during loading. The menu and gameplay have yet to appear.",
+  "screenStatus": "The window still showed black during loading. The game reached movie readiness but had yet to ask for playback.",
   "playable": false,
   "milestones": [
+    {
+      "title": "The game reached its movie-ready state on Mac",
+      "detail": "The game completed movie initialization and marked it ready. Its outer update task then ran, but the movie player received no playback request. Local storage completed every queued read in this launch."
+    },
     {
       "title": "Metal copied two video-plane formats and passed indexed drawing tests",
       "detail": "Hardware checks preserved the pixels and padding around a copied region. Indexed draws and vertex texture reads produced the expected pixels. A separate GPU test reused a saved compute program and rebuilt it after deliberate cache damage."
