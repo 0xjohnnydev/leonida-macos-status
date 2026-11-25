@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-25T00:55:45Z",
-  "headline": "The game reached the display scheduler for its first frame",
-  "currentWork": "Test the game’s request for a frame token against the Mac display scheduler. Then trace which graphics operations the game issues for that frame.",
+  "updatedAt": "2026-11-25T00:58:47Z",
+  "headline": "The Mac issued the game its first frame token",
+  "currentWork": "Check which command list the game gives the queue and run its commands on Metal before attempting to present the frame.",
   "graphicsStatus": "The launch cache holds 1,270 of 18,837 packaged graphics stage and layout combinations. The newly added vertex and pixel pair linked as a Metal render pipeline on the M5 Pro.",
   "initializers": {
     "complete": true,
@@ -11,6 +11,10 @@
   "screenStatus": "The game opens its own Mac window. The next visible milestone is the first frame drawn by the game. Its timing is still unknown.",
   "playable": false,
   "milestones": [
+    {
+      "title": "The game received frame token 1",
+      "detail": "The native display scheduler issued a token for the game to start its first frame. The game then gave that token to its graphics queue with a request to submit one command list."
+    },
     {
       "title": "Startup recorded a GPU timestamp and requested a frame token",
       "detail": "The game passed its 64-bit GPU timing query and asked the display scheduler for a token to begin a frame. A separate native test checked two real GPU timestamps and copied them back in order."
@@ -333,9 +337,9 @@
     {
       "title": "Submit the game’s GPU commands to Metal",
       "state": "current",
-      "detail": "The game has recorded a progress marker and a GPU timer, then reached the display scheduler. Its native Mac window opens, and it has yet to draw a frame.",
-      "blocker": "The game polls for a frame token using an Xbox flag that its earlier startup calls did not use. The latest verified launch stopped at that request.",
-      "nextTest": "Test the game’s request for a frame token against the Mac display scheduler. Then trace which graphics operations the game issues for that frame."
+      "detail": "The Mac opens the game window, prepares its graphics resources and issues the first frame token. GPU submission and the first game-rendered frame are the next two checkpoints. CPU translation details are available separately.",
+      "blocker": "The game reached Xbox command-list submission for its first frame. The next test checks whether the Mac queue accepts that list and the GPU completes it.",
+      "nextTest": "Check which command list the game gives the queue and run its commands on Metal before attempting to present the frame."
     },
     {
       "title": "Present a game-rendered frame in a Mac window",
@@ -354,10 +358,10 @@
     }
   ],
   "translationCoverage": {
-    "done": 51030,
+    "done": 51031,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-25T00:54:17Z"
+    "measuredAt": "2026-11-25T00:56:34Z"
   },
   "packageComputeCoverage": {
     "done": 42,

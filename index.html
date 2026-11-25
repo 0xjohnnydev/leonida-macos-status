@@ -21,7 +21,7 @@
     <div class="heading">
       <h1>GTA VI on Mac</h1>
       <p>The game opens its own Mac window. The next visible milestone is the first frame drawn by the game. Its timing is still unknown.</p>
-      <p class="tested">Last tested <time datetime="2026-11-25T00:55:45Z">Nov 25, 2026, 12:55 AM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-25T00:58:47Z">Nov 25, 2026, 12:58 AM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -29,17 +29,17 @@
         <h2 id="current-title">Submit the game’s GPU commands to Metal</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Latest verified result</h3><p>The game reached the display scheduler for its first frame</p></div>
-        <div><h3>Current status</h3><p>The game polls for a frame token using an Xbox flag that its earlier startup calls did not use. The latest verified launch stopped at that request.</p></div>
-        <div><h3>Next test</h3><p>Test the game’s request for a frame token against the Mac display scheduler. Then trace which graphics operations the game issues for that frame.</p></div>
+        <div><h3>Latest verified result</h3><p>The Mac issued the game its first frame token</p></div>
+        <div><h3>Current status</h3><p>The game reached Xbox command-list submission for its first frame. The next test checks whether the Mac queue accepts that list and the GPU completes it.</p></div>
+        <div><h3>Next test</h3><p>Check which command list the game gives the queue and run its commands on Metal before attempting to present the frame.</p></div>
       </div>
-    </section><section class="coverage" aria-labelledby="coverage-title">
-      <h2 id="coverage-title">Native code translation</h2>
+    </section><details class="coverage">
+      <summary><strong>CPU translation details</strong></summary>
       <p><strong>16.8% of indexed function starts translated</strong></p>
-      <progress aria-label="Translated function entry points" value="51030" max="304274">16.8%</progress>
-      <p>51,030 of 304,274 translated · 253,244 remaining</p>
-      <p class="coverage-note">Measured across 8 game modules on Nov 25, 2026, 12:54 AM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
-    </section><section class="coverage" aria-labelledby="gpu-coverage-title">
+      <progress aria-label="Translated function entry points" value="51031" max="304274">16.8%</progress>
+      <p>51,031 of 304,274 translated · 253,243 remaining</p>
+      <p class="coverage-note">Measured across 8 game modules on Nov 25, 2026, 12:56 AM UTC. Startup uses part of this index. Graphics and display work can advance while this percentage stays the same.</p>
+    </details><section class="coverage" aria-labelledby="gpu-coverage-title">
       <h2 id="gpu-coverage-title">GPU shader translation</h2><div class="shader-count">
       <h3>Compute shaders</h3>
       <p><strong>42 of 2,684 compiled for Metal</strong> · 2,642 remaining</p>
@@ -138,7 +138,7 @@
       <span class="number"><span class="sr-only">Stage </span>10</span>
       <div class="step-body">
         <h3>Submit the game’s GPU commands to Metal</h3>
-        <p>The game has recorded a progress marker and a GPU timer, then reached the display scheduler. Its native Mac window opens, and it has yet to draw a frame.</p>
+        <p>The Mac opens the game window, prepares its graphics resources and issues the first frame token. GPU submission and the first game-rendered frame are the next two checkpoints. CPU translation details are available separately.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>

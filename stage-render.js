@@ -49,13 +49,13 @@ export function renderStages(data) {
       Number.isSafeInteger(measured.modules) && measured.modules > 0) {
     const format = new Intl.NumberFormat('en-US');
     const percent = (100 * measured.done / measured.total).toFixed(1);
-    coverage = `<section class="coverage" aria-labelledby="coverage-title">
-      <h2 id="coverage-title">Native code translation</h2>
+    coverage = `<details class="coverage">
+      <summary><strong>CPU translation details</strong></summary>
       <p><strong>${percent}% of indexed function starts translated</strong></p>
       <progress aria-label="Translated function entry points" value="${measured.done}" max="${measured.total}">${percent}%</progress>
       <p>${format.format(measured.done)} of ${format.format(measured.total)} translated · ${format.format(measured.total - measured.done)} remaining</p>
-      <p class="coverage-note">Measured across ${measured.modules} game modules on ${escapeText(testDate(measured.measuredAt))}. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
-    </section>`;
+      <p class="coverage-note">Measured across ${measured.modules} game modules on ${escapeText(testDate(measured.measuredAt))}. Startup uses part of this index. Graphics and display work can advance while this percentage stays the same.</p>
+    </details>`;
   }
   const gpu = [
     ['Compute shaders', data.packageComputeCoverage],
