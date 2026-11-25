@@ -1,16 +1,20 @@
 {
-  "updatedAt": "2026-11-25T12:32:34Z",
-  "headline": "A graphics job in the waiting startup group reached a six-layer depth surface",
-  "currentWork": "Support the six-layer depth surface that one of the group’s workers requested.",
-  "graphicsStatus": "The game created 108 graphics pipeline variants using the stencil settings that stopped the previous run.",
+  "updatedAt": "2026-11-25T12:44:44Z",
+  "headline": "The game created all six views of its layered depth surface",
+  "currentWork": "Support the larger depth surface that the game places over the same graphics memory.",
+  "graphicsStatus": "The game created the six-layer depth surface and a separate view for each layer. Hardware checks confirmed independent reads and writes across layers.",
   "initializers": {
     "complete": true,
     "entries": 1115
   },
   "firstGameFrame": false,
-  "screenStatus": "The window was black on inspection. All recorded display color checks in this run showed black.",
+  "screenStatus": "The inspected game window showed black. The startup group had 13 jobs remaining when placement stopped.",
   "playable": false,
   "milestones": [
+    {
+      "title": "The game created its six-layer depth surface",
+      "detail": "It created a view for each layer and continued to a larger depth surface that reuses the same graphics memory. A hardware test verified draws, clears and reads on individual layers."
+    },
     {
       "title": "The game passed its stencil pipeline failure",
       "detail": "The game created 108 graphics pipeline variants and continued. The next failure came from a job in the waiting startup group. It requested a depth surface with six layers. The group had 13 jobs remaining."
