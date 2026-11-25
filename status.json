@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-25T11:13:26Z",
-  "headline": "The game passed its shader buffer setup and checked its movie players",
-  "currentWork": "Support the staging buffer requested next in graphics setup and trace the first request to play a movie.",
+  "updatedAt": "2026-11-25T11:23:24Z",
+  "headline": "Graphics loading passed the staging buffer step",
+  "currentWork": "Support the small linear texture the game next selected as a render target.",
   "graphicsStatus": "The Mac GPU passed coverage and depth checks for supported single-sample triangles, including a triangle that only touches the corner of a pixel.",
   "initializers": {
     "complete": true,
@@ -11,6 +11,10 @@
   "screenStatus": "The last inspected game window was black. The movie manager had no player bound during its observed visit.",
   "playable": false,
   "milestones": [
+    {
+      "title": "The game created its next four readback buffers",
+      "detail": "A hardware test first copied data through the new allocation path and checked the result and its guard bytes. The game then created four readback buffers and advanced to a small linear render target. The last inspected window showed black."
+    },
     {
       "title": "The game passed the shader buffer setup that stopped the prior run",
       "detail": "The Mac created the requested shader view and loading continued. The movie manager checked all 58 configured slots. Each was empty, and the game issued no playback request before the next graphics allocation."
