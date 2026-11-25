@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-25T01:03:37Z",
-  "headline": "Metal completed the game’s first frame-tagged command list",
-  "currentWork": "Trace the next barrier request, implement its resource synchronization, then check for the game’s first drawing and presentation calls.",
+  "updatedAt": "2026-11-25T01:08:34Z",
+  "headline": "The game recorded its first render-target clear on the Mac",
+  "currentWork": "Verify the arm64 implementation of CMPXCHG16B, an instruction that compares and updates 16 bytes together. Relaunch and trace the next draw or presentation command.",
   "graphicsStatus": "The launch cache holds 1,270 of 18,837 packaged graphics stage and layout combinations. The newly added vertex and pixel pair linked as a Metal render pipeline on the M5 Pro.",
   "initializers": {
     "complete": true,
@@ -11,6 +11,10 @@
   "screenStatus": "The game opens its own Mac window. Metal has completed commands for frame 1. The first visible game-rendered frame is still pending.",
   "playable": false,
   "milestones": [
+    {
+      "title": "The game began preparing a surface for drawing",
+      "detail": "After Metal completed the first frame-tagged command list, the game ordered access to a texture and recorded a command to fill a render target with its chosen color. The window is still waiting for a displayed frame."
+    },
     {
       "title": "Submitted the first game command list to Metal",
       "detail": "The game acquired frame token 1 and submitted one command list using that token. Metal completed the submission with two synchronization barriers. The Mac startup monitor now shows four of five milestones reached."
@@ -346,9 +350,9 @@
     {
       "title": "Present a game-rendered frame in a Mac window",
       "state": "current",
-      "detail": "The Mac has verified a real command-list submission for the first frame. Next, the game must finish drawing and present the result in its own window.",
-      "blocker": "The game stopped at an enhanced barrier, a command that orders GPU work before a resource can be used again. The first game-rendered frame is still pending.",
-      "nextTest": "Trace the next barrier request, implement its resource synchronization, then check for the game’s first drawing and presentation calls."
+      "detail": "Four of five milestones in the Mac monitor are verified. Metal completed work tagged for frame 1, and the game began recording changes to a render target. A frame from the game has yet to appear in the window.",
+      "blocker": "Another startup thread reached CMPXCHG16B after the render-target clear. The last complete game launch stopped at that CPU instruction.",
+      "nextTest": "Verify the arm64 implementation of CMPXCHG16B, an instruction that compares and updates 16 bytes together. Relaunch and trace the next draw or presentation command."
     },
     {
       "title": "Route keyboard or controller input to the menu",
@@ -362,10 +366,10 @@
     }
   ],
   "translationCoverage": {
-    "done": 51049,
+    "done": 51052,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-25T01:03:16Z"
+    "measuredAt": "2026-11-25T01:07:13Z"
   },
   "packageComputeCoverage": {
     "done": 42,
