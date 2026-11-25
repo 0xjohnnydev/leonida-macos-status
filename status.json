@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-25T00:58:47Z",
-  "headline": "The Mac issued the game its first frame token",
-  "currentWork": "Check which command list the game gives the queue and run its commands on Metal before attempting to present the frame.",
+  "updatedAt": "2026-11-25T01:03:37Z",
+  "headline": "Metal completed the game’s first frame-tagged command list",
+  "currentWork": "Trace the next barrier request, implement its resource synchronization, then check for the game’s first drawing and presentation calls.",
   "graphicsStatus": "The launch cache holds 1,270 of 18,837 packaged graphics stage and layout combinations. The newly added vertex and pixel pair linked as a Metal render pipeline on the M5 Pro.",
   "initializers": {
     "complete": true,
@@ -11,6 +11,10 @@
   "screenStatus": "The game opens its own Mac window. The next visible milestone is the first frame drawn by the game. Its timing is still unknown.",
   "playable": false,
   "milestones": [
+    {
+      "title": "Submitted the first game command list to Metal",
+      "detail": "The game acquired frame token 1 and submitted one command list using that token. Metal completed the submission with two synchronization barriers. The Mac startup monitor now shows four of five milestones reached."
+    },
     {
       "title": "The game received frame token 1",
       "detail": "The native display scheduler issued a token for the game to start its first frame. The game then gave that token to its graphics queue with a request to submit one command list."
@@ -337,9 +341,9 @@
     {
       "title": "Submit the game’s GPU commands to Metal",
       "state": "current",
-      "detail": "The Mac opens the game window, prepares its graphics resources and issues the first frame token. GPU submission and the first game-rendered frame are the next two checkpoints. CPU translation details are available separately.",
-      "blocker": "The game reached Xbox command-list submission for its first frame. The next test checks whether the Mac queue accepts that list and the GPU completes it.",
-      "nextTest": "Check which command list the game gives the queue and run its commands on Metal before attempting to present the frame."
+      "detail": "The Mac has verified a real command-list submission for the first frame. Next, the game must finish drawing and present the result in its own window.",
+      "blocker": "The game stopped at an enhanced barrier, a command that orders GPU work before a resource can be used again. The first game-rendered frame is still pending.",
+      "nextTest": "Trace the next barrier request, implement its resource synchronization, then check for the game’s first drawing and presentation calls."
     },
     {
       "title": "Present a game-rendered frame in a Mac window",
@@ -358,10 +362,10 @@
     }
   ],
   "translationCoverage": {
-    "done": 51031,
+    "done": 51049,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-25T00:56:34Z"
+    "measuredAt": "2026-11-25T01:03:16Z"
   },
   "packageComputeCoverage": {
     "done": 42,
