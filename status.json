@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-25T05:39:43Z",
-  "headline": "The game now runs its loading frame loop on Metal",
-  "currentWork": "Follow movie loading through decode and texture upload, then inspect the game window for the first recognizable image.",
+  "updatedAt": "2026-11-25T05:46:38Z",
+  "headline": "The game passed text parsing and reached Bink video setup",
+  "currentWork": "Trace the first movie open and decode, then check whether the decoded frame reaches the game window.",
   "graphicsStatus": "The launch cache holds 1,270 of 18,837 packaged graphics stage and layout combinations. The newly added vertex and pixel pair linked as a Metal render pipeline on the M5 Pro.",
   "initializers": {
     "complete": true,
@@ -11,6 +11,10 @@
   "screenStatus": "The game window opens and stays black during the observed loading sequence. A visible image, the menu and gameplay remain unverified.",
   "playable": false,
   "milestones": [
+    {
+      "title": "The game passed text parsing and reached Bink video setup",
+      "detail": "Loading continued past the previous text-parsing stop. The game entered Bink routines for file access, memory, worker threads and sound."
+    },
     {
       "title": "The game now runs its loading frame loop on Metal",
       "detail": "Metal runs a full-screen triangle and two rectangles into the game’s 4K display target. One 15-minute launch displayed 3,639 frames."
@@ -387,8 +391,8 @@
       "title": "Present a game-rendered frame in a Mac window",
       "state": "current",
       "detail": "Metal runs a full-screen triangle and two rectangles into the game’s 4K display target. One 15-minute launch displayed 3,639 frames.",
-      "blocker": "Movie-library startup and archive access have been observed. A decoded frame reaching the display texture is still unverified.",
-      "nextTest": "Follow movie loading through decode and texture upload, then inspect the game window for the first recognizable image."
+      "blocker": "The game reached Bink setup. Opening a movie and decoding its first frame still need verification.",
+      "nextTest": "Trace the first movie open and decode, then check whether the decoded frame reaches the game window."
     },
     {
       "title": "Route keyboard or controller input to the menu",
