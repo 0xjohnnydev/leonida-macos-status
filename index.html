@@ -21,7 +21,7 @@
     <div class="heading">
       <h1>GTA VI on Mac</h1>
       <p>The game window opens and stays black during the observed loading sequence. A visible image, the menu and gameplay remain unverified.</p>
-      <p class="tested">Last tested <time datetime="2026-11-25T07:04:42Z">Nov 25, 2026, 7:04 AM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-25T07:24:00Z">Nov 25, 2026, 7:24 AM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -29,9 +29,9 @@
         <h2 id="current-title">Present a game-rendered frame in a Mac window</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Latest verified result</h3><p>All three loading draws cover the full 4K target on Metal</p></div>
-        <div><h3>Current status</h3><p>Loading reached audio signal processor setup and continued through new CPU translations. No decoded movie frame has been observed.</p></div>
-        <div><h3>Next test</h3><p>Follow the loader to its first movie open and verify the decoded image in the game window.</p></div>
+        <div><h3>Latest verified result</h3><p>The game mapped its first GPU memory page on Mac</p></div>
+        <div><h3>Current status</h3><p>Loading reached a shader instruction that moves mask bits between GPU lanes.</p></div>
+        <div><h3>Next test</h3><p>Translate the next loading shader and inspect the game window again.</p></div>
       </div>
     </section><details class="coverage">
       <summary><strong>CPU translation details</strong></summary>
@@ -146,7 +146,7 @@
       <span class="number"><span class="sr-only">Stage </span>11</span>
       <div class="step-body">
         <h3>Present a game-rendered frame in a Mac window</h3>
-        <p>Metal measured full-screen coverage for the triangle and both rectangles. The sampled output of each draw was black, and visual inspection confirmed a black game window.</p>
+        <p>A Metal test verified that GPU copies read the intended memory after pages change. The game then mapped a 64 KiB page and continued loading. The window still showed black.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>
