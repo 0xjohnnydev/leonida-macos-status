@@ -1,16 +1,20 @@
 {
-  "updatedAt": "2026-11-25T03:38:47Z",
-  "headline": "Metal ran the game’s first draw, and macOS displayed a second game frame",
-  "currentWork": "Link Metal render state for the game’s packaged pipelines at draw time, add the console rectangle primitive, then bind textures and samplers for the draws of the third frame.",
+  "updatedAt": "2026-11-25T05:39:43Z",
+  "headline": "The game now runs its loading frame loop on Metal",
+  "currentWork": "Follow movie loading through decode and texture upload, then inspect the game window for the first recognizable image.",
   "graphicsStatus": "The launch cache holds 1,270 of 18,837 packaged graphics stage and layout combinations. The newly added vertex and pixel pair linked as a Metal render pipeline on the M5 Pro.",
   "initializers": {
     "complete": true,
     "entries": 1115
   },
   "firstGameFrame": false,
-  "screenStatus": "The game opens its own Mac window, and macOS has displayed the game’s frames 1 and 2 in it. Both are black. The game’s first draw now runs on Metal, and the draws of its third frame are the next work. No logo, menu or gameplay is visible.",
+  "screenStatus": "The game window opens and stays black during the observed loading sequence. A visible image, the menu and gameplay remain unverified.",
   "playable": false,
   "milestones": [
+    {
+      "title": "The game now runs its loading frame loop on Metal",
+      "detail": "Metal runs a full-screen triangle and two rectangles into the game’s 4K display target. One 15-minute launch displayed 3,639 frames."
+    },
     {
       "title": "Metal ran the game’s first draw",
       "detail": "The Mac recorded the game’s draw state and replayed its first draw: three vertices that cover the 3,840 × 2,160 display target, with one block of constants read from game memory. The game then asked to display a second frame, and macOS displayed it. Frames 1 and 2 are both black."
@@ -382,9 +386,9 @@
     {
       "title": "Present a game-rendered frame in a Mac window",
       "state": "current",
-      "detail": "The game finished its graphics setup on the Mac and started to draw. The Mac now records the game’s draw state and replays its first draw on Metal: a full-screen triangle into the 3,840 × 2,160 display target. macOS displayed frames 1 and 2. Both are black, and recognizable imagery is still pending.",
-      "blocker": "The third frame holds three draws. Two of them use packaged pipelines and the console’s rectangle primitive, which the Mac cannot run yet.",
-      "nextTest": "Link Metal render state for the game’s packaged pipelines at draw time, add the console rectangle primitive, then bind textures and samplers for the draws of the third frame."
+      "detail": "Metal runs a full-screen triangle and two rectangles into the game’s 4K display target. One 15-minute launch displayed 3,639 frames.",
+      "blocker": "Movie-library startup and archive access have been observed. A decoded frame reaching the display texture is still unverified.",
+      "nextTest": "Follow movie loading through decode and texture upload, then inspect the game window for the first recognizable image."
     },
     {
       "title": "Route keyboard or controller input to the menu",
