@@ -1,16 +1,20 @@
 {
-  "updatedAt": "2026-11-25T11:33:27Z",
-  "headline": "The game created its small render targets and reached larger graphics surfaces",
-  "currentWork": "Verify the new depth surface in the game and follow loading to the first visible image.",
+  "updatedAt": "2026-11-25T11:47:25Z",
+  "headline": "The game passed its first full-size depth surface request",
+  "currentWork": "Support the next graphics surface, which stores both depth and a per-pixel mask.",
   "graphicsStatus": "Hardware tests on the Mac verified depth writes and reads on the new surface and texture writes that a later compute task could read.",
   "initializers": {
     "complete": true,
     "entries": 1115
   },
   "firstGameFrame": false,
-  "screenStatus": "The last inspected game window showed black. The game had issued no movie selection request before its next graphics allocation.",
+  "screenStatus": "The last inspected window showed black. The game checked 58 empty movie player slots and issued no playback request.",
   "playable": false,
   "milestones": [
+    {
+      "title": "The game sized its full-size 32-bit depth surface",
+      "detail": "Loading advanced to additional graphics surfaces. The next stop was a different depth format that also stores a per-pixel mask. The game window was still black when inspected after the first size query."
+    },
     {
       "title": "The game created two small linear render targets",
       "detail": "Loading continued to full-size graphics surfaces. The next stop was a memory size request for a depth surface. A Mac GPU test now verifies writing depth and reading it back through the same surface."
