@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-25T00:46:27Z",
-  "headline": "The game now binds its resource and sampler tables on the Mac",
-  "currentWork": "Verify that Metal writes the requested value only when the command list executes, then launch the game again.",
+  "updatedAt": "2026-11-25T00:50:51Z",
+  "headline": "The game now records a 32-bit GPU progress marker",
+  "currentWork": "Trace the game’s next query and identify its destination. Test the Metal timing result before connecting it to the game.",
   "graphicsStatus": "The launch cache holds 1,270 of 18,837 packaged graphics stage and layout combinations. The newly added vertex and pixel pair linked as a Metal render pipeline on the M5 Pro.",
   "initializers": {
     "complete": true,
@@ -11,6 +11,10 @@
   "screenStatus": "The game opens its own Mac window. The next visible milestone is the first frame drawn by the game. Its timing is still unknown.",
   "playable": false,
   "milestones": [
+    {
+      "title": "The game passed the GPU progress-marker call",
+      "detail": "The native game recorded its 32-bit marker and reached the next graphics query. A separate test sent the write through Metal and verified the exact value after GPU completion."
+    },
     {
       "title": "Startup bound both shader-visible descriptor heaps",
       "detail": "The game queried the GPU clock, reopened a command list and attached both tables its shaders use to find resources and samplers. The next request was a 32-bit GPU write into shared memory."
@@ -325,9 +329,9 @@
     {
       "title": "Submit the game’s GPU commands to Metal",
       "state": "current",
-      "detail": "The game has passed the GPU clock query, command-list reset and binding of two descriptor heaps. The native Mac window opens. The first game-rendered frame is still pending.",
-      "blocker": "The latest launch reached a request for the GPU to write a 32-bit progress value into memory. Recording and executing this command must preserve the order of GPU work.",
-      "nextTest": "Verify that Metal writes the requested value only when the command list executes, then launch the game again."
+      "detail": "The game can reopen command lists, bind resource and sampler tables and record a GPU progress marker. The latest launch reached a new graphics query and loaded 16 more native code blocks. The first game-rendered frame is still pending.",
+      "blocker": "The game requests a 64-bit result through Xbox command-list method 72. Its caller selects a query type and uses an eight-byte result slot. The exact operation is under investigation.",
+      "nextTest": "Trace the game’s next query and identify its destination. Test the Metal timing result before connecting it to the game."
     },
     {
       "title": "Present a game-rendered frame in a Mac window",
@@ -349,7 +353,7 @@
     "done": 51029,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-25T00:45:13Z"
+    "measuredAt": "2026-11-25T00:48:49Z"
   },
   "packageComputeCoverage": {
     "done": 42,

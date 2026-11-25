@@ -21,7 +21,7 @@
     <div class="heading">
       <h1>GTA VI on Mac</h1>
       <p>The game opens its own Mac window. The next visible milestone is the first frame drawn by the game. Its timing is still unknown.</p>
-      <p class="tested">Last tested <time datetime="2026-11-25T00:46:27Z">Nov 25, 2026, 12:46 AM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-25T00:50:51Z">Nov 25, 2026, 12:50 AM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -29,16 +29,16 @@
         <h2 id="current-title">Submit the game’s GPU commands to Metal</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Latest verified result</h3><p>The game now binds its resource and sampler tables on the Mac</p></div>
-        <div><h3>Current status</h3><p>The latest launch reached a request for the GPU to write a 32-bit progress value into memory. Recording and executing this command must preserve the order of GPU work.</p></div>
-        <div><h3>Next test</h3><p>Verify that Metal writes the requested value only when the command list executes, then launch the game again.</p></div>
+        <div><h3>Latest verified result</h3><p>The game now records a 32-bit GPU progress marker</p></div>
+        <div><h3>Current status</h3><p>The game requests a 64-bit result through Xbox command-list method 72. Its caller selects a query type and uses an eight-byte result slot. The exact operation is under investigation.</p></div>
+        <div><h3>Next test</h3><p>Trace the game’s next query and identify its destination. Test the Metal timing result before connecting it to the game.</p></div>
       </div>
     </section><section class="coverage" aria-labelledby="coverage-title">
       <h2 id="coverage-title">Native code translation</h2>
       <p><strong>16.8% of indexed function starts translated</strong></p>
       <progress aria-label="Translated function entry points" value="51029" max="304274">16.8%</progress>
       <p>51,029 of 304,274 translated · 253,245 remaining</p>
-      <p class="coverage-note">Measured across 8 game modules on Nov 25, 2026, 12:45 AM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
+      <p class="coverage-note">Measured across 8 game modules on Nov 25, 2026, 12:48 AM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
     </section><section class="coverage" aria-labelledby="gpu-coverage-title">
       <h2 id="gpu-coverage-title">GPU shader translation</h2><div class="shader-count">
       <h3>Compute shaders</h3>
@@ -138,7 +138,7 @@
       <span class="number"><span class="sr-only">Stage </span>10</span>
       <div class="step-body">
         <h3>Submit the game’s GPU commands to Metal</h3>
-        <p>The game has passed the GPU clock query, command-list reset and binding of two descriptor heaps. The native Mac window opens. The first game-rendered frame is still pending.</p>
+        <p>The game can reopen command lists, bind resource and sampler tables and record a GPU progress marker. The latest launch reached a new graphics query and loaded 16 more native code blocks. The first game-rendered frame is still pending.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>
