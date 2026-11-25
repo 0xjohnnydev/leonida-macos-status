@@ -1,16 +1,20 @@
 {
-  "updatedAt": "2026-11-25T12:44:44Z",
-  "headline": "The game created all six views of its layered depth surface",
-  "currentWork": "Support the larger depth surface that the game places over the same graphics memory.",
-  "graphicsStatus": "The game created the six-layer depth surface and a separate view for each layer. Hardware checks confirmed independent reads and writes across layers.",
+  "updatedAt": "2026-11-25T12:55:55Z",
+  "headline": "The game created two depth surfaces that share graphics memory",
+  "currentWork": "Support the array view the game requests next during loading.",
+  "graphicsStatus": "The game created both depth surfaces and a depth attachment for the larger one. Hardware checks confirmed that retained views read the expected depth after each clear.",
   "initializers": {
     "complete": true,
     "entries": 1115
   },
   "firstGameFrame": false,
-  "screenStatus": "The inspected game window showed black. The startup group had 13 jobs remaining when placement stopped.",
+  "screenStatus": "The inspected window was black. All 7,007 displayed frames checked in this run were black.",
   "playable": false,
   "milestones": [
+    {
+      "title": "Two depth surfaces shared one graphics address",
+      "detail": "The game placed a six-layer surface and a larger single-layer surface at the same address. Loading then reached another shader view request."
+    },
     {
       "title": "The game created its six-layer depth surface",
       "detail": "It created a view for each layer and continued to a larger depth surface that reuses the same graphics memory. A hardware test verified draws, clears and reads on individual layers."
