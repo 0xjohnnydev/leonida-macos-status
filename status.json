@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-25T05:46:38Z",
-  "headline": "The game passed text parsing and reached Bink video setup",
-  "currentWork": "Trace the first movie open and decode, then check whether the decoded frame reaches the game window.",
+  "updatedAt": "2026-11-25T06:18:13Z",
+  "headline": "The game found the Mac’s default audio output during loading",
+  "currentWork": "Continue through audio setup and movie loading, then inspect the first changing frame.",
   "graphicsStatus": "The launch cache holds 1,270 of 18,837 packaged graphics stage and layout combinations. The newly added vertex and pixel pair linked as a Metal render pipeline on the M5 Pro.",
   "initializers": {
     "complete": true,
@@ -11,6 +11,10 @@
   "screenStatus": "The game window opens and stays black during the observed loading sequence. A visible image, the menu and gameplay remain unverified.",
   "playable": false,
   "milestones": [
+    {
+      "title": "The game found the Mac’s default audio output during loading",
+      "detail": "On a native launch, the game enumerated local audio outputs and read the default device identifier. The game window remained black."
+    },
     {
       "title": "The game passed text parsing and reached Bink video setup",
       "detail": "Loading continued past the previous text-parsing stop. The game entered Bink routines for file access, memory, worker threads and sound."
@@ -391,8 +395,8 @@
       "title": "Present a game-rendered frame in a Mac window",
       "state": "current",
       "detail": "Metal runs a full-screen triangle and two rectangles into the game’s 4K display target. One 15-minute launch displayed 3,639 frames.",
-      "blocker": "The game reached Bink setup. Opening a movie and decoding its first frame still need verification.",
-      "nextTest": "Trace the first movie open and decode, then check whether the decoded frame reaches the game window."
+      "blocker": "The game has reached console audio memory setup. Movie decoding and visible imagery remain unverified.",
+      "nextTest": "Continue through audio setup and movie loading, then inspect the first changing frame."
     },
     {
       "title": "Route keyboard or controller input to the menu",
