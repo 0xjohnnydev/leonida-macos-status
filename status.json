@@ -1,16 +1,24 @@
 {
-  "updatedAt": "2026-11-25T01:08:34Z",
-  "headline": "The game recorded its first render-target clear on the Mac",
-  "currentWork": "Verify the arm64 implementation of CMPXCHG16B, an instruction that compares and updates 16 bytes together. Relaunch and trace the next draw or presentation command.",
+  "updatedAt": "2026-11-25T01:40:45Z",
+  "headline": "macOS displayed the game’s first frame in its Mac window",
+  "currentWork": "Answer the game’s size request for a 1,280 × 720 floating-point color target. Relaunch and trace the next draw or display request. Check the window for the first frame with more than one color.",
   "graphicsStatus": "The launch cache holds 1,270 of 18,837 packaged graphics stage and layout combinations. The newly added vertex and pixel pair linked as a Metal render pipeline on the M5 Pro.",
   "initializers": {
     "complete": true,
     "entries": 1115
   },
   "firstGameFrame": false,
-  "screenStatus": "The game opens its own Mac window. Metal has completed commands for frame 1. The first visible game-rendered frame is still pending.",
+  "screenStatus": "The game opens its own Mac window, and macOS has displayed the game’s frame 1 in it. All 64 sampled pixels of that frame were black. No logo, menu or gameplay is visible yet.",
   "playable": false,
   "milestones": [
+    {
+      "title": "macOS displayed the game’s first frame",
+      "detail": "The game asked to display frame 1. The Mac drew the game’s 3,840 × 2,160 texture into the game window, and macOS reported its display time on the second scanout. All 64 sampled pixels were black. The Mac startup monitor now shows five of five milestones."
+    },
+    {
+      "title": "The launch ran past the game’s stall timer",
+      "detail": "The game stops itself when its frame loop makes no progress for 30 seconds. Waits for the Mac’s code translator had counted toward that limit. The game’s sleep clock now leaves those waits out. The next launch ran 201 seconds, up from about 40."
+    },
     {
       "title": "The game began preparing a surface for drawing",
       "detail": "After Metal completed the first frame-tagged command list, the game ordered access to a texture and recorded a command to fill a render target with its chosen color. The window is still waiting for a displayed frame."
@@ -350,9 +358,9 @@
     {
       "title": "Present a game-rendered frame in a Mac window",
       "state": "current",
-      "detail": "Four of five milestones in the Mac monitor are verified. Metal completed work tagged for frame 1, and the game began recording changes to a render target. A frame from the game has yet to appear in the window.",
-      "blocker": "Another startup thread reached CMPXCHG16B after the render-target clear. The last complete game launch stopped at that CPU instruction.",
-      "nextTest": "Verify the arm64 implementation of CMPXCHG16B, an instruction that compares and updates 16 bytes together. Relaunch and trace the next draw or presentation command."
+      "detail": "All five milestones in the Mac monitor are verified. The game asked to display frame 1 from a 3,840 × 2,160 texture. The Mac drew it into the game window at its 16:9 shape, and macOS reported the time it reached the display. All 64 sampled pixels were black, so recognizable imagery is still pending.",
+      "blocker": "The launch continued for more than three minutes after the frame. It stopped when the game asked for the storage size of a 1,280 × 720 floating-point color target with console options the Mac had not seen before.",
+      "nextTest": "Answer the game’s size request for a 1,280 × 720 floating-point color target. Relaunch and trace the next draw or display request. Check the window for the first frame with more than one color."
     },
     {
       "title": "Route keyboard or controller input to the menu",
@@ -366,10 +374,10 @@
     }
   ],
   "translationCoverage": {
-    "done": 51052,
+    "done": 51170,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-25T01:07:13Z"
+    "measuredAt": "2026-11-25T01:39:27Z"
   },
   "packageComputeCoverage": {
     "done": 42,
