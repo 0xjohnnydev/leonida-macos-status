@@ -1,16 +1,20 @@
 {
-  "updatedAt": "2026-11-25T11:47:25Z",
-  "headline": "The game passed its first full-size depth surface request",
-  "currentWork": "Support the next graphics surface, which stores both depth and a per-pixel mask.",
-  "graphicsStatus": "Hardware tests on the Mac verified depth writes and reads on the new surface and texture writes that a later compute task could read.",
+  "updatedAt": "2026-11-25T12:01:08Z",
+  "headline": "The game passed the combined depth and stencil allocation",
+  "currentWork": "Support the compact color surface requested next and follow the outstanding group of loading jobs.",
+  "graphicsStatus": "The Mac GPU verified 16-bit depth writes and clears, independent stencil values, and shader reads of both planes.",
   "initializers": {
     "complete": true,
     "entries": 1115
   },
   "firstGameFrame": false,
-  "screenStatus": "The last inspected window showed black. The game checked 58 empty movie player slots and issued no playback request.",
+  "screenStatus": "The window was black when inspected after the combined depth and stencil request. No movie had been selected.",
   "playable": false,
   "milestones": [
+    {
+      "title": "The game advanced through more than 200 texture size queries",
+      "detail": "After the new depth and stencil surface was supported, the loader continued sizing textures and requesting placements. It next stopped at a compact color surface. The window showed black on inspection."
+    },
     {
       "title": "The game sized its full-size 32-bit depth surface",
       "detail": "Loading advanced to additional graphics surfaces. The next stop was a different depth format that also stores a per-pixel mask. The game window was still black when inspected after the first size query."
