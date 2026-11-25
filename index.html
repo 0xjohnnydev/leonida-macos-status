@@ -21,7 +21,7 @@
     <div class="heading">
       <h1>GTA VI on Mac</h1>
       <p>The game window opens and stays black during the observed loading sequence. A visible image, the menu and gameplay remain unverified.</p>
-      <p class="tested">Last tested <time datetime="2026-11-25T07:48:58Z">Nov 25, 2026, 7:48 AM UTC</time></p>
+      <p class="tested">Last tested <time datetime="2026-11-25T08:02:17Z">Nov 25, 2026, 8:02 AM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -29,9 +29,9 @@
         <h2 id="current-title">Present a game-rendered frame in a Mac window</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Latest verified result</h3><p>The game completed its startup request for random bytes on Mac</p></div>
-        <div><h3>Current status</h3><p>The loader reached a Windows socket call that the Mac runtime did not yet handle.</p></div>
-        <div><h3>Next test</h3><p>Follow the game’s offline socket setup and watch for its first visible image.</p></div>
+        <div><h3>Latest verified result</h3><p>The game passed its local configuration check on Mac</p></div>
+        <div><h3>Current status</h3><p>The next shader uses a comparison instruction that the Mac translator does not yet handle in this form.</p></div>
+        <div><h3>Next test</h3><p>Translate the next loading shader and check the game window.</p></div>
       </div>
     </section><details class="coverage">
       <summary><strong>CPU translation details</strong></summary>
@@ -146,7 +146,7 @@
       <span class="number"><span class="sr-only">Stage </span>11</span>
       <div class="step-body">
         <h3>Present a game-rendered frame in a Mac window</h3>
-        <p>The game obtained random bytes from macOS, closed the provider, and continued into its offline socket setup. Inspection of the game window still showed black.</p>
+        <p>The game read its local title and system configuration, passed the check that had stopped startup, and requested another shader. The window still showed black after 92 frames.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>

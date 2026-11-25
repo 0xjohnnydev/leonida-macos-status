@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-25T07:48:58Z",
-  "headline": "The game completed its startup request for random bytes on Mac",
-  "currentWork": "Follow the game’s offline socket setup and watch for its first visible image.",
+  "updatedAt": "2026-11-25T08:02:17Z",
+  "headline": "The game passed its local configuration check on Mac",
+  "currentWork": "Translate the next loading shader and check the game window.",
   "graphicsStatus": "The launch cache holds 1,270 of 18,837 packaged graphics stage and layout combinations. The newly added vertex and pixel pair linked as a Metal render pipeline on the M5 Pro.",
   "initializers": {
     "complete": true,
@@ -11,6 +11,10 @@
   "screenStatus": "The game window opens and stays black during the observed loading sequence. A visible image, the menu and gameplay remain unverified.",
   "playable": false,
   "milestones": [
+    {
+      "title": "The game passed its local configuration check on Mac",
+      "detail": "The game read its local title and system configuration, passed the check that had stopped startup, and requested another shader. The window still showed black after 92 frames."
+    },
     {
       "title": "The game completed its startup request for random bytes on Mac",
       "detail": "The game obtained random bytes from macOS, closed the provider, and continued into its offline socket setup. Inspection of the game window still showed black."
@@ -414,9 +418,9 @@
     {
       "title": "Present a game-rendered frame in a Mac window",
       "state": "current",
-      "detail": "The game obtained random bytes from macOS, closed the provider, and continued into its offline socket setup. Inspection of the game window still showed black.",
-      "blocker": "The loader reached a Windows socket call that the Mac runtime did not yet handle.",
-      "nextTest": "Follow the game’s offline socket setup and watch for its first visible image."
+      "detail": "The game read its local title and system configuration, passed the check that had stopped startup, and requested another shader. The window still showed black after 92 frames.",
+      "blocker": "The next shader uses a comparison instruction that the Mac translator does not yet handle in this form.",
+      "nextTest": "Translate the next loading shader and check the game window."
     },
     {
       "title": "Route keyboard or controller input to the menu",
