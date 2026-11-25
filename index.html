@@ -7,7 +7,7 @@
   <meta name="description" content="Track the native Mac port of GTA VI, from arm64 startup and Metal shader tests to a game-rendered frame and a playable scene.">
   <title>GTA VI on Mac · Progress tracker</title>
   <link rel="stylesheet" href="./style.css?v=6">
-  <script type="module" src="./tracker.js?v=7"></script>
+  <script type="module" src="./tracker.js?v=8"></script>
 </head>
 <body>
   <header>
@@ -20,7 +20,8 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p class="tested">Last tested <time datetime="2026-11-25T00:33:55Z">Nov 25, 2026, 12:33 AM UTC</time></p>
+      <p>The game opens its own Mac window. The next visible milestone is the first frame drawn by the game. Its timing is still unknown.</p>
+      <p class="tested">Last tested <time datetime="2026-11-25T00:36:41Z">Nov 25, 2026, 12:36 AM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -28,16 +29,16 @@
         <h2 id="current-title">Submit the game’s GPU commands to Metal</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Latest verified result</h3><p>Preparing the code before launch moved the game past its startup timeout</p></div>
-        <div><h3>Current status</h3><p>The next startup step uses CLZERO, an Xbox CPU instruction that clears a 64-byte cache line.</p></div>
-        <div><h3>Next test</h3><p>Verify the new memory instruction on Apple Silicon and retry the native game.</p></div>
+        <div><h3>Latest verified result</h3><p>The game passed the missing CPU instruction and reached graphics command memory</p></div>
+        <div><h3>Current status</h3><p>The game calls an Xbox-specific method on the object that owns graphics command memory. The Mac runtime currently stops at that call.</p></div>
+        <div><h3>Next test</h3><p>Identify the Xbox allocator operation from the running game and check its effects before implementing it in Metal.</p></div>
       </div>
     </section><section class="coverage" aria-labelledby="coverage-title">
       <h2 id="coverage-title">Native code translation</h2>
       <p><strong>16.8% of indexed function starts translated</strong></p>
       <progress aria-label="Translated function entry points" value="51029" max="304274">16.8%</progress>
       <p>51,029 of 304,274 translated · 253,245 remaining</p>
-      <p class="coverage-note">Measured across 8 game modules on Nov 25, 2026, 12:30 AM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
+      <p class="coverage-note">Measured across 8 game modules on Nov 25, 2026, 12:35 AM UTC. A translated entry can still have untranslated branches. Startup may use only part of the index.</p>
     </section><section class="coverage" aria-labelledby="gpu-coverage-title">
       <h2 id="gpu-coverage-title">GPU shader translation</h2><div class="shader-count">
       <h3>Compute shaders</h3>
@@ -137,7 +138,7 @@
       <span class="number"><span class="sr-only">Stage </span>10</span>
       <div class="step-body">
         <h3>Submit the game’s GPU commands to Metal</h3>
-        <p>Two earlier launches stopped after about 37 seconds while a game worker waited for code translation. The new build prepared all 1,969 identified blocks in that function before launch. The game then reached a different instruction. A first game-rendered frame is still ahead.</p>
+        <p>The game passed both the startup timer and the instruction that clears memory. The latest launch reached the graphics command allocator after 22 texture uploads. A first game-rendered frame is still pending.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>

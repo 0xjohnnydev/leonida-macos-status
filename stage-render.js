@@ -110,6 +110,7 @@ export function renderStages(data) {
   return `
     <div class="heading">
       <h1>GTA VI on Mac</h1>
+      ${data.screenStatus ? `<p>${escapeText(data.screenStatus)}</p>` : ''}
       <p class="tested">Last tested <time datetime="${escapeText(data.updatedAt)}">${escapeText(testDate(data.updatedAt))}</time></p>
     </div>${current}${coverage}
     <section class="roadmap" aria-labelledby="stages-title">
