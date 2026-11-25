@@ -1,16 +1,20 @@
 {
-  "updatedAt": "2026-11-25T09:27:47Z",
-  "headline": "Metal now writes the GPU finish time back to the game’s memory",
-  "currentWork": "Run the game with the timing fix and trace which loading step first requests playback.",
+  "updatedAt": "2026-11-25T09:32:30Z",
+  "headline": "The game passed the GPU timing failure and continued loading",
+  "currentWork": "Trace the startup task that tells the initialized movie player to begin.",
   "graphicsStatus": "Four hardware tests verified GPU timing across memory remaps. Separate tests verified video-plane copies, indexed draws and vertex texture reads.",
   "initializers": {
     "complete": true,
     "entries": 1115
   },
   "firstGameFrame": false,
-  "screenStatus": "The window still showed black during loading. The game reached movie readiness but had yet to ask for playback.",
+  "screenStatus": "The inspected game window still showed black. Movie initialization finished, and playback has yet to begin.",
   "playable": false,
   "milestones": [
+    {
+      "title": "The game passed the GPU timing failure and continued loading",
+      "detail": "In the game, the Mac passed the earlier GPU timing failure, completed more than 5,200 local storage requests and registered over 2,500 compute programs for compilation on first use. The game window still showed black."
+    },
     {
       "title": "Metal now writes the GPU finish time back to the game’s memory",
       "detail": "A hardware test reproduced an empty counter reading. Metal’s measured GPU finish time now reaches the correct memory page and the following GPU command reads it. The test passed four times, including after the address was remapped."
