@@ -20,8 +20,8 @@
   <main id="board" class="wrap">
     <div class="heading">
       <h1>GTA VI on Mac</h1>
-      <p>The game opens its own Mac window, and macOS displays the game’s frame 1 in it. The frame is black: the game cleared its display target and the Mac cannot run the game’s draws yet. No logo, menu or gameplay is visible.</p>
-      <p class="tested">Last tested <time datetime="2026-11-25T03:09:29Z">Nov 25, 2026, 3:09 AM UTC</time></p>
+      <p>The game opens its own Mac window, and macOS has displayed the game’s frames 1 and 2 in it. Both are black. The game’s first draw now runs on Metal, and the draws of its third frame are the next work. No logo, menu or gameplay is visible.</p>
+      <p class="tested">Last tested <time datetime="2026-11-25T03:38:47Z">Nov 25, 2026, 3:38 AM UTC</time></p>
     </div>
     <section class="focus" aria-labelledby="current-title">
       <div class="focus-head">
@@ -29,16 +29,16 @@
         <h2 id="current-title">Present a game-rendered frame in a Mac window</h2>
       </div>
       <div class="focus-notes">
-        <div><h3>Latest verified result</h3><p>The game finished its graphics setup and issued its first draw state</p></div>
-        <div><h3>Current status</h3><p>The Mac runtime replays clears, value writes and buffer copies only. It has no draw path yet, so the launch stops at the first draw state.</p></div>
-        <div><h3>Next test</h3><p>Build the draw path on Metal: record the game’s draw state, give translated shaders access to game memory, bind textures and samplers, and replay the first draw into the display target.</p></div>
+        <div><h3>Latest verified result</h3><p>Metal ran the game’s first draw, and macOS displayed a second game frame</p></div>
+        <div><h3>Current status</h3><p>The third frame holds three draws. Two of them use packaged pipelines and the console’s rectangle primitive, which the Mac cannot run yet.</p></div>
+        <div><h3>Next test</h3><p>Link Metal render state for the game’s packaged pipelines at draw time, add the console rectangle primitive, then bind textures and samplers for the draws of the third frame.</p></div>
       </div>
     </section><details class="coverage">
       <summary><strong>CPU translation details</strong></summary>
       <p><strong>16.9% of indexed function starts translated</strong></p>
-      <progress aria-label="Translated function entry points" value="51426" max="304274">16.9%</progress>
-      <p>51,426 of 304,274 translated · 252,848 remaining</p>
-      <p class="coverage-note">Measured across 8 game modules on Nov 25, 2026, 3:05 AM UTC. Startup uses part of this index. Graphics and display work can advance while this percentage stays the same.</p>
+      <progress aria-label="Translated function entry points" value="51452" max="304274">16.9%</progress>
+      <p>51,452 of 304,274 translated · 252,822 remaining</p>
+      <p class="coverage-note">Measured across 8 game modules on Nov 25, 2026, 3:37 AM UTC. Startup uses part of this index. Graphics and display work can advance while this percentage stays the same.</p>
     </details><section class="coverage" aria-labelledby="gpu-coverage-title">
       <h2 id="gpu-coverage-title">GPU shader translation</h2><div class="shader-count">
       <h3>Compute shaders</h3>
@@ -146,7 +146,7 @@
       <span class="number"><span class="sr-only">Stage </span>11</span>
       <div class="step-body">
         <h3>Present a game-rendered frame in a Mac window</h3>
-        <p>All five milestones in the Mac monitor are verified, and macOS displays the game’s black frame 1. The game then finished its graphics setup on the Mac: render targets in many pixel formats, depth targets, 18,967 pipeline variants, fences it polls through memory, and a texture it fills from the CPU. About 107 seconds into startup it cleared its display target and set a triangle-list topology, its first draw state.</p>
+        <p>The game finished its graphics setup on the Mac and started to draw. The Mac now records the game’s draw state and replays its first draw on Metal: a full-screen triangle into the 3,840 × 2,160 display target. macOS displayed frames 1 and 2. Both are black, and recognizable imagery is still pending.</p>
       </div>
       <span class="state state-current">In progress</span>
     </li>

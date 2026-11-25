@@ -1,16 +1,20 @@
 {
-  "updatedAt": "2026-11-25T03:09:29Z",
-  "headline": "The game finished its graphics setup and issued its first draw state",
-  "currentWork": "Build the draw path on Metal: record the game’s draw state, give translated shaders access to game memory, bind textures and samplers, and replay the first draw into the display target.",
+  "updatedAt": "2026-11-25T03:38:47Z",
+  "headline": "Metal ran the game’s first draw, and macOS displayed a second game frame",
+  "currentWork": "Link Metal render state for the game’s packaged pipelines at draw time, add the console rectangle primitive, then bind textures and samplers for the draws of the third frame.",
   "graphicsStatus": "The launch cache holds 1,270 of 18,837 packaged graphics stage and layout combinations. The newly added vertex and pixel pair linked as a Metal render pipeline on the M5 Pro.",
   "initializers": {
     "complete": true,
     "entries": 1115
   },
   "firstGameFrame": false,
-  "screenStatus": "The game opens its own Mac window, and macOS displays the game’s frame 1 in it. The frame is black: the game cleared its display target and the Mac cannot run the game’s draws yet. No logo, menu or gameplay is visible.",
+  "screenStatus": "The game opens its own Mac window, and macOS has displayed the game’s frames 1 and 2 in it. Both are black. The game’s first draw now runs on Metal, and the draws of its third frame are the next work. No logo, menu or gameplay is visible.",
   "playable": false,
   "milestones": [
+    {
+      "title": "Metal ran the game’s first draw",
+      "detail": "The Mac recorded the game’s draw state and replayed its first draw: three vertices that cover the 3,840 × 2,160 display target, with one block of constants read from game memory. The game then asked to display a second frame, and macOS displayed it. Frames 1 and 2 are both black."
+    },
     {
       "title": "Graphics setup finished and the first draw state arrived",
       "detail": "The game created all the render targets, depth targets, views and pipelines it asks for at startup. About 107 seconds in, it cleared its display target and set a triangle-list topology. The Mac runtime has no draw path yet, so the launch stops there. The window still shows the black frame 1."
@@ -378,9 +382,9 @@
     {
       "title": "Present a game-rendered frame in a Mac window",
       "state": "current",
-      "detail": "All five milestones in the Mac monitor are verified, and macOS displays the game’s black frame 1. The game then finished its graphics setup on the Mac: render targets in many pixel formats, depth targets, 18,967 pipeline variants, fences it polls through memory, and a texture it fills from the CPU. About 107 seconds into startup it cleared its display target and set a triangle-list topology, its first draw state.",
-      "blocker": "The Mac runtime replays clears, value writes and buffer copies only. It has no draw path yet, so the launch stops at the first draw state.",
-      "nextTest": "Build the draw path on Metal: record the game’s draw state, give translated shaders access to game memory, bind textures and samplers, and replay the first draw into the display target."
+      "detail": "The game finished its graphics setup on the Mac and started to draw. The Mac now records the game’s draw state and replays its first draw on Metal: a full-screen triangle into the 3,840 × 2,160 display target. macOS displayed frames 1 and 2. Both are black, and recognizable imagery is still pending.",
+      "blocker": "The third frame holds three draws. Two of them use packaged pipelines and the console’s rectangle primitive, which the Mac cannot run yet.",
+      "nextTest": "Link Metal render state for the game’s packaged pipelines at draw time, add the console rectangle primitive, then bind textures and samplers for the draws of the third frame."
     },
     {
       "title": "Route keyboard or controller input to the menu",
@@ -394,10 +398,10 @@
     }
   ],
   "translationCoverage": {
-    "done": 51426,
+    "done": 51452,
     "total": 304274,
     "modules": 8,
-    "measuredAt": "2026-11-25T03:05:51Z"
+    "measuredAt": "2026-11-25T03:37:58Z"
   },
   "packageComputeCoverage": {
     "done": 42,
